@@ -1,0 +1,7 @@
+*.md
+.github
+.github/*
+utils
+utils/*
+art
+art/*

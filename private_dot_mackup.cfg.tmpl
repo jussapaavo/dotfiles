@@ -1,0 +1,25 @@
+[storage]
+engine = icloud
+
+{{ if not (eq .chezmoi.username "jussi") }}
+[applications_to_sync]
+hammerspoon
+kitty
+p10k
+gnupg
+ipython
+jupyter
+ssh
+
+{{ end }}
+[applications_to_ignore]
+zsh
+mackup
+boto
+bash
+spectacle
+messages
+rectangle
+jumpcut
+colorslurp
+spotify
