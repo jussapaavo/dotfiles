@@ -6,7 +6,6 @@
 PATH="/Library/Frameworks/Python.framework/Versions/3.8/bin:${PATH}"
 export PATH
 
-
 ###
 # Oh My ZHS and Powerlevel10k settings
 ###
@@ -17,6 +16,9 @@ export PATH
 if [[ -r "${XDG_CACHE_HOME:-{{ .chezmoi.homeDir }}/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-{{ .chezmoi.homeDir }}/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+# Include custom aliases
+source {{ .chezmoi.homeDir }}/.local/share/chezmoi/utils/aliases.zsh
 
 # If you come from bash you might have to change your $PATH.
 # export PATH={{ .chezmoi.homeDir }}/bin:/usr/local/bin:$PATH
