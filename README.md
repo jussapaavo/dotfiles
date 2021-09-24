@@ -6,7 +6,11 @@ This repository serves as my way to help me setup and maintain my Mac. It takes 
 
 📖 - [Read the blog post](https://driesvints.com/blog/getting-started-with-dotfiles)  
 📺 - [Watch the screencast on Laracasts](https://laracasts.com/series/guest-spotlight/episodes/1)  
-💡 - [Learn how to build your own dotfiles](https://github.com/driesvints/dotfiles#your-own-dotfiles)
+💡 - [Learn how to build your own dotfiles](https://github.com/driesvints/dotfiles#your-own-dotfiles)  
+
+## Thanks to...
+
+This repository is based on [Dries Vints' dotfiles](https://github.com/driesvints/dotfiles) and [Tom Payne's chezmoi](https://github.com/twpayne/chezmoi). Thank you for all the inspiration, guides and excellent code you've provided.
 
 ## A Fresh macOS Setup
 

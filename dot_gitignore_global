@@ -1,7 +1,6 @@
 # Logs and databases #
 ######################
 *.log
-*.sql
 *.sqlite
 
 # Direnv variables

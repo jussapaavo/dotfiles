@@ -3,25 +3,27 @@ tap 'homebrew/cask'
 tap 'homebrew/cask-fonts'
 tap 'homebrew/cask-versions'
 tap 'homebrew/bundle'
-tap 'nicoverbruggen/homebrew-cask'
+tap 'brew tap dbt-labs/dbt' # For development
 
 # Binaries
+brew 'autojump'
+brew 'apparency' # Quicklook plugin for better app info
 brew 'bash' # Latest Bash version
 brew 'coreutils' # Those that come with macOS are outdated
 brew 'ffmpeg' # Better audio and video handling
-brew 'gh' # GitHub CLI
 brew 'git'
 brew 'gnupg'
 brew 'grep' # Global Regural Expression Print
 brew 'httpie'
-brew 'hub' # GitHub CLI extensions
 brew 'mackup'
 brew 'mas' # Mac App Store manager
+brew 'neofetch' # Display information about your system in terminal
 brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
 brew 'svn' # Needed for font installs
 brew 'trash' # Manage the Trash bin
 brew 'tree' # List directories in a tree structure
 brew 'zlib' # Needed for Memcached
+
 
 # Spatie Medialibrary
 #brew 'jpegoptim'
@@ -33,11 +35,9 @@ brew 'zlib' # Needed for Memcached
 # Development
 #brew 'imagemagick'
 #brew 'meilisearch'
-#brew 'mysql'
-#brew 'nginx'
-#brew 'node'
-#brew 'redis'
-#brew 'yarn'
+brew 'gh' # GitHub CLI
+brew 'hub' # GitHub CLI extensions
+brew 'dbt'
 
 # Apps
 cask '1password'
@@ -60,6 +60,7 @@ cask 'imageoptim'
 #cask 'insomnia'
 cask 'iina' # Open-Source Video Player
 cask 'kitty'
+cask 'karabiner-elements'
 cask 'miniconda' # Conda package manager
 cask 'numi'
 cask 'obsidian'

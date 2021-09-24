@@ -31,5 +31,9 @@ mkdir $HOME/Development
 # Clone Github repositories
 ./utils/clone.sh
 
+# Install pyenv
+# Install conda
+# Setup conda without auto base
+
 # Set macOS preferences - we will run this last because this will reload the shell
 source .macos

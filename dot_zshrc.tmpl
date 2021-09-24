@@ -93,16 +93,17 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
     git
     direnv
-    #gcloud
-    python
-    vscode
-    sudo
-    brew
+    autojump
     gitignore
-    osx
+    #osx
     pip
     zsh-syntax-highlighting
     zsh-autosuggestions
+    #brew
+    #vscode
+    #gcloud
+    #sudo
+    #github
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -150,6 +151,8 @@ if [ -f "{{ .chezmoi.homeDir }}/opt/google-cloud-sdk/completion.zsh.inc" ]; then
 ###
 # Conda
 ###
+
+# Conda load is made faster with a hack from here: https://github.com/conda/conda/issues/7855
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
