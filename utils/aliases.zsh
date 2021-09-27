@@ -13,10 +13,11 @@ alias tg="terragrunt"
 alias tf="terraform"
 alias jn="jupyter notebook"
 
-
 # Directories
 alias library="cd $HOME/Library"
-alias dev="cd $HOME/Dagmar/3\ Development"
+alias dev="cd $HOME/Development"
+alias devd="cd $HOME/Development/Dagmar"
+alias devp="cd $HOME/Development/Personal"
 
 # Git
 alias amend="git add . && git commit -a --amend --no-edit"
