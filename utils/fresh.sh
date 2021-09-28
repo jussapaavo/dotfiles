@@ -22,11 +22,10 @@ brew update
 brew tap homebrew/bundle
 brew bundle
 
-# Create a dev directory
+# Create dev directories
 mkdir $HOME/Development
-
-# Create dev subdirectories
-#mkdir $HOME/Development/blade-ui-kit
+mkdir $HOME/Development/Dagmar
+mkdir $HOME/Development/Personal
 
 # Clone Github repositories
 ./utils/clone.sh
