@@ -63,6 +63,7 @@ cask 'imageoptim'
 cask 'iina' # Open-Source Video Player
 cask 'kitty'
 cask 'miniconda' # Conda package manager
+cask 'muzzle' # Silence notifications automatically
 cask 'numi'
 cask 'obsidian'
 cask 'onyx'
