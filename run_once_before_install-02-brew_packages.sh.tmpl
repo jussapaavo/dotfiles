@@ -1,3 +1,11 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+#!/bin/bash
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+#####################
+# Brewfile contents #
+#####################
+
 # Taps
 tap 'homebrew/cask'
 tap 'homebrew/cask-fonts'
@@ -24,7 +32,6 @@ brew 'trash' # Manage the Trash bin
 brew 'tree' # List directories in a tree structure
 brew 'zlib' # Needed for Memcached
 brew 'zoxide' # Better cd in Terminal
-
 
 # Spatie Medialibrary
 #brew 'jpegoptim'
@@ -102,8 +109,6 @@ cask 'font-meslo-lg'
 mas 'Keynote', id: 409183694
 mas 'Numbers', id: 409203825
 mas 'Pages', id: 409201541
-#mas 'Spark', id: 1176895641
-#mas 'Speedtest', id: 1153157709
 mas 'Affinity Photo', id: 824183456
 mas 'Boop', id: 1518425043
 mas 'PDF Squeezer 4', id: 1502111349
@@ -114,3 +119,9 @@ mas 'Microsoft 365', id: 1450038993
 
 # Python
 # Conda
+
+#########################
+# Brewfile contents end #
+#########################
+EOF
+{{ end -}}

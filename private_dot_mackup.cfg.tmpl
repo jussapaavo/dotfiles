@@ -1,7 +1,8 @@
+{{- if (eq .chezmoi.os "darwin") -}}
 [storage]
 engine = icloud
 
-{{ if not (eq .chezmoi.username "jussi") }}
+{{   if not (eq .chezmoi.username "jussi") }}
 [applications_to_sync]
 hammerspoon
 kitty
@@ -15,7 +16,7 @@ zzz-kitty_theme
 zzz-gitconfig
 zzz-dbt
 
-{{ end }}
+{{   end }}
 [applications_to_ignore]
 zsh
 mackup
@@ -27,3 +28,4 @@ rectangle
 jumpcut
 colorslurp
 spotify
+{{ end -}}

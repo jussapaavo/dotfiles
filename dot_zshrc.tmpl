@@ -17,9 +17,6 @@ if [[ -r "${XDG_CACHE_HOME:-{{ .chezmoi.homeDir }}/.cache}/p10k-instant-prompt-$
   source "${XDG_CACHE_HOME:-{{ .chezmoi.homeDir }}/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Include custom aliases
-source {{ .chezmoi.homeDir }}/.local/share/chezmoi/utils/aliases.zsh
-
 # If you come from bash you might have to change your $PATH.
 # export PATH={{ .chezmoi.homeDir }}/bin:/usr/local/bin:$PATH
 
@@ -93,7 +90,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
     git
     direnv
-    autojump
     gitignore
     #osx
     pip
@@ -133,6 +129,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate {{ .chezmoi.homeDir }}/.zshrc"
 # alias ohmyzsh="mate {{ .chezmoi.homeDir }}/.oh-my-zsh"
+source {{ .chezmoi.sourceDir }}/utils/aliases.zsh
 
 # To customize prompt, run `p10k configure` or edit {{ .chezmoi.homeDir }}/.p10k.zsh.
 [[ ! -f {{ .chezmoi.homeDir }}/.p10k.zsh ]] || source {{ .chezmoi.homeDir }}/.p10k.zsh

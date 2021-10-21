@@ -1,0 +1,12 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+#!/bin/sh
+
+# Create dev directories
+mkdir {{ .chezmoi.homeDir }}/Development
+mkdir {{ .chezmoi.homeDir }}/Development/Dagmar
+mkdir {{ .chezmoi.homeDir }}/Development/Personal
+
+# Clone Github repositories
+./utils/clone.sh
+
+{{ end -}}

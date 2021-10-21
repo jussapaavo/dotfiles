@@ -1,5 +1,7 @@
+{{- if (eq .chezmoi.os "darwin") -}}
 [application]
 name = My personal keyremappings
 
 [configuration_files]
 Library/LaunchAgents/com.local.KeyRemapping.plist
+{{ end -}}

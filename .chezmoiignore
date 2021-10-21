@@ -1,7 +1,9 @@
 *.md
+*.keep
 .github
 .github/*
 utils
 utils/*
 art
 art/*
+install.sh
