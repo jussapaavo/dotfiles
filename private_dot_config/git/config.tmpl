@@ -1,0 +1,18 @@
+[init]
+  defaultBranch = main
+
+[core]
+	excludesfile = ~/.config/git/ignore
+
+[push]
+  default = current
+
+[pull]
+	rebase = true
+
+[user]
+	name = {{ .name }}
+	email = {{ .email }}
+
+[includeIf "gitdir:**/Dagmar/*/"]
+	path = ~/.config/git/config_dagmar

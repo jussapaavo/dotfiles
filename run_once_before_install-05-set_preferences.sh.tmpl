@@ -1,7 +1,7 @@
 {{- if (eq .chezmoi.os "darwin") -}}
-#!/bin/sh
+#!/bin/bash
 
-#!/usr/bin/env bash
+set -eufo pipefail
 
 # Thanks to Mathias Bynens!
 # ~/.macos — https://mths.be/macos
@@ -21,19 +21,10 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ###############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
-{{ if (eq .chezmoi.username "jussi") }}
-# sudo scutil --set ComputerName "Jussi's Mac"
-# sudo scutil --set HostName "Jussi's Mac"
-# sudo scutil --set LocalHostName "Jussi's Mac"
-# sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Jussi's Mac"
-
-{{ else }}
-# sudo scutil --set ComputerName "Jussi's Mac"
-# sudo scutil --set HostName "Jussi's Mac"
-# sudo scutil --set LocalHostName "Jussi's Mac"
-# sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Jussi's Mac"
-
-{{ end }}
+# sudo scutil --set ComputerName "{{ .hostname }}"
+# sudo scutil --set HostName "{{ .hostname }}"
+# sudo scutil --set LocalHostName "{{ .hostname }}"
+# sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "{{ .hostname }}"
 
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
@@ -393,7 +384,27 @@ defaults write com.apple.dock show-process-indicators -bool true
 # Wipe all (default) app icons from the Dock
 # This is only really useful when setting up a new Mac, or if you don’t use
 # the Dock to launch apps.
-defaults write com.apple.dock persistent-apps -array
+for dockItemLabel in \
+	Launchpad \
+	Safari \
+	Mail \
+	FaceTime \
+	Messages \
+	Maps \
+	Photos \
+	Contacts \
+	Reminders \
+	Notes \
+	Music \
+	Podcasts \
+	TV \
+	News \
+	Numbers \
+	Keynote \
+	Pages \
+	"App Store" ; do
+	dockutil --find "$dockItemLabel" >/dev/null && dockutil --no-restart --remove "$dockItemLabel"
+done
 
 # Show only open applications in the Dock
 # defaults write com.apple.dock static-only -bool true

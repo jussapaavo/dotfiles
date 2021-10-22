@@ -1,6 +1,55 @@
 {{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
 {{- $interactive := stdinIsATTY -}}
 
+{{/* boolean feature tags */}}
+{{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
+{{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
+{{- $dagmar := false -}}{{/* true if this machine should have Dagmar secrets from git-secret */}}
+{{- $personal := false -}}{{/* true if this machine should have personal secrets from 1Password */}}
+{{- "" -}}
+
+{{/* detect GitHub codespaces, VSCode remote containers, Docker containers, and Vagrant boxes */}}
+{{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "vagrant" "vscode") -}}
+{{-   $codespaces := true -}}
+{{-   $headless = true -}}
+{{-   $ephemeral = true -}}
+{{- else -}}
+{{-   $codespaces := false -}}
+{{- end -}}
+
+{{/* work around unreliable hostname on darwin */}}
+{{- $hostname := .chezmoi.hostname -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $serialNumberSHA256Sum := index ioreg "IORegistryEntryChildren" 0 "IOPlatformSerialNumber" | sha256sum -}}
+{{-   if eq $serialNumberSHA256Sum "8a3df051540c8f8f000265e31fdc84196b7a91335f64c224a6e48c552f88c8e0" -}}
+{{-     $hostname = "jussis-imac" -}}
+{{-   else if eq $serialNumberSHA256Sum "d102ea738bbd9204306012124ad57966daf9b0886ee95ef295630267b1963ea7" -}}
+{{-     $hostname = "jussis-mbp-dagmar" -}}
+{{-   end -}}
+{{- end -}}
+
+{{- if not $ephemeral -}}
+{{-   if eq $hostname "jussis-imac" "jussis-mbp-dagmar" -}}
+{{-     $personal = true -}}
+{{-   else if eq $hostname "jussis-mbp-dagmar" -}}
+{{-     $dagmar = true -}}
+{{-   else if stdinIsATTY -}}
+{{-     if hasKey . "headless" -}}
+{{-       $headless = .headless -}}
+{{-     else -}}
+{{-       $headless = promptBool "headless" -}}
+{{-     end -}}
+{{-     if hasKey . "ephemeral" -}}
+{{-       $ephemeral = .ephemeral -}}
+{{-     else -}}
+{{-       $ephemeral = promptBool "ephemeral" -}}
+{{-     end -}}
+{{-   else -}}
+{{-     $headless = true -}}
+{{-     $ephemeral = true -}}
+{{-   end -}}
+{{- end -}}
+
 {{- /* Initializes the name variable with a default value */ -}}
 {{- $name := "jussapaavo" -}}
 {{- /* If name was previously set, reuses it */ -}}
@@ -24,11 +73,16 @@
 {{- end -}}
 
 {{- /* Sets value to `true` if run inside Codespaces */ -}}
-{{- $codespaces := env "CODESPACES" | not | not -}}
 
-sourceDir: "{{ .chezmoi.sourceDir }}"
+
+sourceDir: {{ $.chezmoi.sourceDir | quote }}
 
 data:
-  name: "{{ $name }}"
-  email: "{{ $email }}"
+  name: {{ $name | quote }}
+  email: {{ $email | quote }}
+  personal: {{ $personal }}
+  dagmar: {{ $dagmar }}
+  hostname: {{ $hostname | quote }}
+  headless: {{ $headless }}
+  ephemeral: {{ $ephemeral }}
   codespaces: {{ $codespaces }}
