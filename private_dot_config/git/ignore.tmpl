@@ -27,7 +27,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-{{- else if (eq .chezmoi.os "linux") -}}
+{{ else if (eq .chezmoi.os "linux") -}}
 ### Linux ###
 *~
 
@@ -42,14 +42,13 @@ Temporary Items
 
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
-{{ end -}}
 
-# Logs and databases #
-######################
+{{ end -}}
+### Logs and databases ###
 *.log
 *.sqlite
 
-# Direnv variables
+### Direnv variables ###
 .envrc
 
 ### VisualStudioCode ###
