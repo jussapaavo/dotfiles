@@ -4,17 +4,16 @@
 {{/* boolean feature tags */}}
 {{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
 {{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
+{{- $codespaces := false -}}{{/* true if this machine is run as a GitHub Codespace, VSCode Remote Container, etc */}}
 {{- $dagmar := false -}}{{/* true if this machine should have Dagmar secrets from git-secret */}}
 {{- $personal := false -}}{{/* true if this machine should have personal secrets from 1Password */}}
 {{- "" -}}
 
 {{/* detect GitHub codespaces, VSCode remote containers, Docker containers, and Vagrant boxes */}}
 {{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "vagrant" "vscode") -}}
-{{-   $codespaces := true -}}
+{{-   $codespaces = true -}}
 {{-   $headless = true -}}
 {{-   $ephemeral = true -}}
-{{- else -}}
-{{-   $codespaces := false -}}
 {{- end -}}
 
 {{/* work around unreliable hostname on darwin */}}
