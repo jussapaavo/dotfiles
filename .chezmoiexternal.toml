@@ -45,3 +45,29 @@
     url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Bold Italic.ttf"
     refreshPeriod = "168h"
 {{- end }}
+{{- if (eq .chezmoi.os "darwin") }}
+[".hammerspoon"]
+    type = "archive"
+    url = "https://github.com/jussapaavo/dot_hammerspoon/archive/refs/heads/main.zip"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+[".hammerspoon/Spoons/Lunette.spoon"]
+    type = "archive"
+    url = "https://github.com/scottwhudson/Lunette/blob/master/Spoons/Lunette.spoon.zip?raw=true"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+[".hammerspoon/Spoons/MicMute.spoon"]
+    type = "archive"
+    url = "https://github.com/Hammerspoon/Spoons/blob/master/Spoons/MicMute.spoon.zip?raw=true"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+[".hammerspoon/Spoons/ReloadConfiguration.spoon"]
+    type = "archive"
+    url = "https://github.com/Hammerspoon/Spoons/blob/master/Spoons/ReloadConfiguration.spoon.zip?raw=true"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+{{ end -}}

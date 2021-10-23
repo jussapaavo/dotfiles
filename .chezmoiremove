@@ -1,0 +1,11 @@
+.gitconfig
+.gitconfig_personal
+.gitconfig_dagmar
+.gitignore
+.gitignore_global
+.gitcookies
+{{- if (ne .chezmoi.os "darwin") }}
+.hammerspoon
+.mackup
+.mackup.cfg
+{{ end -}}
