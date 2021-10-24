@@ -34,12 +34,12 @@
 {{-     $dagmar = true -}}
 {{-   else if stdinIsATTY -}}
 {{-     if hasKey . "headless" -}}
-{{-       $headless = .headless -}}
+{{-       $headless = .is_headless -}}
 {{-     else -}}
 {{-       $headless = promptBool "headless" -}}
 {{-     end -}}
 {{-     if hasKey . "ephemeral" -}}
-{{-       $ephemeral = .ephemeral -}}
+{{-       $ephemeral = .is_ephemeral -}}
 {{-     else -}}
 {{-       $ephemeral = promptBool "ephemeral" -}}
 {{-     end -}}
@@ -50,7 +50,7 @@
 {{- end -}}
 
 {{- /* Initializes the name variable with a default value */ -}}
-{{- $name := "jussapaavo" -}}
+{{- $name := "Jussi Kämäräinen" -}}
 {{- /* If name was previously set, reuses it */ -}}
 {{- if hasKey . "name" -}}
 {{-   $name = .name -}}
@@ -60,7 +60,7 @@
 {{- end -}}
 
 {{- /* Does the same for the email */ -}}
-{{- $email := "your@email.com" -}}
+{{- $email := "jussi@jussikmr.com" -}}
 {{- if hasKey . "email" -}}
 {{-   $email = .email -}}
 {{- else if $interactive -}}
@@ -71,17 +71,14 @@
 {{-   writeToStdout "💡 Tip: you can re-enter your name and email with `chezmoi init --data=false`.\n" -}}
 {{- end -}}
 
-{{- /* Sets value to `true` if run inside Codespaces */ -}}
-
-
 sourceDir: {{ $.chezmoi.sourceDir | quote }}
 
 data:
   name: {{ $name | quote }}
   email: {{ $email | quote }}
-  personal: {{ $personal }}
-  dagmar: {{ $dagmar }}
   hostname: {{ $hostname | quote }}
-  headless: {{ $headless }}
-  ephemeral: {{ $ephemeral }}
-  codespaces: {{ $codespaces }}
+  is_dagmar: {{ $dagmar }}
+  is_personal: {{ $personal }}
+  is_headless: {{ $headless }}
+  is_ephemeral: {{ $ephemeral }}
+  is_codespace: {{ $codespaces }}
