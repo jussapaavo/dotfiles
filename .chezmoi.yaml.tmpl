@@ -22,8 +22,11 @@
 {{-   $serialNumberSHA256Sum := index ioreg "IORegistryEntryChildren" 0 "IOPlatformSerialNumber" | sha256sum -}}
 {{-   if eq $serialNumberSHA256Sum "8a3df051540c8f8f000265e31fdc84196b7a91335f64c224a6e48c552f88c8e0" -}}
 {{-     $hostname = "jussis-imac" -}}
+{{-     $personal = true -}}
 {{-   else if eq $serialNumberSHA256Sum "d102ea738bbd9204306012124ad57966daf9b0886ee95ef295630267b1963ea7" -}}
 {{-     $hostname = "jussis-mbp-dagmar" -}}
+{{-     $personal = true -}}
+{{-     $dagmar = true -}}
 {{-   end -}}
 {{- end -}}
 
@@ -60,7 +63,7 @@
 {{- end -}}
 
 {{- /* Does the same for the email */ -}}
-{{- $email := "jussi@jussikmr.com" -}}
+{{- $email := "4950494+jussapaavo@users.noreply.github.com" -}}
 {{- if hasKey . "email" -}}
 {{-   $email = .email -}}
 {{- else if $interactive -}}
