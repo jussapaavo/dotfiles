@@ -141,7 +141,7 @@ if [ -f "{{ .chezmoi.homeDir }}/opt/google-cloud-sdk/completion.zsh.inc" ]; then
 which direnv >/dev/null && eval "$(direnv hook zsh)"
 
 # Zoxide, install https://github.com/ajeetdsouza/zoxide
-which z >/dev/null && eval "$(zoxide init zsh)"
+which zoxide >/dev/null && eval "$(zoxide init zsh)"
 
 # Conda load is made faster with a hack from here: https://github.com/conda/conda/issues/7855
 # >>> conda initialize >>>
