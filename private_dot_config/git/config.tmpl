@@ -1,8 +1,22 @@
 [init]
   defaultBranch = main
 
+[color]
+  ui = true
+
+[color "status"]
+  added = green
+  changed = yellow
+  untracked = red
+
 [core]
 	excludesfile = ~/.config/git/ignore
+
+[rerere]
+  enabled = true
+
+[commit]
+  verbose = true
 
 [push]
   default = current
@@ -20,3 +34,11 @@
 # For Github Codespaces
 [includeIf "gitdir:**/workspaces/*/"]
 	path = ~/.config/git/dagmar.conf
+
+[github]
+  user = jussapaavo
+
+{{ if (eq .chezmoi.os "darwin") -}}
+[credential]
+  helper = osxkeychain
+{{ end -}}
