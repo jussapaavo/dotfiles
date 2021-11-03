@@ -45,6 +45,9 @@ If you did all of the above you may now follow these install instructions to set
 
 3. After mackup is synced with your cloud storage, restore preferences by running `mackup restore`
 4. Restart your computer to finalize the process
+5. A couple of things to do after the reinstall:
+    - Change kitty terminal icon to a custom one
+    - Update `/etc/hosts` with file list from StevenBlack's [hosts](https://github.com/StevenBlack/hosts/).
 
 Your Mac is now ready to use!
 
