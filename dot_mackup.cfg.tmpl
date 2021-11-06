@@ -4,21 +4,20 @@ engine = icloud
 
 {{   if not (eq .chezmoi.username "jussi") }}
 [applications_to_sync]
-kitty
 gnupg
 ipython
 jupyter
 ssh
 zzz-keyremap
-zzz-kitty_theme
 zzz-dbt
 
 {{   end }}
 [applications_to_ignore]
+mackup
 git
 zsh
 p10k
-mackup
+kitty
 hammerspoon
 boto
 bash
@@ -28,4 +27,6 @@ rectangle
 jumpcut
 colorslurp
 spotify
+bettertouchtool
+raycast
 {{ end -}}

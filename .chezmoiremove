@@ -1,6 +1,4 @@
 .gitconfig
-.gitconfig_personal
-.gitconfig_dagmar
 .gitignore
 .gitignore_global
 .gitcookies
@@ -8,4 +6,5 @@
 .hammerspoon
 .mackup
 .mackup.cfg
+.config/kitty
 {{ end -}}
