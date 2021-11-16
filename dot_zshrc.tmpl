@@ -180,6 +180,11 @@ source {{ .chezmoi.sourceDir }}/utils/aliases.zsh
 */ -}}
 [[ ! -f {{ .chezmoi.homeDir }}/.p10k.zsh ]] || source {{ .chezmoi.homeDir }}/.p10k.zsh
 
+{{/*
+# Use ~/.config/vim instead of $HOME for Vim
+*/ -}}
+export VIMINIT="source {{ .chezmoi.homeDir }}/.config/vim/vimrc"
+
 {{- if (eq .chezmoi.os "darwin") }}
 {{/*
 ###
