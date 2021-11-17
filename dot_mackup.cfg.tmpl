@@ -2,7 +2,7 @@
 [storage]
 engine = icloud
 
-{{   if not (eq .chezmoi.username "jussi") }}
+{{   if .is_dagmar }}
 [applications_to_sync]
 gnupg
 ipython
