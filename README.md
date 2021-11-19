@@ -2,54 +2,51 @@
 
 ## Introduction
 
-This repository serves as my way to help me setup and maintain my Mac. It takes the effort out of installing everything manually. Everything needed to install my preferred setup of macOS is detailed in this readme. Feel free to explore, learn and copy parts for your own dotfiles. Enjoy!
+This repository is used as a centralized configuration for my personal development environment. It takes the effort out of installing everything manually. But before continuing to actual setup instructions, here's a couple of helpful resources:
 
 📖 - [Read the blog post](https://driesvints.com/blog/getting-started-with-dotfiles)  
 📺 - [Watch the screencast on Laracasts](https://laracasts.com/series/guest-spotlight/episodes/1)  
 💡 - [Learn how to build your own dotfiles](https://github.com/driesvints/dotfiles#your-own-dotfiles)  
 
-## A Fresh macOS Setup
+## Features
 
-These instructions are for when you've already set up your dotfiles. If you want to get started with your own dotfiles you can [find instructions below](#your-own-dotfiles).
+These dotfiles have following features:
+* Includes setup for zsh and Oh My Zsh
+* Global git configurations
+* Support for Github Codespaces
 
-### Before you re-install
 
-First, go through the checklist below to make sure you didn't forget anything before you wipe your hard drive.
+## Creating your own dotfiles
 
-- Did you commit and push any changes/branches to your git repositories?
-- Did you remember to save all important documents from non-iCloud directories?
-- Did you save all of your work from apps which aren't synced through iCloud?
-- Did you remember to export important data from your local database?
-- Did you update [mackup](https://github.com/lra/mackup) to the latest version and ran `mackup backup`?
+To create your own dotfiles, you can fork this repository and then search and replace following placeholders:
 
-### Installing macOS cleanly
+* `<first name>`
+* `<last name>`
+* `<username>`
+* `<email>`
+* `<work email>`
 
-After going to our checklist above and making sure you backed everything up, we're going to cleanly install macOS with the latest release. Follow [this article](https://www.imore.com/how-do-clean-install-macos) to cleanly install the latest macOS version.
+After replacing these, you make your own customizations and additions to these files. When you´re finished, you can apply the dotfiles by following the instructions in [the next chapter](#setting-up-your-machine).
 
-### Setting up your Mac
+## Setting up your machine
 
 If you did all of the above you may now follow these install instructions to setup a new Mac.
 
-1. Update macOS to the latest version with the App Store
-2. [Generate a new public and private SSH key](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) by running:
+1. [Generate a new public and private SSH key](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) by running:
 
    ```zsh
    curl https://raw.githubusercontent.com/driesvints/dotfiles/HEAD/ssh.sh | sh -s "<your-email-address>"
    ```
 
-3. Install chezmoi and clone this repo with:
+2. Install chezmoi and clone this repo with:
 
     ```zsh
     sh -c "$(curl -fsLS git.io/chezmoi)" -- init --apply -n <github-username>
     ```
 
-3. After mackup is synced with your cloud storage, restore preferences by running `mackup restore`
-4. Restart your computer to finalize the process
-5. A couple of things to do after the reinstall:
-    - Change kitty terminal icon to a custom one
-    - Update `/etc/hosts` with file list from StevenBlack's [hosts](https://github.com/StevenBlack/hosts/).
+3. Restart your computer to finalize the process
 
-Your Mac is now ready to use!
+Your machine is now ready to use!
 
 ## Thanks To...
 

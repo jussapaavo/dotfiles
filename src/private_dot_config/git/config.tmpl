@@ -28,18 +28,13 @@
 	name = {{ .name }}
 	email = {{ .email }}
 
-[github]
-  user = jussapaavo
-
 {{ if .is_codespace -}}
+# For Github Codespaces
 [includeIf "gitdir:**/workspaces/*/"]
 	path = ~/.config/git/dagmar
 {{ end -}}
 
-{{ if (eq .chezmoi.os "darwin") -}}
+{{ if .is_personal -}}
 [includeIf "gitdir:**/Dagmar/*/"]
 	path = ~/.config/git/dagmar
-
-[credential]
-  helper = osxkeychain
 {{ end -}}

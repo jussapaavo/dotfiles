@@ -4,8 +4,6 @@
 alias reloadshell="source $HOME/.zshrc"
 alias c="clear"
 alias e="exit"
-alias cab="conda activate base"
-alias ca="conda activate"
 
 # Tools
 alias cm="chezmoi"

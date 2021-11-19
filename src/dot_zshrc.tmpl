@@ -122,19 +122,8 @@ HIST_STAMPS="yyyy-mm-dd"
 */}}
 plugins=(
     git
-    direnv
-    gitignore
-    pip
     zsh-syntax-highlighting
     zsh-autosuggestions
-{{/*
-    #osx
-    #brew
-    #vscode
-    #gcloud
-    #sudo
-    #github
-*/ -}}
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -179,59 +168,3 @@ source {{ .chezmoi.homeDir }}/.config/scripts/aliases.zsh
 # To customize prompt, run `p10k configure` or edit {{ .chezmoi.homeDir }}/.p10k.zsh.
 */ -}}
 [[ ! -f {{ .chezmoi.homeDir }}/.p10k.zsh ]] || source {{ .chezmoi.homeDir }}/.p10k.zsh
-
-{{/*
-# Use ~/.config/vim instead of $HOME for Vim
-*/ -}}
-export VIMINIT="source {{ .chezmoi.homeDir }}/.config/vim/vimrc"
-
-{{- if (eq .chezmoi.os "darwin") }}
-{{/*
-###
-# MacOS Specific
-###
-*/}}
-
-# Google Cloud SDK
-if [ -f "{{ .chezmoi.homeDir }}/opt/google-cloud-sdk/path.zsh.inc" ]; then . "{{ .chezmoi.homeDir }}/opt/google-cloud-sdk/path.zsh.inc"; fi
-if [ -f "{{ .chezmoi.homeDir }}/opt/google-cloud-sdk/completion.zsh.inc" ]; then . "{{ .chezmoi.homeDir }}/opt/google-cloud-sdk/completion.zsh.inc"; fi
-
-# direnv
-which direnv >/dev/null && eval "$(direnv hook zsh)"
-
-# Zoxide, install https://github.com/ajeetdsouza/zoxide
-which zoxide >/dev/null && eval "$(zoxide init zsh)"
-
-# Conda load is made faster with a hack from here: https://github.com/conda/conda/issues/7855
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('{{ .chezmoi.homeDir }}/opt/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "{{ .chezmoi.homeDir }}/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "{{ .chezmoi.homeDir }}/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="{{ .chezmoi.homeDir }}/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-{{- end }}
-
-{{/*
-###
-# Custom Functions
-###
-*/ -}}
-
-# Time ZSH loadup, read more here: https://blog.mattclemente.com/2020/06/26/oh-my-zsh-slow-to-load.html#summary
-timezsh() {
-  shell=${1-$SHELL}
-  for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
-}
-
-# Time p10k loadup, read more here: https://github.com/romkatv/powerlevel10k/blob/master/README.md#is-powerlevel10k-fast-to-load
-timep10k() {
-  time (repeat 10 zsh -dfis <<< 'source ~/.p10k.zsh; source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme')
-}

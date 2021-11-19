@@ -5,36 +5,20 @@
 {{- $is_headless := false -}}  {{/* true if this machine does not have a screen and keyboard */}}
 {{- $is_ephemeral := false -}} {{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
 {{- $is_codespace := false -}} {{/* true if this machine is run as a GitHub Codespace, VSCode Remote Container, etc */}}
-{{- $is_dagmar := false -}}    {{/* true if this machine is owned by Dagmar */}}
-{{- $is_personal := false -}}  {{/* true if this machine is owned by me personally */}}
+{{- $is_personal := true -}}  {{/* true if this machine is a personal computer with full functionality */}}
 {{- "" -}}
 
 {{/* detect GitHub codespaces, VSCode remote containers, Docker containers, and Vagrant boxes */}}
 {{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "vagrant" "vscode") -}}
 {{-   $is_codespace = true -}}
 {{-   $is_ephemeral = true -}}
-{{- end -}}
-
-{{/* work around unreliable hostname on darwin */}}
-{{- $hostname := .chezmoi.hostname -}}
-{{- if eq .chezmoi.os "darwin" -}}
-{{-   $serialNumberSHA256Sum := index ioreg "IORegistryEntryChildren" 0 "IOPlatformSerialNumber" | sha256sum -}}
-{{-   if eq $serialNumberSHA256Sum "8a3df051540c8f8f000265e31fdc84196b7a91335f64c224a6e48c552f88c8e0" -}}
-{{-     $hostname = "jussis-imac" -}}
-{{-     $is_personal = true -}}
-{{-   else if eq $serialNumberSHA256Sum "d102ea738bbd9204306012124ad57966daf9b0886ee95ef295630267b1963ea7" -}}
-{{-     $hostname = "jussis-mbp-dagmar" -}}
-{{-     $is_personal = true -}}
-{{-     $is_dagmar = true -}}
-{{-   end -}}
+{{-   $is_personal = false -}}
 {{- end -}}
 
 {{- if not $is_ephemeral -}}
 {{-   if or  (eq .chezmoi.os "darwin") (eq .chezmoi.os "windows") -}}
 {{-     $is_personal = true -}}
-{{-   else if eq $hostname "jussis-mbp-dagmar" -}}
-{{-     $is_dagmar = true -}}
-{{-   else if stdinIsATTY -}}
+{{-   if stdinIsATTY -}}
 {{-     if hasKey . "is_headless" -}}
 {{-       $is_headless = .is_headless -}}
 {{-     else -}}
@@ -48,11 +32,12 @@
 {{-   else -}}
 {{-     $is_headless = true -}}
 {{-     $is_ephemeral = true -}}
+{{-     $is_personal = false -}}
 {{-   end -}}
 {{- end -}}
 
 {{- /* Initializes the name variable with a default value */ -}}
-{{- $name := "Jussi Kämäräinen" -}}
+{{- $name := "<first name> <last name>" -}}
 {{- /* If name was previously set, reuses it */ -}}
 {{- if hasKey . "name" -}}
 {{-   $name = .name -}}
@@ -62,11 +47,19 @@
 {{- end -}}
 
 {{- /* Does the same for the email */ -}}
-{{- $email := "4950494+jussapaavo@users.noreply.github.com" -}}
+{{- $email := "<email>" -}}
 {{- if hasKey . "email" -}}
 {{-   $email = .email -}}
 {{- else if $interactive -}}
 {{-   $email = promptString "email" -}}
+{{- end -}}
+
+{{- /* Does the same for the work email */ -}}
+{{- $email_work := "<work email>" -}}
+{{- if hasKey . "email_work" -}}
+{{-   $email_work = .email_work -}}
+{{- else if $interactive -}}
+{{-   $email_work = promptString "email" -}}
 {{- end -}}
 
 {{- if $interactive -}}
@@ -78,9 +71,9 @@ sourceDir: {{ $.chezmoi.sourceDir | quote }}
 data:
   name: {{ $name | quote }}
   email: {{ $email | quote }}
+  email_work: {{ $email_work | quote }}
   hostname: {{ $hostname | quote }}
   is_personal: {{ $is_personal }}
-  is_dagmar: {{ $is_dagmar }}
   is_headless: {{ $is_headless }}
   is_ephemeral: {{ $is_ephemeral }}
   is_codespace: {{ $is_codespace }}
