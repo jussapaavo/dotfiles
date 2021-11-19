@@ -2,18 +2,17 @@
 {{- $interactive := stdinIsATTY -}}
 
 {{/* boolean feature tags */}}
-{{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
-{{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
-{{- $codespaces := false -}}{{/* true if this machine is run as a GitHub Codespace, VSCode Remote Container, etc */}}
-{{- $dagmar := false -}}{{/* true if this machine should have Dagmar secrets from git-secret */}}
-{{- $personal := false -}}{{/* true if this machine should have personal secrets from 1Password */}}
+{{- $is_headless := false -}}  {{/* true if this machine does not have a screen and keyboard */}}
+{{- $is_ephemeral := false -}} {{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
+{{- $is_codespace := false -}} {{/* true if this machine is run as a GitHub Codespace, VSCode Remote Container, etc */}}
+{{- $is_dagmar := false -}}    {{/* true if this machine is owned by Dagmar */}}
+{{- $is_personal := false -}}  {{/* true if this machine is owned by me personally */}}
 {{- "" -}}
 
 {{/* detect GitHub codespaces, VSCode remote containers, Docker containers, and Vagrant boxes */}}
 {{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "vagrant" "vscode") -}}
-{{-   $codespaces = true -}}
-{{-   $headless = true -}}
-{{-   $ephemeral = true -}}
+{{-   $is_codespace = true -}}
+{{-   $is_ephemeral = true -}}
 {{- end -}}
 
 {{/* work around unreliable hostname on darwin */}}
@@ -22,33 +21,33 @@
 {{-   $serialNumberSHA256Sum := index ioreg "IORegistryEntryChildren" 0 "IOPlatformSerialNumber" | sha256sum -}}
 {{-   if eq $serialNumberSHA256Sum "8a3df051540c8f8f000265e31fdc84196b7a91335f64c224a6e48c552f88c8e0" -}}
 {{-     $hostname = "jussis-imac" -}}
-{{-     $personal = true -}}
+{{-     $is_personal = true -}}
 {{-   else if eq $serialNumberSHA256Sum "d102ea738bbd9204306012124ad57966daf9b0886ee95ef295630267b1963ea7" -}}
 {{-     $hostname = "jussis-mbp-dagmar" -}}
-{{-     $personal = true -}}
-{{-     $dagmar = true -}}
+{{-     $is_personal = true -}}
+{{-     $is_dagmar = true -}}
 {{-   end -}}
 {{- end -}}
 
-{{- if not $ephemeral -}}
-{{-   if eq $hostname "jussis-imac" "jussis-mbp-dagmar" -}}
-{{-     $personal = true -}}
+{{- if not $is_ephemeral -}}
+{{-   if or  (eq .chezmoi.os "darwin") (eq .chezmoi.os "windows") -}}
+{{-     $is_personal = true -}}
 {{-   else if eq $hostname "jussis-mbp-dagmar" -}}
-{{-     $dagmar = true -}}
+{{-     $is_dagmar = true -}}
 {{-   else if stdinIsATTY -}}
-{{-     if hasKey . "headless" -}}
-{{-       $headless = .is_headless -}}
+{{-     if hasKey . "is_headless" -}}
+{{-       $is_headless = .is_headless -}}
 {{-     else -}}
-{{-       $headless = promptBool "headless" -}}
+{{-       $is_headless = promptBool "is_headless" -}}
 {{-     end -}}
-{{-     if hasKey . "ephemeral" -}}
-{{-       $ephemeral = .is_ephemeral -}}
+{{-     if hasKey . "is_ephemeral" -}}
+{{-       $is_ephemeral = .is_ephemeral -}}
 {{-     else -}}
-{{-       $ephemeral = promptBool "ephemeral" -}}
+{{-       $is_ephemeral = promptBool "is_ephemeral" -}}
 {{-     end -}}
 {{-   else -}}
-{{-     $headless = true -}}
-{{-     $ephemeral = true -}}
+{{-     $is_headless = true -}}
+{{-     $is_ephemeral = true -}}
 {{-   end -}}
 {{- end -}}
 
@@ -80,8 +79,8 @@ data:
   name: {{ $name | quote }}
   email: {{ $email | quote }}
   hostname: {{ $hostname | quote }}
-  is_dagmar: {{ $dagmar }}
-  is_personal: {{ $personal }}
-  is_headless: {{ $headless }}
-  is_ephemeral: {{ $ephemeral }}
-  is_codespace: {{ $codespaces }}
+  is_personal: {{ $is_personal }}
+  is_dagmar: {{ $is_dagmar }}
+  is_headless: {{ $is_headless }}
+  is_ephemeral: {{ $is_ephemeral }}
+  is_codespace: {{ $is_codespace }}

@@ -31,8 +31,7 @@
 [github]
   user = jussapaavo
 
-{{ if (eq .is_codespace true) -}}
-# For Github Codespaces
+{{ if .is_codespace -}}
 [includeIf "gitdir:**/workspaces/*/"]
 	path = ~/.config/git/dagmar
 {{ end -}}
