@@ -4,8 +4,9 @@
 {{/* boolean feature tags */}}
 {{- $is_headless := false -}}  {{/* true if this machine does not have a screen and keyboard */}}
 {{- $is_ephemeral := false -}} {{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
-{{- $is_codespace := false -}} {{/* true if this machine is run as a GitHub Codespace, VSCode Remote Container, etc */}}
-{{- $is_personal := true -}}  {{/* true if this machine is a personal computer with full functionality */}}
+{{- $is_codespace := false -}} {{/* true if this machine is run as a GitHub Codespace, VSCode Remote Container etc */}}
+{{- $is_wsl := false -}}       {{/* true if this machine is run inside Windows as Linux subsystem */}}
+{{- $is_personal := true -}}   {{/* true if this machine is a personal computer with full functionality */}}
 {{- "" -}}
 
 {{/* detect GitHub codespaces, VSCode remote containers, Docker containers, and Vagrant boxes */}}
@@ -15,8 +16,15 @@
 {{-   $is_personal = false -}}
 {{- end -}}
 
+{{/* detect Windows Subsystem for Linux (WSL) */}}
+{{- if (eq .chezmoi.os "linux") -}}
+{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+{{-   $is_wsl = true -}}
+{{-   end -}}
+{{- end -}}
+
 {{- if not $is_ephemeral -}}
-{{-   if or  (eq .chezmoi.os "darwin") (eq .chezmoi.os "windows") -}}
+{{-   if or (eq .chezmoi.os "darwin") (eq .chezmoi.os "windows") -}}
 {{-     $is_personal = true -}}
 {{-   if stdinIsATTY -}}
 {{-     if hasKey . "is_headless" -}}
@@ -74,6 +82,7 @@ data:
   email_work: {{ $email_work | quote }}
   hostname: {{ $hostname | quote }}
   is_personal: {{ $is_personal }}
+  is_wsl: {{ $is_wsl }}
   is_headless: {{ $is_headless }}
   is_ephemeral: {{ $is_ephemeral }}
   is_codespace: {{ $is_codespace }}
