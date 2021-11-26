@@ -3,6 +3,7 @@ set runtimepath+=~/.config/vim,~/.config/vim/after
 set viminfo+=n~/.config/vim/viminfo
 set undodir=~/.config/vim/undo//,.
 
+{{ if not .is_ephemeral -}}
 " Install plugin manager and set plugins directory to .config
 if empty(glob('~/.config/vim/autoload/plug.vim'))
     silent !curl -fLo ~/.config/vim/autoload/plug.vim --create-dirs
@@ -17,6 +18,7 @@ Plug 'arcticicestudio/nord-vim' " colorscheme
 Plug 'vim-scripts/bash-support.vim'
 Plug 'tpope/vim-surround'
 call plug#end()
+{{ end -}}
 
 " General
 set number
@@ -75,5 +77,7 @@ set showcmd
 noremap j gj
 noremap k gk
 
+{{- if not .is_ephemeral }}
 " Colors
 colorscheme nord
+{{ end -}}
