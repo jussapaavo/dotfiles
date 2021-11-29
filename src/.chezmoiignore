@@ -1,13 +1,6 @@
 *.md
 *.keep
 *.gitkeep
-.github
-.github/*
-utils
-utils/*
-art
-art/*
-install.sh
 *.deb
 .oh-my-zsh/cache/**
 .oh-my-zsh/custom/themes/powerlevel10k/**/*.zwc
