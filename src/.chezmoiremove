@@ -2,3 +2,7 @@
 .gitignore
 .gitignore_global
 .gitcookies
+
+{{- if ne .chezmoi.os "linux" }}
+.local/share/fonts/**
+{{ end -}}
