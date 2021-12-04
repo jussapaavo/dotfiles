@@ -7,7 +7,6 @@
 {{- $is_codespace := false -}} {{/* true if this machine is run as a GitHub Codespace, VSCode Remote Container, etc */}}
 {{- $is_dagmar := false -}}    {{/* true if this machine is owned by Dagmar */}}
 {{- $is_personal := false -}}  {{/* true if this machine is owned by me personally */}}
-{{- "" -}}
 
 {{/* detect GitHub codespaces, VSCode remote containers, Docker containers, and Vagrant boxes */}}
 {{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "vagrant" "vscode") -}}
@@ -30,7 +29,7 @@
 {{- end -}}
 
 {{- if not $is_ephemeral -}}
-{{-   if or  (eq .chezmoi.os "darwin") (eq .chezmoi.os "windows") -}}
+{{-   if or (eq .chezmoi.os "darwin") (eq .chezmoi.os "windows") -}}
 {{-     $is_personal = true -}}
 {{-   else if eq $hostname "jussis-mbp-dagmar" -}}
 {{-     $is_dagmar = true -}}
