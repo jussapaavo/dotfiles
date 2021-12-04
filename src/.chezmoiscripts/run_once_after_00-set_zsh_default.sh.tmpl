@@ -1,0 +1,16 @@
+{{- if (eq .chezmoi.os "linux") -}}
+#!/bin/sh
+
+echo "Setting zsh as default shell..."
+
+# Check for zsh and install if we don't have it
+if test ! $(which zsh); then
+  /bin/bash -c "$(sudo apt install zsh)"
+fi
+
+# Check if zsh is default shell and set it default if not
+if test $(which $SHELL) != $(which zsh); then
+  /bin/bash -c "$(chsh -s $(which zsh))"
+fi
+
+{{ end -}}
