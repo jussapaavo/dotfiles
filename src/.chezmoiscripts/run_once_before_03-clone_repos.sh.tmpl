@@ -4,9 +4,9 @@
 # Create dev directories
 
 echo "Creating directories..."
-mkdir {{ .chezmoi.homeDir }}/Development
-mkdir {{ .chezmoi.homeDir }}/Development/Dagmar
-mkdir {{ .chezmoi.homeDir }}/Development/Personal
+mkdir -p {{ .chezmoi.homeDir }}/Development
+mkdir -p {{ .chezmoi.homeDir }}/Development/Dagmar
+mkdir -p {{ .chezmoi.homeDir }}/Development/Personal
 
 # Clone git repositories
 
