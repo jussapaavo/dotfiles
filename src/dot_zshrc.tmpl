@@ -19,6 +19,13 @@ fi
 export PATH=$HOME/bin:$PATH
 [ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
 
+{{- if .is_arm }}
+{{/*
+# Add Homebrew path for Apple Silicon.
+*/ -}}
+export PATH=/opt/homebrew/bin:$PATH
+{{- end }}
+
 {{/*
 # Path to your oh-my-zsh installation.
 */ -}}

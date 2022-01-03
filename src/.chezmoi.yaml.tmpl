@@ -2,6 +2,7 @@
 {{- $interactive := stdinIsATTY -}}
 
 {{- /* boolean feature tags */ -}}
+{{- $is_arm := false -}}       {{/* true if this machine has ARM chip (Apple Silicon, M1, etc) */}}
 {{- $is_headless := false -}}  {{/* true if this machine does not have a screen and keyboard */}}
 {{- $is_ephemeral := false -}} {{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
 {{- $is_codespace := false -}} {{/* true if this machine is run as a GitHub Codespace, VSCode Remote Container, etc */}}
@@ -31,10 +32,11 @@
 {{- end -}}
 
 {{- if not $is_ephemeral -}}
-{{-   if or (eq .chezmoi.os "darwin") (eq .chezmoi.os "windows") -}}
+{{-   if eq .chezmoi.os "darwin" "windows" -}}
 {{-     $is_personal = true -}}
-{{-   else if eq $hostname "jussis-mbp-sok" -}}
-{{-     $is_sok = true -}}
+{{-     if eq .chezmoi.arch "arm" "arm64" -}}
+{{-       $is_arm = true -}}
+{{-     end -}}
 {{-   else if stdinIsATTY -}}
 {{-     if hasKey . "is_headless" -}}
 {{-       $is_headless = .is_headless -}}
@@ -90,6 +92,7 @@ data:
   name: {{ $name | quote }}
   email: {{ $email | quote }}
   hostname: {{ $hostname | quote }}
+  is_arm: {{ $is_arm }}
   is_personal: {{ $is_personal }}
   is_work: {{ $is_work }}
   is_sok: {{ $is_sok }}
