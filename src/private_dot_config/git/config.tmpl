@@ -33,12 +33,12 @@
 
 {{ if .is_codespace -}}
 [includeIf "gitdir:**/workspaces/*/"]
-	path = ~/.config/git/dagmar
+	path = ~/.config/git/sok
 {{ end -}}
 
 {{ if (eq .chezmoi.os "darwin") -}}
-[includeIf "gitdir:**/Dagmar/*/"]
-	path = ~/.config/git/dagmar
+[includeIf "gitdir:**/SOK/*/"]
+	path = ~/.config/git/sok
 
 [credential]
   helper = osxkeychain

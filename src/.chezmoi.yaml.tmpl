@@ -6,7 +6,7 @@
 {{- $is_ephemeral := false -}} {{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
 {{- $is_codespace := false -}} {{/* true if this machine is run as a GitHub Codespace, VSCode Remote Container, etc */}}
 {{- $is_work := false -}}      {{/* true if this machine is owned by employer */}}
-{{- $is_dagmar := false -}}    {{/* true if this machine is owned by Dagmar */}}
+{{- $is_sok := false -}}       {{/* true if this machine is owned by SOK */}}
 {{- $is_personal := false -}}  {{/* true if this machine is owned by me personally */}}
 
 {{- /* detect GitHub codespaces, VSCode remote containers, Docker containers, and Vagrant boxes */ -}}
@@ -22,10 +22,10 @@
 {{-   if eq $serialNumberSHA256Sum "8a3df051540c8f8f000265e31fdc84196b7a91335f64c224a6e48c552f88c8e0" -}}
 {{-     $hostname = "jussis-imac" -}}
 {{-     $is_personal = true -}}
-{{-   else if eq $serialNumberSHA256Sum "d102ea738bbd9204306012124ad57966daf9b0886ee95ef295630267b1963ea7" -}}
-{{-     $hostname = "jussis-mbp-dagmar" -}}
+{{-   else if eq $serialNumberSHA256Sum "b36d8a635d1d25f2cf3c62b1f31c069ec8b46ce4e1848ff46cf7f3d6ecfe3148" -}}
+{{-     $hostname = "10000853il004" -}}
 {{-     $is_personal = true -}}
-{{-     $is_dagmar = true -}}
+{{-     $is_sok = true -}}
 {{-     $is_work = true -}}
 {{-   end -}}
 {{- end -}}
@@ -33,8 +33,8 @@
 {{- if not $is_ephemeral -}}
 {{-   if or (eq .chezmoi.os "darwin") (eq .chezmoi.os "windows") -}}
 {{-     $is_personal = true -}}
-{{-   else if eq $hostname "jussis-mbp-dagmar" -}}
-{{-     $is_dagmar = true -}}
+{{-   else if eq $hostname "jussis-mbp-sok" -}}
+{{-     $is_sok = true -}}
 {{-   else if stdinIsATTY -}}
 {{-     if hasKey . "is_headless" -}}
 {{-       $is_headless = .is_headless -}}
@@ -92,7 +92,7 @@ data:
   hostname: {{ $hostname | quote }}
   is_personal: {{ $is_personal }}
   is_work: {{ $is_work }}
-  is_dagmar: {{ $is_dagmar }}
+  is_sok: {{ $is_sok }}
   is_headless: {{ $is_headless }}
   is_ephemeral: {{ $is_ephemeral }}
   is_codespace: {{ $is_codespace }}

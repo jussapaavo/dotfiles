@@ -7,8 +7,8 @@ echo "Creating directories..."
 mkdir -p {{ .chezmoi.homeDir }}/Development
 mkdir -p {{ .chezmoi.homeDir }}/Development/Personal
 
-{{   if .is_dagmar }}
-mkdir -p {{ .chezmoi.homeDir }}/Development/Dagmar
+{{   if .is_sok }}
+mkdir -p {{ .chezmoi.homeDir }}/Development/SOK
 {{   end }}
 
 {{ end -}}

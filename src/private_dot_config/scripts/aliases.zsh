@@ -15,7 +15,7 @@ alias jn="jupyter notebook"
 
 # Directories
 alias dev="cd $HOME/Development"
-alias devd="cd $HOME/Development/Dagmar"
+alias devs="cd $HOME/Development/SOK"
 alias devp="cd $HOME/Development/Personal"
 
 # Git
