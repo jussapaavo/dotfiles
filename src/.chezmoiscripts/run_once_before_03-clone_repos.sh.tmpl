@@ -5,16 +5,10 @@
 
 echo "Creating directories..."
 mkdir -p {{ .chezmoi.homeDir }}/Development
-mkdir -p {{ .chezmoi.homeDir }}/Development/Dagmar
 mkdir -p {{ .chezmoi.homeDir }}/Development/Personal
 
-# Clone git repositories
-
-echo "Cloning repositories..."
-PERSONAL=$HOME/Development/Personal
-DAGMAR=$HOME/Development/Dagmar
-
-# Personal
-git clone git@github.com:jussapaavo/dot_hammerspoon.git $PERSONAL/dot_hammerspoon
+{{   if .is_dagmar }}
+mkdir -p {{ .chezmoi.homeDir }}/Development/Dagmar
+{{   end }}
 
 {{ end -}}
