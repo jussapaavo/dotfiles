@@ -1,20 +1,21 @@
 {{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
 {{- $interactive := stdinIsATTY -}}
 
-{{/* boolean feature tags */}}
+{{- /* boolean feature tags */ -}}
 {{- $is_headless := false -}}  {{/* true if this machine does not have a screen and keyboard */}}
 {{- $is_ephemeral := false -}} {{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
 {{- $is_codespace := false -}} {{/* true if this machine is run as a GitHub Codespace, VSCode Remote Container, etc */}}
+{{- $is_work := false -}}      {{/* true if this machine is owned by employer */}}
 {{- $is_dagmar := false -}}    {{/* true if this machine is owned by Dagmar */}}
 {{- $is_personal := false -}}  {{/* true if this machine is owned by me personally */}}
 
-{{/* detect GitHub codespaces, VSCode remote containers, Docker containers, and Vagrant boxes */}}
+{{- /* detect GitHub codespaces, VSCode remote containers, Docker containers, and Vagrant boxes */ -}}
 {{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "vagrant" "vscode") -}}
 {{-   $is_codespace = true -}}
 {{-   $is_ephemeral = true -}}
 {{- end -}}
 
-{{/* work around unreliable hostname on darwin */}}
+{{- /* work around unreliable hostname on darwin */ -}}
 {{- $hostname := .chezmoi.hostname -}}
 {{- if eq .chezmoi.os "darwin" -}}
 {{-   $serialNumberSHA256Sum := index ioreg "IORegistryEntryChildren" 0 "IOPlatformSerialNumber" | sha256sum -}}
@@ -25,6 +26,7 @@
 {{-     $hostname = "jussis-mbp-dagmar" -}}
 {{-     $is_personal = true -}}
 {{-     $is_dagmar = true -}}
+{{-     $is_work = true -}}
 {{-   end -}}
 {{- end -}}
 
@@ -68,6 +70,16 @@
 {{-   $email = promptString "email" -}}
 {{- end -}}
 
+{{- /* Initializes the .is_work variable with a default value */ -}}
+{{- $is_work := false -}}
+{{- /* If is_work was previously set, reuses it */ -}}
+{{- if hasKey . "is_work" -}}
+{{-   $is_work = .is_work -}}
+{{- /* Otherwise, if running interactively, prompts for a is_work */ -}}
+{{- else if $interactive -}}
+{{-   $is_work = promptString "is_work" -}}
+{{- end -}}
+
 {{- if $interactive -}}
 {{-   writeToStdout "💡 Tip: you can re-enter your name and email with `chezmoi init --data=false`.\n" -}}
 {{- end -}}
@@ -79,6 +91,7 @@ data:
   email: {{ $email | quote }}
   hostname: {{ $hostname | quote }}
   is_personal: {{ $is_personal }}
+  is_work: {{ $is_work }}
   is_dagmar: {{ $is_dagmar }}
   is_headless: {{ $is_headless }}
   is_ephemeral: {{ $is_ephemeral }}
