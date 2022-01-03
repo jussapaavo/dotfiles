@@ -1,0 +1,32 @@
+# Taps
+tap 'homebrew/cask'
+tap 'homebrew/cask-fonts'
+tap 'homebrew/cask-versions'
+tap 'homebrew/bundle'
+
+# Binaries
+brew 'bash' # Latest Bash version
+brew 'coreutils' # Those that come with macOS are outdated
+brew 'git'
+brew 'gnupg'
+brew 'grep' # Global Regural Expression Print
+brew 'mackup'
+brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
+brew 'svn' # Needed for font installs
+brew 'zoxide' # Better cd in Terminal
+
+# Development
+brew 'gh' # GitHub CLI
+brew 'hub' # GitHub CLI extensions
+brew 'terragrunt'
+cask 'docker' # Docker Desktop
+
+# Apps
+cask 'hammerspoon'
+cask 'kitty'
+cask 'miniconda' # Conda package manager
+cask 'raycast'
+cask 'setapp' # A collection of apps
+cask 'spotify'
+cask 'the-unarchiver'
+cask 'visual-studio-code'

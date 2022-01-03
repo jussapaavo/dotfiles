@@ -1,0 +1,62 @@
+# Taps
+tap 'homebrew/cask'
+tap 'homebrew/cask-fonts'
+tap 'homebrew/cask-versions'
+tap 'homebrew/bundle'
+
+# Binaries
+brew 'ffmpeg' # Better audio and video handling
+brew 'httpie'
+brew 'mas' # Mac App Store manager
+brew 'trash' # Manage the Trash bin
+brew 'tree' # List directories in a tree structure
+brew 'zlib' # Needed for Memcached
+
+# Flex
+brew 'neofetch' # Display information about your system in terminal
+brew 'cmatrix' # Terminal screensaver
+brew 'lolcat' # Make text inputs colorful
+
+# Apps
+cask '1password'
+cask 'apparency' # Quicklook plugin for better app info
+cask 'avast-security'
+cask 'caffeine'
+cask 'discord'
+cask 'dropbox'
+cask 'firefox'
+cask 'ferdi'
+cask 'flux'
+cask 'google-chrome'
+cask 'gpg-suite'
+cask 'imageoptim'
+cask 'iina' # Open-Source Video Player
+cask 'numi'
+cask 'obsidian'
+cask 'onyx'
+cask 'slack'
+cask 'zoom'
+
+# Quicklook
+cask 'qlmarkdown'
+cask 'quicklook-json'
+
+# Fonts
+cask 'font-lato'
+cask 'font-open-sans'
+cask 'font-roboto'
+cask 'font-source-code-pro-for-powerline'
+cask 'font-source-code-pro'
+cask 'font-source-sans-pro'
+cask 'font-source-serif-pro'
+
+# Mac App Store
+mas 'Keynote', id: 409183694
+mas 'Numbers', id: 409203825
+mas 'Pages', id: 409201541
+mas 'Affinity Photo', id: 824183456
+mas 'Boop', id: 1518425043
+mas 'PDF Squeezer 4', id: 1502111349
+mas 'NordVPN IKE - Unlimited VPN', id: 1116599239
+mas 'Bear', id: 1091189122
+mas 'DaisyDisk', id: 411643860
