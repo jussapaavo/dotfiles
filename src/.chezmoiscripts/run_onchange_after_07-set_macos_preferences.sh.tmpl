@@ -85,7 +85,7 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 1
-defaults write NSGlobalDomain InitialKeyRepeat -int 10
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
 # Set language and text formats
 # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
@@ -95,27 +95,12 @@ defaults write NSGlobalDomain AppleLocale -string "fi_FI@currency=EUR"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
 
-# Set the timezone; see `sudo systemsetup -listtimezones` for other values
-sudo systemsetup -settimezone "Europe/Helsinki" > /dev/null
-
 ###############################################################################
 # Energy saving                                                               #
 ###############################################################################
 
 # Restart automatically on power loss
 sudo pmset -a autorestart 1
-
-# Restart automatically if the computer freezes
-sudo systemsetup -setrestartfreeze on
-
-# Sleep the display after 15 minutes
-sudo pmset -a displaysleep 15
-
-# Disable machine sleep while charging (use 0)
-sudo pmset -c sleep 30
-
-# Set machine sleep to 5 minutes on battery
-sudo pmset -b sleep 5
 
 ###############################################################################
 # Screen                                                                      #
@@ -172,9 +157,6 @@ defaults write com.apple.finder WarnOnEmptyTrash -bool false
 # Use AirDrop over every interface. srsly this should be a default.
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
-# Show the ~/Library folder
-chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
-
 # Expand the following File Info panes:
 # “General”, “Open with”, and “Sharing & Permissions”
 defaults write com.apple.finder FXInfoPanesExpanded -dict \
@@ -200,31 +182,6 @@ defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool fals
 
 # Show indicator lights for open applications in the Dock
 defaults write com.apple.dock show-process-indicators -bool true
-
-# Wipe all (default) app icons from the Dock
-# This is only really useful when setting up a new Mac, or if you don’t use
-# the Dock to launch apps.
-for dockItemLabel in \
-	Launchpad \
-	Safari \
-	Mail \
-	FaceTime \
-	Messages \
-	Maps \
-	Photos \
-	Contacts \
-	Reminders \
-	Notes \
-	Music \
-	Podcasts \
-	TV \
-	News \
-	Numbers \
-	Keynote \
-	Pages \
-	"App Store" ; do
-	dockutil --find "$dockItemLabel" >/dev/null && dockutil --no-restart --remove "$dockItemLabel"
-done
 
 # Don’t animate opening applications from the Dock
 defaults write com.apple.dock launchanim -bool false
@@ -310,15 +267,9 @@ defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
 # Disable Spotlight indexing for any volume that gets mounted and has not yet
 # been indexed before.
 # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
-sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+#sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+
 # Change indexing order and disable some search results
-# Yosemite-specific search results (remove them if you are using macOS 10.9 or older):
-#   MENU_DEFINITION
-#   MENU_CONVERSION
-#   MENU_EXPRESSION
-#   MENU_SPOTLIGHT_SUGGESTIONS (send search queries to Apple)
-#   MENU_WEBSEARCH             (send search queries to Apple)
-#   MENU_OTHER
 defaults write com.apple.spotlight orderedItems -array \
     '{"enabled" = 1;"name" = "APPLICATIONS";}' \
     '{"enabled" = 1;"name" = "SYSTEM_PREFS";}' \
@@ -342,12 +293,13 @@ defaults write com.apple.spotlight orderedItems -array \
     '{"enabled" = 0;"name" = "MENU_EXPRESSION";}' \
     '{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
     '{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
+
 # Load new settings before rebuilding the index
-killall mds > /dev/null 2>&1
+#killall mds > /dev/null 2>&1
 # Make sure indexing is enabled for the main volume
-sudo mdutil -i on / > /dev/null
+#sudo mdutil -i on / > /dev/null
 # Rebuild the index from scratch
-sudo mdutil -E / > /dev/null
+#sudo mdutil -E / > /dev/null
 
 ###############################################################################
 # Terminal & iTerm 2                                                          #
@@ -389,7 +341,7 @@ defaults write com.apple.addressbook ABShowDebugMenu -bool true
 
 # Use plain text mode for new TextEdit documents
 defaults write com.apple.TextEdit RichText -int 0
-Open and save files as UTF-8 in TextEdit
+# Open and save files as UTF-8 in TextEdit
 defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 
@@ -448,27 +400,9 @@ defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
 
 ###############################################################################
-# Kill affected applications                                                  #
+# End                                                                         #
 ###############################################################################
 
-for app in "Activity Monitor" \
-    "Address Book" \
-    "Calendar" \
-    "cfprefsd" \
-    "Contacts" \
-    "Dock" \
-    "Finder" \
-    "Google Chrome" \
-    "Mail" \
-    "Messages" \
-    "Photos" \
-    "Safari" \
-    "SystemUIServer" \
-    "Terminal" \
-    "iCal"; do
-    killall "${app}" &> /dev/null
-done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
-
 
 {{ end -}}
