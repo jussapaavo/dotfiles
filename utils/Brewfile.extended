@@ -5,23 +5,25 @@ tap 'homebrew/cask-versions'
 tap 'homebrew/bundle'
 
 # Binaries
-brew 'ffmpeg' # Better audio and video handling
+brew 'ffmpeg'         # Better audio and video handling
 brew 'httpie'
-brew 'mas' # Mac App Store manager
-brew 'trash' # Manage the Trash bin
-brew 'tree' # List directories in a tree structure
-brew 'zlib' # Needed for Memcached
+brew 'mas'            # Mac App Store manager
+brew 'trash'          # Manage the Trash bin
+brew 'tree'           # List directories in a tree structure
+brew 'zlib'           # Needed for Memcached
+
+# Development
+cask 'miniconda'      # Conda package manager
 
 # Flex
-brew 'neofetch' # Display information about your system in terminal
-brew 'cmatrix' # Terminal screensaver
-brew 'lolcat' # Make text inputs colorful
+brew 'neofetch'       # Display information about your system in terminal
+brew 'cmatrix'        # Terminal screensaver
+brew 'lolcat'         # Make text inputs colorful
 
 # Apps
 cask '1password'
-cask 'apparency' # Quicklook plugin for better app info
+cask 'apparency'      # Quicklook plugin for better app info
 cask 'avast-security'
-cask 'caffeine'
 cask 'discord'
 cask 'dropbox'
 cask 'firefox'
@@ -30,7 +32,7 @@ cask 'flux'
 cask 'google-chrome'
 cask 'gpg-suite'
 cask 'imageoptim'
-cask 'iina' # Open-Source Video Player
+cask 'iina'           # Open-Source Video Player
 cask 'numi'
 cask 'obsidian'
 cask 'onyx'

@@ -5,28 +5,33 @@ tap 'homebrew/cask-versions'
 tap 'homebrew/bundle'
 
 # Binaries
-brew 'bash' # Latest Bash version
-brew 'coreutils' # Those that come with macOS are outdated
+brew 'bash'       # Latest Bash version
+brew 'coreutils'  # Those that come with macOS are outdated
 brew 'git'
 brew 'gnupg'
-brew 'grep' # Global Regural Expression Print
-brew 'mackup'
+brew 'grep'       # Global Regural Expression Print
+brew 'openssl'    # Recommended for building Python
 brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
-brew 'svn' # Needed for font installs
-brew 'zoxide' # Better cd in Terminal
+brew 'readline'   # Recommended for building Python
+brew 'svn'        # Needed for font installs
+brew 'sqlite3'    # Recommended for building Python
+brew 'zoxide'     # Better cd in Terminal
+brew 'zlib'       # Recommended for building Python
+brew 'xz'         # Recommended for building Python
 
 # Development
-brew 'gh' # GitHub CLI
-brew 'hub' # GitHub CLI extensions
+cask 'docker'     # Docker Desktop
+brew 'gh'         # GitHub CLI
+brew 'hub'        # GitHub CLI extensions
+brew 'pipx'       # Install isolated Python apps
 brew 'terragrunt'
-cask 'docker' # Docker Desktop
 
 # Apps
 cask 'hammerspoon'
 cask 'kitty'
-cask 'miniconda' # Conda package manager
+brew 'mackup'
 cask 'raycast'
-cask 'setapp' # A collection of apps
+cask 'setapp'     # A collection of apps
 cask 'spotify'
 cask 'the-unarchiver'
 cask 'visual-studio-code'
