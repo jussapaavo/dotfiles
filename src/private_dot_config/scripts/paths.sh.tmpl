@@ -6,3 +6,9 @@
 */ -}}
 export PATH=/opt/homebrew/bin:$PATH
 {{- end }}
+
+# pipenv
+export PATH={{ .chezmoi.homeDir }}/.local/bin:$PATH
+
+# pyenv
+export PATH={{ .chezmoi.homeDir }}/.pyenv/shims:$PATH

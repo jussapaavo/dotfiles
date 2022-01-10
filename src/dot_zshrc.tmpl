@@ -197,6 +197,11 @@ export VIMINIT="source {{ .chezmoi.homeDir }}/.config/vim/vimrc"
 ###
 */}}
 
+# Pyenv
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
 # Google Cloud SDK
 if [ -f "{{ .chezmoi.homeDir }}/opt/google-cloud-sdk/path.zsh.inc" ]; then . "{{ .chezmoi.homeDir }}/opt/google-cloud-sdk/path.zsh.inc"; fi
 if [ -f "{{ .chezmoi.homeDir }}/opt/google-cloud-sdk/completion.zsh.inc" ]; then . "{{ .chezmoi.homeDir }}/opt/google-cloud-sdk/completion.zsh.inc"; fi
