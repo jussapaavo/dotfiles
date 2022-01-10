@@ -4,6 +4,11 @@
 export VIMINIT="source {{ .chezmoi.homeDir }}/.config/vim/vimrc"
 
 {{/*
+# Include other user defined $PATHs.
+*/ -}}
+source {{ .chezmoi.homeDir }}/.config/scripts/paths.sh
+
+{{/*
 # Set personal aliases
 */}}
 source {{ .chezmoi.homeDir }}/.config/scripts/aliases.sh

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+{{- if .is_arm }}
+{{/*
+# Add Homebrew path for Apple Silicon.
+*/ -}}
+export PATH=/opt/homebrew/bin:$PATH
+{{- end }}
