@@ -53,12 +53,14 @@ cask 'font-source-sans-pro'
 cask 'font-source-serif-pro'
 
 # Mac App Store
+mas 'Affinity Photo', id: 824183456
+mas 'Amphetamine', id: 937984704
+mas 'Bear', id: 1091189122
+mas 'Boop', id: 1518425043
+mas 'DaisyDisk', id: 411643860
+mas 'Drafts', id: 1435957248
 mas 'Keynote', id: 409183694
+mas 'NordVPN: VPN Fast & Secure', id: 905953485
 mas 'Numbers', id: 409203825
 mas 'Pages', id: 409201541
-mas 'Affinity Photo', id: 824183456
-mas 'Boop', id: 1518425043
 mas 'PDF Squeezer 4', id: 1502111349
-mas 'NordVPN IKE - Unlimited VPN', id: 1116599239
-mas 'Bear', id: 1091189122
-mas 'DaisyDisk', id: 411643860
