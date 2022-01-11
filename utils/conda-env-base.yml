@@ -1,0 +1,40 @@
+name: base
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # System
+  - pip
+  - autopep8
+  - flake8
+  - boto
+  - boto3
+  - pep8
+  - protobuf
+  - python-dateutil
+  - tqdm
+  - pyarrow
+
+  # Google
+  - google-auth
+  - google-api-core
+  - google-cloud-core
+  - google-cloud-bigquery
+  - google-cloud-storage
+
+  # Data Science
+  - matplotlib
+  - numpy
+  - numpydoc
+  - pandas
+  - plotly
+  - scikit-image
+  - scikit-learn
+  - scipy
+  - seaborn
+  - statsmodels
+
+  # Jupyter
+  - jupyterlab
+  - notebook
+  - jupyter_contrib_nbextensions
