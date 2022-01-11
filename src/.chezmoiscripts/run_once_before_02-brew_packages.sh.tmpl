@@ -5,6 +5,7 @@
 BREWFILE_CORE={{ .chezmoi.sourceDir }}/utils/Brewfile.core
 BREWFILE_EXTENDED={{ .chezmoi.sourceDir }}/utils/Brewfile.extended
 
+# Install Brewfile.core
 if test $(brew bundle check --file=$BREWFILE_CORE); then
     brew bundle --no-lock --file=$BREWFILE_CORE
 fi
