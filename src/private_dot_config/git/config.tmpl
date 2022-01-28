@@ -10,7 +10,7 @@
   untracked = red
 
 [core]
-	excludesfile = ~/.config/git/ignore
+	excludesfile = {{ .chezmoi.homeDir }}/.config/git/ignore
 
 [rerere]
   enabled = true
@@ -24,21 +24,16 @@
 [pull]
 	rebase = true
 
+[github]
+  user = jussapaavo
+
 [user]
 	name = {{ .name }}
 	email = {{ .email }}
 
-[github]
-  user = jussapaavo
-
-{{ if .is_codespace -}}
-[includeIf "gitdir:**/workspaces/*/"]
-	path = ~/.config/git/sok
-{{ end -}}
-
 {{ if (eq .chezmoi.os "darwin") -}}
-[includeIf "gitdir:**/SOK/*/"]
-	path = ~/.config/git/sok
+[includeIf "gitdir/i:**/SOK/"]
+	path = {{ .chezmoi.homeDir }}/.config/git/config-work
 
 [credential]
   helper = osxkeychain
