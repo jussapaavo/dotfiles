@@ -20,6 +20,7 @@ brew 'zlib'       # Recommended for building Python
 brew 'xz'         # Recommended for building Python
 
 # Development
+brew 'awscli      # Official AWS command-line interface
 cask 'docker'     # Docker Desktop
 brew 'gh'         # GitHub CLI
 brew 'hub'        # GitHub CLI extensions

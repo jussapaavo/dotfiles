@@ -6,6 +6,7 @@ alias c="clear"
 alias e="exit"
 alias cab="source $HOME/.config/scripts/load_conda.sh && conda activate base"
 alias ca="source $HOME/.config/scripts/load_conda.sh && conda activate"
+alias al="ad-aws-login"
 
 # Tools
 alias cm="chezmoi"
