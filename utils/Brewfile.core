@@ -28,6 +28,7 @@ brew 'pipx'       # Install isolated Python apps
 brew 'terragrunt'
 
 # Apps
+cask '1password-cli'
 cask 'hammerspoon'
 cask 'kitty'
 brew 'mackup'
