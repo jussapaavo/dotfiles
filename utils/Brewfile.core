@@ -24,6 +24,7 @@ brew 'awscli      # Official AWS command-line interface
 cask 'docker'     # Docker Desktop
 brew 'gh'         # GitHub CLI
 brew 'hub'        # GitHub CLI extensions
+brew 'node'       # Node.js and npm
 brew 'pipx'       # Install isolated Python apps
 brew 'terragrunt'
 
