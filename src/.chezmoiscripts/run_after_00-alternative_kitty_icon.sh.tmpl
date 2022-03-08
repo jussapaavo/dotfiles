@@ -1,0 +1,29 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+#!/bin/sh
+
+# Get location for the brew formula
+FORMULA_PATH=$(brew edit kitty --print-path)
+
+# Add postflight script to the brew formula if it doesn't already exist
+if grep -q "postflight" $FORMULA_PATH; then
+    echo "Postflight already defined."
+else
+    # Insert postflight code just before line starting with `zap trash` in kitty brew formula
+    sed -i '' '\|zap trash|i\
+  postflight do\
+    system_command "cp",\
+    args: ["{{ .chezmoi.homeDir }}/.config/kitty/kitty.icns", "#{appdir}/kitty.app/Contents/Resources/kitty.icns"],\
+    sudo: false\
+    system_command "touch",\
+    args: ["#{appdir}/kitty.app"],\
+    sudo: false\
+    # It seems that replacing the icon breaks some security check for MacOS, and removing attributes\
+    # using the following command fixes it. Use at your own risk\
+    system_command "xattr",\
+    args: ["-cr", "#{appdir}/kitty.app"],\
+    sudo: false\
+  end\
+\
+' $FORMULA_PATH
+fi
+{{ end -}}
