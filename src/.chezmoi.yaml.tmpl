@@ -6,7 +6,7 @@
 {{- $is_headless := false -}}  {{/* true if this machine does not have a screen and keyboard */}}
 {{- $is_ephemeral := false -}} {{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
 {{- $is_codespace := false -}} {{/* true if this machine is run as a GitHub Codespace, VSCode Remote Container, etc */}}
-{{- $is_work := false -}}      {{/* true if this machine is owned by employer */}}
+{{- $limit_backups := false -}}      {{/* true if this machine is owned by employer */}}
 {{- $is_sok := false -}}       {{/* true if this machine is owned by SOK */}}
 {{- $is_personal := false -}}  {{/* true if this machine is owned by me personally */}}
 
@@ -27,7 +27,7 @@
 {{-     $hostname = "10000853il004" -}}
 {{-     $is_personal = true -}}
 {{-     $is_sok = true -}}
-{{-     $is_work = true -}}
+{{-     $limit_backups = true -}}
 {{-   end -}}
 {{- end -}}
 
@@ -72,14 +72,22 @@
 {{-   $email = promptString "email" -}}
 {{- end -}}
 
-{{- /* Initializes the .is_work variable with a default value */ -}}
-{{- $is_work := false -}}
-{{- /* If is_work was previously set, reuses it */ -}}
-{{- if hasKey . "is_work" -}}
-{{-   $is_work = .is_work -}}
-{{- /* Otherwise, if running interactively, prompts for a is_work */ -}}
+{{- /* Does the same for the work email */ -}}
+{{- $email_work := "4950494+jussapaavo@users.noreply.github.com" -}}
+{{- if hasKey . "email_work" -}}
+{{-   $email_work = .email_work -}}
 {{- else if $interactive -}}
-{{-   $is_work = promptString "is_work" -}}
+{{-   $email_work = promptString "email_work" -}}
+{{- end -}}
+
+{{- /* Initializes the .limit_backups variable with a default value */ -}}
+{{- $limit_backups := false -}}
+{{- /* If limit_backups was previously set, reuses it */ -}}
+{{- if hasKey . "limit_backups" -}}
+{{-   $limit_backups = .limit_backups -}}
+{{- /* Otherwise, if running interactively, prompts for a limit_backups */ -}}
+{{- else if $interactive -}}
+{{-   $limit_backups = promptString "limit_backups" -}}
 {{- end -}}
 
 {{- if $interactive -}}
@@ -91,10 +99,11 @@ sourceDir: {{ $.chezmoi.sourceDir | quote }}
 data:
   name: {{ $name | quote }}
   email: {{ $email | quote }}
+  email_work: {{ $email_work | quote }}
   hostname: {{ $hostname | quote }}
   is_arm: {{ $is_arm }}
   is_personal: {{ $is_personal }}
-  is_work: {{ $is_work }}
+  limit_backups: {{ $limit_backups }}
   is_sok: {{ $is_sok }}
   is_headless: {{ $is_headless }}
   is_ephemeral: {{ $is_ephemeral }}
