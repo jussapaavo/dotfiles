@@ -1,0 +1,14 @@
+# direnv
+which direnv >/dev/null && eval "$(direnv hook zsh)"
+
+# Pyenv
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+# Zoxide
+which zoxide >/dev/null && eval "$(zoxide init zsh)"
+
+# Google Cloud SDK
+if [ -f "{{ .chezmoi.homeDir }}/opt/google-cloud-sdk/path.zsh.inc" ]; then . "{{ .chezmoi.homeDir }}/opt/google-cloud-sdk/path.zsh.inc"; fi
+if [ -f "{{ .chezmoi.homeDir }}/opt/google-cloud-sdk/completion.zsh.inc" ]; then . "{{ .chezmoi.homeDir }}/opt/google-cloud-sdk/completion.zsh.inc"; fi

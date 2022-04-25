@@ -1,20 +1,11 @@
-{{/*
-# Custom configurations for different utilities
-*/ -}}
+# load extensions
+extensions=(
+  paths
+  exports
+  aliases
+  functions
+)
 
-# Use ~/.config/vim instead of $HOME for Vim
-export VIMINIT="source {{ .chezmoi.homeDir }}/.config/vim/vimrc"
-
-# Use ~/.config/aws instead of $HOME for AWS
-export AWS_CONFIG_FILE="{{ .chezmoi.homeDir }}/.config/aws/config"
-export AWS_SHARED_CREDENTIALS_FILE="{{ .chezmoi.homeDir }}/.config/aws/credentials"
-
-{{/*
-# Include other user defined $PATHs.
-*/ -}}
-source {{ .chezmoi.homeDir }}/.config/scripts/paths.sh
-
-{{/*
-# Set personal aliases
-*/}}
-source {{ .chezmoi.homeDir }}/.config/scripts/aliases.sh
+for extension in $extensions; do
+  source ~/.config/sh/$extension.sh
+done

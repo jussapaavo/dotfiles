@@ -11,7 +11,7 @@ else
 fi
 
 # Setup Jupyter environment
-source {{ .chezmoi.homeDir }}/.config/scripts/load_conda.sh
+source {{ .chezmoi.homeDir }}/.config/sh/conda.sh
 conda activate base
 jupyter contrib nbextension install --user
 jupyter nbextension enable toc2/maim
