@@ -33,6 +33,7 @@ cask 'google-chrome'
 cask 'gpg-suite'
 cask 'imageoptim'
 cask 'iina'           # Open-Source Video Player
+cask 'monitorcontrol'
 cask 'numi'
 cask 'obsidian'
 cask 'onyx'
