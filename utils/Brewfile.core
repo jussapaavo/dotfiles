@@ -34,6 +34,7 @@ cask 'hammerspoon'
 cask 'kitty'
 brew 'mackup'
 cask 'raycast'
+cask 'rectangle'  # Window management
 cask 'setapp'     # A collection of apps
 cask 'spotify'
 cask 'the-unarchiver'
