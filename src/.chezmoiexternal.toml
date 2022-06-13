@@ -58,12 +58,6 @@
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
-[".hammerspoon/Spoons/Lunette.spoon"]
-    type = "archive"
-    url = "https://github.com/scottwhudson/Lunette/blob/master/Spoons/Lunette.spoon.zip?raw=true"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
 [".hammerspoon/Spoons/MicMute.spoon"]
     type = "archive"
     url = "https://github.com/Hammerspoon/Spoons/blob/master/Spoons/MicMute.spoon.zip?raw=true"
