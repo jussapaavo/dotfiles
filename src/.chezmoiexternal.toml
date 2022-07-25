@@ -1,26 +1,30 @@
 [".oh-my-zsh"]
-    type = "archive"
-    url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
+  type = "archive"
+  url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+
 [".oh-my-zsh/custom/plugins/zsh-syntax-highlighting"]
-    type = "archive"
-    url = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
+  type = "archive"
+  url = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+
 [".oh-my-zsh/custom/plugins/zsh-autosuggestions"]
-    type = "archive"
-    url = "https://github.com/zsh-users/zsh-autosuggestions/archive/refs/heads/master.zip"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
+  type = "archive"
+  url = "https://github.com/zsh-users/zsh-autosuggestions/archive/refs/heads/master.zip"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+
 [".oh-my-zsh/custom/themes/powerlevel10k"]
-    type = "archive"
-    url = "https://github.com/romkatv/powerlevel10k/archive/v1.15.0.tar.gz"
-    exact = true
-    stripComponents = 1
+  type = "archive"
+  url = "https://github.com/romkatv/powerlevel10k/archive/v1.15.0.tar.gz"
+  exact = true
+  stripComponents = 1
+
 {{- if and (not .is_ephemeral) (not .is_headless) }}
 {{-   $fontDir := "" }}
 {{-   if eq .chezmoi.os "darwin" }}
@@ -29,45 +33,52 @@
 {{-     $fontDir = ".local/share/fonts" }}
 {{-   end }}
 ["{{ $fontDir }}/MesloLGS NF Regular.ttf"]
-    type = "file"
-    url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Regular.ttf"
-    refreshPeriod = "168h"
+  type = "file"
+  url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Regular.ttf"
+  refreshPeriod = "168h"
+
 ["{{ $fontDir }}/MesloLGS NF Bold.ttf"]
-    type = "file"
-    url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Bold.ttf"
-    refreshPeriod = "168h"
+  type = "file"
+  url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Bold.ttf"
+  refreshPeriod = "168h"
+
 ["{{ $fontDir }}/MesloLGS NF Italic.ttf"]
-    type = "file"
-    url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Italic.ttf"
-    refreshPeriod = "168h"
+  type = "file"
+  url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Italic.ttf"
+  refreshPeriod = "168h"
+
 ["{{ $fontDir }}/MesloLGS NF Bold Italic.ttf"]
-    type = "file"
-    url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Bold Italic.ttf"
-    refreshPeriod = "168h"
+  type = "file"
+  url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Bold Italic.ttf"
+  refreshPeriod = "168h"
 {{- end }}
+
 {{- if (eq .chezmoi.os "darwin") }}
 [".hammerspoon"]
-    type = "archive"
-    url = "https://github.com/jussapaavo/dot_hammerspoon/archive/refs/heads/main.zip"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
+  type = "archive"
+  url = "https://github.com/jussapaavo/dot_hammerspoon/archive/refs/heads/main.zip"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+
 [".hammerspoon/Spoons/Hyper.spoon"]
-    type = "archive"
-    url = "https://github.com/evantravers/Hyper.spoon/archive/refs/heads/master.zip"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
+  type = "archive"
+  url = "https://github.com/evantravers/Hyper.spoon/archive/refs/heads/master.zip"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+
 [".hammerspoon/Spoons/MicMute.spoon"]
-    type = "archive"
-    url = "https://github.com/Hammerspoon/Spoons/blob/master/Spoons/MicMute.spoon.zip?raw=true"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
+  type = "archive"
+  url = "https://github.com/Hammerspoon/Spoons/blob/master/Spoons/MicMute.spoon.zip?raw=true"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+
 [".hammerspoon/Spoons/ReloadConfiguration.spoon"]
-    type = "archive"
-    url = "https://github.com/Hammerspoon/Spoons/blob/master/Spoons/ReloadConfiguration.spoon.zip?raw=true"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
+  type = "archive"
+  url = "https://github.com/Hammerspoon/Spoons/blob/master/Spoons/ReloadConfiguration.spoon.zip?raw=true"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
 {{ end -}}

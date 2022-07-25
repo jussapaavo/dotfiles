@@ -6,7 +6,7 @@ This repository serves as my way to help me setup and maintain my Mac. It takes 
 
 📖 - [Read the blog post](https://driesvints.com/blog/getting-started-with-dotfiles)  
 📺 - [Watch the screencast on Laracasts](https://laracasts.com/series/guest-spotlight/episodes/1)  
-💡 - [Learn how to build your own dotfiles](https://github.com/driesvints/dotfiles#your-own-dotfiles)  
+💡 - [Learn how to build your own dotfiles](https://github.com/driesvints/dotfiles#your-own-dotfiles)
 
 ## A Fresh macOS Setup
 
@@ -39,15 +39,15 @@ If you did all of the above you may now follow these install instructions to set
 
 3. Install chezmoi and clone this repo with:
 
-    ```zsh
-    sh -c "$(curl -fsLS git.io/chezmoi)" -- init --apply -n <github-username>
-    ```
+   ```zsh
+   sh -c "$(curl -fsLS git.io/chezmoi)" -- init --apply -n <github-username>
+   ```
 
-3. After mackup is synced with your cloud storage, restore preferences by running `mackup restore`
-4. Restart your computer to finalize the process
-5. A couple of things to do after the reinstall:
-    - Change kitty terminal icon to a custom one
-    - Update `/etc/hosts` with file list from StevenBlack's [hosts](https://github.com/StevenBlack/hosts/).
+4. After mackup is synced with your cloud storage, restore preferences by running `mackup restore`
+5. Restart your computer to finalize the process
+6. A couple of things to do after the reinstall:
+   - Change kitty terminal icon to a custom one
+   - Update `/etc/hosts` with file list from StevenBlack's [hosts](https://github.com/StevenBlack/hosts/).
 
 Your Mac is now ready to use!
 
