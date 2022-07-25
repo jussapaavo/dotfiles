@@ -1,0 +1,29 @@
+{
+  "useTabs": false,
+  "tabWidth": 2,
+  "trailingComma": "none",
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": ["*.yml"],
+      "options": {
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": ["*.toml", "*/git/config.tmpl", "*/git/config-work.tmpl"],
+      "options": {
+        "tabWidth": 2,
+        "parser": "toml"
+      }
+    },
+    {
+      "files": [".prettierrc", "*.json"],
+      "options": {
+        "tabWidth": 2,
+        "endOfLine": "auto",
+        "parser": "json"
+      }
+    }
+  ]
+}
