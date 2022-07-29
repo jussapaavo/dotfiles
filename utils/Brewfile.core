@@ -39,3 +39,6 @@ cask 'setapp'     # A collection of apps
 cask 'spotify'
 cask 'the-unarchiver'
 cask 'visual-studio-code'
+
+# Fonts
+cask 'font-meslo-lg-nerd-font'
