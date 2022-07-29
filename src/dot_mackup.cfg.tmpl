@@ -1,14 +1,22 @@
 {{- if (eq .chezmoi.os "darwin") -}}
 [storage]
-engine = dropbox
+engine = icloud
 
 {{   if .limit_backups }}
 [applications_to_sync]
+affinity-photo
+dash
+flux
 gnupg
 ipython
 jupyter
+logitech-options
+macosx
 rectangle
+spotify
 ssh
+tableplus
+terminal
 zzz-aws
 zzz-dbt
 zzz-keyremap
