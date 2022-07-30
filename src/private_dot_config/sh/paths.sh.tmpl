@@ -1,17 +1,19 @@
 #!/bin/sh
 
-{{- if .is_arm }}
-{{/*
+{{ if .is_arm -}}
 # Add Homebrew path for Apple Silicon.
-*/ -}}
 export PATH=/opt/homebrew/bin:$PATH
 {{- end }}
 
+{{ if (eq .chezmoi.os "darwin") -}}
 # pipenv
 export PATH={{ .chezmoi.homeDir }}/.local/bin:$PATH
 
 # pyenv
 export PATH={{ .chezmoi.homeDir }}/.pyenv/shims:$PATH
+{{- end }}
 
+{{ if .is_sok -}}
 # Work related utility for enabling AD login in AWS CLI
 export PATH={{ .chezmoi.homeDir }}/Development/SOK/ad-aws-login/bin:$PATH
+{{- end }}
