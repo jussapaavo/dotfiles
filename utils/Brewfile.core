@@ -27,6 +27,7 @@ brew 'hub'        # GitHub CLI extensions
 brew 'node'       # Node.js and npm
 brew 'pipx'       # Install isolated Python apps
 brew 'terragrunt'
+brew 'thefuck'
 
 # Apps
 cask '1password-cli'
