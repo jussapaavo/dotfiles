@@ -1,8 +1,11 @@
 {{- if (eq .chezmoi.os "darwin") -}}
 #!/bin/sh
 
+{{ $brew_formula_path := output "brew" "edit" "kitty" "--print-path" | trim -}}
+# Run only if this kitty.rb hash changes: {{ include $brew_formula_path | sha256sum }}
+
 # Get location for the brew formula
-FORMULA_PATH=$(brew edit kitty --print-path)
+FORMULA_PATH="{{ $brew_formula_path }}"
 
 # Add postflight script to the brew formula if it doesn't already exist
 if grep -q "postflight" $FORMULA_PATH; then
