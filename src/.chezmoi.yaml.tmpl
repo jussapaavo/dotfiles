@@ -8,7 +8,7 @@
 {{- $is_codespace := false -}} {{/* true if this machine is run as a GitHub Codespace, VSCode Remote Container, etc */}}
 {{- $limit_backups := false -}}      {{/* true if this machine is owned by employer */}}
 {{- $is_sok := false -}}       {{/* true if this machine is owned by SOK */}}
-{{- $is_personal := false -}}  {{/* true if this machine is owned by me personally */}}
+{{- $is_standard := false -}}  {{/* true if this machine is owned by me personally */}}
 
 {{- /* detect GitHub codespaces, VSCode remote containers, Docker containers, and Vagrant boxes */ -}}
 {{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "vagrant" "vscode") -}}
@@ -22,10 +22,10 @@
 {{-   $serialNumberSHA256Sum := index ioreg "IORegistryEntryChildren" 0 "IOPlatformSerialNumber" | sha256sum -}}
 {{-   if eq $serialNumberSHA256Sum "8a3df051540c8f8f000265e31fdc84196b7a91335f64c224a6e48c552f88c8e0" -}}
 {{-     $hostname = "jussis-imac" -}}
-{{-     $is_personal = true -}}
+{{-     $is_standard = true -}}
 {{-   else if eq $serialNumberSHA256Sum "b36d8a635d1d25f2cf3c62b1f31c069ec8b46ce4e1848ff46cf7f3d6ecfe3148" -}}
 {{-     $hostname = "10000853il004" -}}
-{{-     $is_personal = true -}}
+{{-     $is_standard = true -}}
 {{-     $is_sok = true -}}
 {{-     $limit_backups = true -}}
 {{-   end -}}
@@ -33,7 +33,7 @@
 
 {{- if not $is_ephemeral -}}
 {{-   if eq .chezmoi.os "darwin" "windows" -}}
-{{-     $is_personal = true -}}
+{{-     $is_standard = true -}}
 {{-     if eq .chezmoi.arch "arm" "arm64" -}}
 {{-       $is_arm = true -}}
 {{-     end -}}
@@ -102,7 +102,7 @@ data:
   email_work: {{ $email_work | quote }}
   hostname: {{ $hostname | quote }}
   is_arm: {{ $is_arm }}
-  is_personal: {{ $is_personal }}
+  is_standard: {{ $is_standard }}
   limit_backups: {{ $limit_backups }}
   is_sok: {{ $is_sok }}
   is_headless: {{ $is_headless }}
