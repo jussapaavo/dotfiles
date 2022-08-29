@@ -24,6 +24,7 @@ brew 'awscli      # Official AWS command-line interface
 brew 'exa'        # Better ls
 cask 'docker'     # Docker Desktop
 brew 'gh'         # GitHub CLI
+cask 'google-cloud-sdk'
 brew 'hub'        # GitHub CLI extensions
 brew 'node'       # Node.js and npm
 brew 'pipx'       # Install isolated Python apps
