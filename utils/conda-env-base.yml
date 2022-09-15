@@ -21,6 +21,7 @@ dependencies:
   - google-cloud-core
   - google-cloud-bigquery
   - google-cloud-storage
+  - google-cloud-secret-manager
 
   # Data Science
   - matplotlib
@@ -38,3 +39,6 @@ dependencies:
   - jupyterlab
   - notebook
   - jupyter_contrib_nbextensions
+
+  # Development
+  - flask
