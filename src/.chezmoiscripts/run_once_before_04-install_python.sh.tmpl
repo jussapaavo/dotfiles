@@ -10,10 +10,24 @@ ln -s $(brew --cellar python)/* {{ .chezmoi.homeDir }}/.pyenv/versions/
 
 # Set global Python version
 if pyenv versions | grep -q "3.10.1"; then
+    echo "Python 3.10 already installed."
     pyenv global 3.10.1
 else
     pyenv install 3.10.1
     pyenv global 3.10.1
+fi
+
+# Install other Python versions
+if pyenv versions | grep -q "3.8"; then
+    echo "Python 3.8 already installed."
+else
+    pyenv install 3.8:latest
+fi
+
+if pyenv versions | grep -q "3.7"; then
+    echo "Python 3.7 already installed."
+else
+    pyenv install 3.7:latest
 fi
 
 # Setup virtualenvs
