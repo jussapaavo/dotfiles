@@ -7,3 +7,6 @@ export VIMINIT="source {{ .chezmoi.homeDir }}/.config/vim/vimrc"
 
 # Place dbt configs into ~/.config/dbt instead of $HOME
 export DBT_PROFILES_DIR="{{ .chezmoi.homeDir }}/.config/dbt/"
+
+# Set zsh-autosuggestion strategy
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
