@@ -1,4 +1,4 @@
-{{ if (eq .chezmoi.os "darwin") -}}
+{{ if .include_work -}}
 [user]
   name = {{ .name }}
   email = {{ .email_work }}

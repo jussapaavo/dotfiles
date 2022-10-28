@@ -30,7 +30,7 @@
 
 [user]
 	name = {{ .name }}
-	email = {{ .email }}
+	email = {{ .email_main }}
   signingkey = {{ .public_key_main }}
 
 [gpg]
@@ -39,10 +39,12 @@
 [gpg "ssh"]
   program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 
-{{ if (eq .chezmoi.os "darwin") -}}
+{{ if .include_work -}}
 [includeIf "gitdir/i:**/SOK/"]
 	path = {{ .chezmoi.homeDir }}/.config/git/config-work
+{{ end -}}
 
+{{ if (eq .chezmoi.os "darwin") -}}
 [credential]
   helper = osxkeychain
 {{ end -}}

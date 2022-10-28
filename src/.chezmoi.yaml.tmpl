@@ -2,13 +2,13 @@
 {{- $interactive := stdinIsATTY -}}
 
 {{- /* boolean feature tags */ -}}
-{{- $is_arm := false -}}        {{/* true if this machine has ARM chip (Apple Silicon, M1, etc) */}}
-{{- $is_headless := false -}}   {{/* true if this machine does not have a screen and keyboard */}}
-{{- $is_ephemeral := false -}}  {{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
-{{- $is_codespace := false -}}  {{/* true if this machine is run as a GitHub Codespace, VSCode Remote Container, etc */}}
-{{- $limit_backups := false -}} {{/* true if this machine is owned by employer */}}
-{{- $is_sok := false -}}        {{/* true if this machine is owned by SOK */}}
-{{- $is_standard := false -}}   {{/* true if this machine is owned by me personally */}}
+{{- $is_arm := false -}}             {{/* true if this machine has ARM chip (Apple Silicon, M1, etc) */}}
+{{- $is_desktop := false -}}         {{/* true if this machine is a desktop or laptop compoture with full functionality */}}
+{{- $is_headless := false -}}        {{/* true if this machine does not have a screen and keyboard */}}
+{{- $is_ephemeral := false -}}       {{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
+{{- $is_codespace := false -}}       {{/* true if this machine is run as a GitHub Codespace, VSCode Remote Container, etc */}}
+{{- $owned_by_employer := false -}}  {{/* true if this machine is owned by employer */}}
+{{- $include_work := false -}}       {{/* true if this machine is owned by SOK */}}
 
 {{- /* detect GitHub codespaces, VSCode remote containers, Docker containers, and Vagrant boxes */ -}}
 {{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "vagrant" "vscode") -}}
@@ -22,18 +22,19 @@
 {{-   $serialNumberSHA256Sum := index ioreg "IORegistryEntryChildren" 0 "IOPlatformSerialNumber" | sha256sum -}}
 {{-   if eq $serialNumberSHA256Sum "8a3df051540c8f8f000265e31fdc84196b7a91335f64c224a6e48c552f88c8e0" -}}
 {{-     $hostname = "jussis-imac" -}}
-{{-     $is_standard = true -}}
+{{-     $is_desktop = true -}}
+{{-     $include_work = true -}}
 {{-   else if eq $serialNumberSHA256Sum "b36d8a635d1d25f2cf3c62b1f31c069ec8b46ce4e1848ff46cf7f3d6ecfe3148" -}}
 {{-     $hostname = "10000853il004" -}}
-{{-     $is_standard = true -}}
-{{-     $is_sok = true -}}
-{{-     $limit_backups = true -}}
+{{-     $is_desktop = true -}}
+{{-     $include_work = true -}}
+{{-     $owned_by_employer = true -}}
 {{-   end -}}
 {{- end -}}
 
 {{- if not $is_ephemeral -}}
 {{-   if eq .chezmoi.os "darwin" "windows" -}}
-{{-     $is_standard = true -}}
+{{-     $is_desktop = true -}}
 {{-     if eq .chezmoi.arch "arm" "arm64" -}}
 {{-       $is_arm = true -}}
 {{-     end -}}
@@ -54,40 +55,25 @@
 {{-   end -}}
 {{- end -}}
 
-{{- /* Initializes the name variable with a default value */ -}}
-{{- $name := "Jussi Kämäräinen" -}}
-{{- /* If name was previously set, reuses it */ -}}
-{{- if hasKey . "name" -}}
-{{-   $name = .name -}}
-{{- /* Otherwise, if running interactively, prompts for a name */ -}}
-{{- else if $interactive -}}
-{{-   $name = promptString "name" -}}
+{{- /* Initializes the variables with a default values or promts for input */ -}}
+{{- $name := "jussapaavo" -}}
+{{- if $interactive -}}
+{{-   $name = promptStringOnce . "name" "Your full name" -}}
 {{- end -}}
 
-{{- /* Does the same for the email */ -}}
-{{- $email := "4950494+jussapaavo@users.noreply.github.com" -}}
-{{- if hasKey . "email" -}}
-{{-   $email = .email -}}
-{{- else if $interactive -}}
-{{-   $email = promptString "email" -}}
+{{- $email_main := "4950494+jussapaavo@users.noreply.github.com" -}}
+{{- if $interactive -}}
+{{-   $email_main = promptStringOnce . "email_main" "Your personal email" -}}
 {{- end -}}
 
-{{- /* Does the same for the work email */ -}}
 {{- $email_work := "4950494+jussapaavo@users.noreply.github.com" -}}
-{{- if hasKey . "email_work" -}}
-{{-   $email_work = .email_work -}}
-{{- else if $interactive -}}
-{{-   $email_work = promptString "email_work" -}}
+{{- if $interactive -}}
+{{-   $email_work = promptStringOnce . "email_work" "Your work email" -}}
 {{- end -}}
 
-{{- /* Initializes the .limit_backups variable with a default value */ -}}
-{{- $limit_backups := false -}}
-{{- /* If limit_backups was previously set, reuses it */ -}}
-{{- if hasKey . "limit_backups" -}}
-{{-   $limit_backups = .limit_backups -}}
-{{- /* Otherwise, if running interactively, prompts for a limit_backups */ -}}
-{{- else if $interactive -}}
-{{-   $limit_backups = promptString "limit_backups" -}}
+{{- /* Already initialized previously */ -}}
+{{- if $interactive -}}
+{{-   $include_work = promptBoolOnce . "include_work" "Include work-related configs (y/n)" -}}
 {{- end -}}
 
 {{- if $interactive -}}
@@ -98,13 +84,13 @@ sourceDir: {{ $.chezmoi.sourceDir | quote }}
 
 data:
   name: {{ $name | quote }}
-  email: {{ $email | quote }}
+  email_main: {{ $email_main | quote }}
   email_work: {{ $email_work | quote }}
   hostname: {{ $hostname | quote }}
   is_arm: {{ $is_arm }}
-  is_standard: {{ $is_standard }}
-  limit_backups: {{ $limit_backups }}
-  is_sok: {{ $is_sok }}
+  is_desktop: {{ $is_desktop }}
+  owned_by_employer: {{ $owned_by_employer }}
+  include_work: {{ $include_work }}
   is_headless: {{ $is_headless }}
   is_ephemeral: {{ $is_ephemeral }}
   is_codespace: {{ $is_codespace }}
