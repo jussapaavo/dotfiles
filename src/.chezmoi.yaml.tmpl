@@ -2,13 +2,13 @@
 {{- $interactive := stdinIsATTY -}}
 
 {{- /* boolean feature tags */ -}}
-{{- $is_arm := false -}}       {{/* true if this machine has ARM chip (Apple Silicon, M1, etc) */}}
-{{- $is_headless := false -}}  {{/* true if this machine does not have a screen and keyboard */}}
-{{- $is_ephemeral := false -}} {{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
-{{- $is_codespace := false -}} {{/* true if this machine is run as a GitHub Codespace, VSCode Remote Container, etc */}}
-{{- $limit_backups := false -}}      {{/* true if this machine is owned by employer */}}
-{{- $is_sok := false -}}       {{/* true if this machine is owned by SOK */}}
-{{- $is_standard := false -}}  {{/* true if this machine is owned by me personally */}}
+{{- $is_arm := false -}}        {{/* true if this machine has ARM chip (Apple Silicon, M1, etc) */}}
+{{- $is_headless := false -}}   {{/* true if this machine does not have a screen and keyboard */}}
+{{- $is_ephemeral := false -}}  {{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
+{{- $is_codespace := false -}}  {{/* true if this machine is run as a GitHub Codespace, VSCode Remote Container, etc */}}
+{{- $limit_backups := false -}} {{/* true if this machine is owned by employer */}}
+{{- $is_sok := false -}}        {{/* true if this machine is owned by SOK */}}
+{{- $is_standard := false -}}   {{/* true if this machine is owned by me personally */}}
 
 {{- /* detect GitHub codespaces, VSCode remote containers, Docker containers, and Vagrant boxes */ -}}
 {{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "vagrant" "vscode") -}}
@@ -108,3 +108,6 @@ data:
   is_headless: {{ $is_headless }}
   is_ephemeral: {{ $is_ephemeral }}
   is_codespace: {{ $is_codespace }}
+
+  public_key_main: {{ onepasswordRead "op://personal/dsef3t2ki64l3dvdeidjmilgi4/public key" }}
+  public_key_work: {{ onepasswordRead "op://personal/jmbj6s5xmmmet4qvuwthcnebri/public key" }}

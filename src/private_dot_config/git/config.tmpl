@@ -17,6 +17,7 @@
 
 [commit]
   verbose = true
+  gpgsign = true
 
 [push]
   default = current
@@ -30,6 +31,13 @@
 [user]
 	name = {{ .name }}
 	email = {{ .email }}
+  signingkey = {{ .public_key_main }}
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 
 {{ if (eq .chezmoi.os "darwin") -}}
 [includeIf "gitdir/i:**/SOK/"]
