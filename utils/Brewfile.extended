@@ -13,6 +13,7 @@ brew 'tree'           # List directories in a tree structure
 brew 'zlib'           # Needed for Memcached
 
 # Development
+brew 'hugo'           # Build static websites from markdown files
 cask 'miniconda'      # Conda package manager
 
 # Flex
