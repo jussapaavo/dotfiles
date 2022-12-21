@@ -40,7 +40,10 @@ pipx install pipenv
 pipx install subliminal
 pipx install pytest
 pipx install black
-pipx install dbt-bigquery --include-deps
-pipx inject dbt-bigquery dbt-athena-adapter
+
+# Install dbt
+pipx install dbt-core --include-deps
+pipx inject dbt-core dbt-bigquery
+pipx inject dbt-core dbt-athena-community
 
 {{ end -}}
