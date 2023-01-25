@@ -42,8 +42,12 @@ pipx install pytest
 pipx install black
 
 # Install dbt
-pipx install dbt-core --include-deps
+pipx install dbt-core
 pipx inject dbt-core dbt-bigquery
 pipx inject dbt-core dbt-athena-community
+
+# Install sql linter
+pipx install sqlfluff
+pipx inject sqlfluff sqlfluff-templater-dbt
 
 {{ end -}}
