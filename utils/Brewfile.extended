@@ -15,6 +15,7 @@ brew 'zlib'           # Needed for Memcached
 # Development
 brew 'hugo'           # Build static websites from markdown files
 cask 'miniconda'      # Conda package manager
+cask 'flake8'         # Python linting
 
 # Flex
 brew 'neofetch'       # Display information about your system in terminal
