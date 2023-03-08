@@ -19,6 +19,13 @@
   stripComponents = 1
   refreshPeriod = "168h"
 
+[".oh-my-zsh/custom/plugins/git-open"]
+  type = "archive"
+  url = "https://github.com/paulirish/git-open/archive/refs/heads/master.zip"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+
 [".oh-my-zsh/custom/themes/powerlevel10k"]
   type = "archive"
   url = "https://github.com/romkatv/powerlevel10k/archive/v1.15.0.tar.gz"
