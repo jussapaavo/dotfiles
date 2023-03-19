@@ -1,45 +1,51 @@
 {{- if (eq .chezmoi.os "darwin") -}}
 #!/bin/sh
 
-# Install pyenv
-brew install pyenv
+###
+# Install Python
+###
+
+# Check for pyenv and install if we don't have it
+if ! command -v pyenv 1>/dev/null 2>&1; then
+  brew install pyenv
+fi
 
 # Link Homebrew's Python versions
 mkdir -p {{ .chezmoi.homeDir }}/.pyenv/versions/
 ln -s $(brew --cellar python)/* {{ .chezmoi.homeDir }}/.pyenv/versions/
 
+# Install Python versions
+python_versions=(
+    3.11
+    3.10
+    3.9
+    3.8
+    3.7
+)
+
+for version in $python_versions; do
+    if pyenv versions | grep -q "$version"; then
+        echo "Python $version already installed."
+    else
+        pyenv install $version:latest
+    fi
+done
+
 # Set global Python version
-if pyenv versions | grep -q "3.10.1"; then
-    echo "Python 3.10 already installed."
-    pyenv global 3.10.1
-else
-    pyenv install 3.10.1
-    pyenv global 3.10.1
-fi
+pyenv global $python_versions[1]
 
-# Install other Python versions
-if pyenv versions | grep -q "3.8"; then
-    echo "Python 3.8 already installed."
-else
-    pyenv install 3.8:latest
-fi
+###
+# Install packages with pipx
+###
 
-if pyenv versions | grep -q "3.7"; then
-    echo "Python 3.7 already installed."
-else
-    pyenv install 3.7:latest
-fi
-
-# Setup virtualenvs
+# Setup
 pipx ensurepath
-pipx install pipenv
-
-# Install packages from Pipfile with pipenv. Read more here: https://liatas.com/posts/anaconda-vs-pyenv-pipenv/
 
 # Install additional command line tools
 pipx install subliminal
 pipx install pytest
 pipx install black
+pipx install pipenv
 
 # Install dbt
 pipx install dbt-core
@@ -49,5 +55,11 @@ pipx inject dbt-core dbt-athena-community
 # Install sql linter
 pipx install sqlfluff
 pipx inject sqlfluff sqlfluff-templater-dbt
+
+###
+# Install packages from Pipfile with pipenv. Read more here: https://liatas.com/posts/anaconda-vs-pyenv-pipenv/
+###
+
+# No pipenv installations currently.
 
 {{ end -}}
