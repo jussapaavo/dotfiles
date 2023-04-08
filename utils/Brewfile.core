@@ -26,6 +26,7 @@ cask 'docker'     # Docker Desktop
 brew 'gh'         # GitHub CLI
 cask 'google-cloud-sdk'
 brew 'hub'        # GitHub CLI extensions
+brew 'just'       # Code-snippet runner
 brew 'node'       # Node.js and npm
 brew 'pipx'       # Install isolated Python apps
 brew 'tealdeer'   # Better manpages

@@ -1,0 +1,13 @@
+default:
+    just --list
+
+update-all: update-brew update-cm update-pipx
+
+update-brew:
+    brew upgrade && brew cleanup
+
+update-cm:
+    chezmoi -vR update
+
+update-pipx:
+    pipx upgrade-all --include-injected
