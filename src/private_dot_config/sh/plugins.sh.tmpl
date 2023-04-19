@@ -8,12 +8,3 @@ fi
 
 # Zoxide
 which zoxide >/dev/null && eval "$(zoxide init zsh)"
-
-{{ if (eq .chezmoi.os "darwin") -}}
-# Google Cloud SDK
-if [ -n "$ZSH_VERSION" ]; then
-   source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-elif [ -n "$BASH_VERSION" ]; then
-   source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
-fi
-{{ end -}}

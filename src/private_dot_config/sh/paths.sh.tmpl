@@ -13,7 +13,17 @@ export PATH={{ .chezmoi.homeDir }}/.local/bin:$PATH
 export PATH={{ .chezmoi.homeDir }}/.pyenv/shims:$PATH
 {{- end }}
 
+{{ if (eq .chezmoi.os "darwin") -}}
+# Google Cloud SDK
+if [ -n "$ZSH_VERSION" ]; then
+    source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+    source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+elif [ -n "$BASH_VERSION" ]; then
+   source "$(brew --prefix)/share/google-cloud-sdk/path.bash.inc"
+fi
+{{- end }}
+
 {{ if .include_work -}}
 # Work related utility for enabling AD login in AWS CLI
 export PATH={{ .chezmoi.homeDir }}/Development/SOK/ad-aws-login/bin:$PATH
-{{- end }}
+{{- end -}}
