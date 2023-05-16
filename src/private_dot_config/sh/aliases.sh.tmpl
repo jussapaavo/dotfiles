@@ -1,33 +1,35 @@
 #!/bin/sh
 
 # Shortcuts
-alias reloadshell="source $HOME/.zshrc"
-alias c="clear"
-alias e="exit"
-alias cab="source $HOME/.config/sh/conda.sh && conda activate base"
-alias ca="source $HOME/.config/sh/conda.sh && conda activate"
-alias aliases="acs"
-
-# SOK Login
-alias al="ad-aws-login"
-alias sel=". selaws"
-
-# Tools
-alias cm="chezmoi"
-alias tg="terragrunt"
-alias tf="terraform"
-alias jn="jupyter notebook"
-alias ls="exa --icons --color=always"
+alias reloadshell='source $HOME/.zshrc'
+alias c='clear'
+alias e='exit'
+alias aliases='acs'
 
 # Directories
-alias dev="cd $HOME/Development"
-alias devs="cd $HOME/Development/SOK"
-alias devp="cd $HOME/Development/Personal"
+alias dev='cd $HOME/Development'
+alias devs='cd $HOME/Development/SOK'
+alias devp='cd $HOME/Development/Personal'
+
+# Tools
+alias cm='chezmoi'
+alias tg='terragrunt'
+alias tf='terraform'
+alias jn='jupyter notebook'
+alias ls='exa --icons --color=always'
 
 # Git
-alias amend="git add . && git commit -a --amend --no-edit"
-alias force="git push --force-with-lease origin"
-alias nuke="git clean -df && git reset --hard origin/main"
-alias resolve="git add . && git commit --no-edit"
+alias amend='git add . && git commit -a --amend --no-edit'
+alias force='git push --force-with-lease origin'
+alias nuke='git clean -df && git reset --hard origin/main'
+alias resolve='git add . && git commit --no-edit'
 alias clean='git branch --merged | egrep -v "(^\*|main|master|dev)" | xargs git branch -d'
-alias yolo='git commit -m "$(curl -s http://whatthecommit.com/index.txt)"'
+alias yolo='git commit -m "$(curl -s https://whatthecommit.com/index.txt)"'
+
+# Development workflow
+alias cab='source $HOME/.config/sh/conda.sh && conda activate base'
+alias ca='source $HOME/.config/sh/conda.sh && conda activate'
+
+# SOK Login
+alias al='ad-aws-login'
+alias sel='. selaws'
