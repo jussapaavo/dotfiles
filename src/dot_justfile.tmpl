@@ -4,10 +4,13 @@ default:
 update-all: update-brew update-cm update-pipx
 
 update-brew:
+    @echo '###############\n# Update brew #\n###############\n'
     brew upgrade && brew cleanup
 
 update-cm:
+    @echo '##################\n# Update chezmoi #\n##################\n'
     chezmoi -vR update
 
 update-pipx:
+    @echo '###############\n# Update pipx #\n###############\n'
     pipx upgrade-all --include-injected
