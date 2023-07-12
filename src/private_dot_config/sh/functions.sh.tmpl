@@ -66,11 +66,11 @@ function _get_aws_profile() {
 }
 
 function _get_aws_region() {
-    local _aws_profile="$1"
+    local _aws_profile="${1:-default}"
     readonly PROFILE_CONFIG="$(sed -n "/${_aws_profile}/,/^ *$/p" "${AWS_CONFIG_FILE}")"
 
     local region=""
-    [[ -z "${region}" ]] && region=$(echo "${PROFILE_CONFIG}" |  (grep '\<region=.*\>' || true) | sed -E 's/^region *= *([^ ]*).*$/\1/')
+    [[ -z "${region}" ]] && region=$(echo "${PROFILE_CONFIG}" |  (grep '\<region *=.*\>' || true) | sed -E 's/^region *= *([^ ]*).*$/\1/')
     echo $region
 }
 
@@ -82,4 +82,7 @@ function al() {
   aws_default_region=$(_get_aws_region "default")
 
   aws sso login --profile $aws_profile
+
+  eval "$(aws configure export-credentials --profile $aws_profile --format env)"
+  export AWS_DEFAULT_REGION=$aws_default_region
 }

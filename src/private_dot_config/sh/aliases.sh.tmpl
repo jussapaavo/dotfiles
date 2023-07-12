@@ -24,7 +24,7 @@ alias amend='git add . && git commit -a --amend --no-edit'
 alias force='git push --force-with-lease origin'
 alias nuke='git clean -df && git reset --hard origin/main'
 alias resolve='git add . && git commit --no-edit'
-alias clean='git branch --merged | egrep -v "(^\*|main|master|dev)" | xargs git branch -d'
+alias prune='git branch --merged | egrep -v "(^\*|main|master|dev)" | xargs git branch -d'
 alias yolo='git commit -m "$(curl -s https://whatthecommit.com/index.txt)"'
 
 # Development workflow
