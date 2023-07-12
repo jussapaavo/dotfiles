@@ -46,3 +46,40 @@ function killapps() {
     fi
   fi
 }
+
+###
+# AWS SSO helper functions
+###
+
+function _get_aws_profile() {
+    local config="${AWS_CONFIG_FILE}"
+    test ! -f ${config} && echo "File ${config} does not exist" && return 1
+    which fzf 2>&1 >/dev/null
+    if [[ $? -ne 0 ]]; then
+        select _aws_profile in $(cat "${config}" | grep '\[profile' | sed 's/\[profile \(.*\)]/\1/'); do
+            echo $_aws_profile;
+            break;
+        done
+    else
+        echo $(cat "${config}" | grep '\[profile' | sed 's/\[profile \(.*\)]/\1/' | fzf)
+    fi
+}
+
+function _get_aws_region() {
+    local _aws_profile="$1"
+    readonly PROFILE_CONFIG="$(sed -n "/${_aws_profile}/,/^ *$/p" "${AWS_CONFIG_FILE}")"
+
+    local region=""
+    [[ -z "${region}" ]] && region=$(echo "${PROFILE_CONFIG}" |  (grep '\<region=.*\>' || true) | sed -E 's/^region *= *([^ ]*).*$/\1/')
+    echo $region
+}
+
+function al() {
+  unset aws_profile
+  unset aws_default_region
+
+  aws_profile="$(_get_aws_profile)"
+  aws_default_region=$(_get_aws_region "default")
+
+  aws sso login --profile $aws_profile
+}

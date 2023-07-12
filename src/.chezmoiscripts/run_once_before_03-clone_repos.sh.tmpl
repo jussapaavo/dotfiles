@@ -10,7 +10,6 @@ mkdir -p {{ .chezmoi.homeDir }}/Development/Personal
 {{   if .include_work }}
 DIRECTORY_SOK={{ .chezmoi.homeDir }}/Development/SOK
 mkdir -p $DIRECTORY_SOK
-git clone https://github.com/s-group-dev/ad-aws-login.git $DIRECTORY_SOK/ad-aws-login
 {{   end }}
 
 {{ end -}}
