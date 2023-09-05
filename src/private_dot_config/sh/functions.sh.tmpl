@@ -85,6 +85,7 @@ function al() {
 
   eval "$(aws configure export-credentials --profile $aws_profile --format env)"
   export AWS_DEFAULT_REGION=$aws_default_region
+  export USER_AWS_PROFILE=$aws_profile
 }
 
 ###
