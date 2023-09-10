@@ -24,7 +24,6 @@ brew 'lolcat'         # Make text inputs colorful
 
 # Apps
 cask '1password'
-cask 'apparency'      # Quicklook plugin for better app info
 cask 'avast-security'
 cask 'discord'
 cask 'dropbox'
@@ -41,9 +40,12 @@ cask 'onyx'
 cask 'slack'
 cask 'zoom'
 
-# Quicklook
-cask 'qlmarkdown'
-cask 'quicklook-json'
+# Finder Quicklook
+cask 'apparency'        # Show better app info
+cask 'qlmarkdown'       # Preview markdown files
+cask 'qlstephen'        # Preview text files without extension
+cask 'quicklook-json'   # Preview json files
+cask 'syntax-highlight', args: { no_quarantine: true }
 
 # Fonts
 cask 'font-lato'
