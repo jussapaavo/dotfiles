@@ -21,7 +21,7 @@ brew 'xz'         # Recommended for building Python
 
 # Development
 brew 'awscli      # Official AWS command-line interface
-brew 'exa'        # Better ls
+brew 'lsd'        # Better ls
 cask 'docker'     # Docker Desktop
 brew 'gh'         # GitHub CLI
 cask 'google-cloud-sdk'
