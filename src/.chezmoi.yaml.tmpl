@@ -71,6 +71,11 @@
 {{-   $email_work = promptStringOnce . "email_work" "Your work email" -}}
 {{- end -}}
 
+{{- $limit_backups := true -}}
+{{- if $interactive -}}
+{{-   $limit_backups = promptBoolOnce . "limit_backups" "Limit Mackup to essential apps only" -}}
+{{- end -}}
+
 {{- /* Already initialized previously */ -}}
 {{- if $interactive -}}
 {{-   $include_work = promptBoolOnce . "include_work" "Include work-related configs (y/n)" -}}
@@ -89,6 +94,7 @@ data:
   hostname: {{ $hostname | quote }}
   is_arm: {{ $is_arm }}
   is_desktop: {{ $is_desktop }}
+  limit_backups: {{ $limit_backups }}
   owned_by_employer: {{ $owned_by_employer }}
   include_work: {{ $include_work }}
   is_headless: {{ $is_headless }}

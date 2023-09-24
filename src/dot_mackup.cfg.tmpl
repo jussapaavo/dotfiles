@@ -2,7 +2,7 @@
 [storage]
 engine = icloud
 
-{{   if .owned_by_employer }}
+{{   if .limit_backups -}}
 [applications_to_sync]
 affinity-photo
 dash
@@ -23,8 +23,8 @@ terminal
 zzz-aws
 zzz-dbt
 zzz-keyremap
+{{-  end }}
 
-{{   end }}
 [applications_to_ignore]
 mackup
 git
