@@ -1,7 +1,3 @@
-# Place AWS configs into ~/.config/aws instead of $HOME
-export AWS_CONFIG_FILE="{{ .chezmoi.homeDir }}/.config/aws/config"
-export AWS_SHARED_CREDENTIALS_FILE="{{ .chezmoi.homeDir }}/.config/aws/credentials"
-
 # Place Vim configs into ~/.config/vim instead of $HOME
 export VIMINIT="source {{ .chezmoi.homeDir }}/.config/vim/vimrc"
 

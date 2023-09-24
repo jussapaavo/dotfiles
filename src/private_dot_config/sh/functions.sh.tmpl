@@ -52,7 +52,7 @@ function killapps() {
 ###
 
 function _get_aws_profile() {
-    local config="${AWS_CONFIG_FILE}"
+    local config=~/.aws/config
     test ! -f ${config} && echo "File ${config} does not exist" && return 1
     which fzf 2>&1 >/dev/null
     if [[ $? -ne 0 ]]; then
@@ -67,7 +67,8 @@ function _get_aws_profile() {
 
 function _get_aws_region() {
     local _aws_profile="${1:-default}"
-    readonly PROFILE_CONFIG="$(sed -n "/${_aws_profile}/,/^ *$/p" "${AWS_CONFIG_FILE}")"
+    local _config=~/.aws/config
+    readonly PROFILE_CONFIG="$(sed -n "/${_aws_profile}/,/^ *$/p" "${_config}")"
 
     local region=""
     [[ -z "${region}" ]] && region=$(echo "${PROFILE_CONFIG}" |  (grep '\<region *=.*\>' || true) | sed -E 's/^region *= *([^ ]*).*$/\1/')
