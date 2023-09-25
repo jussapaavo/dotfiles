@@ -1,3 +1,18 @@
+{{- if eq .chezmoi.os "darwin" -}}
+{{- /*
+# Speed up ZSH init with:
+# https://gist.github.com/ctechols/ca1035271ad134841284
+# https://carlosbecker.com/posts/speeding-up-zsh
+*/ -}}
+
+autoload -Uz compinit
+if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+  compinit
+else
+  compinit -C
+fi
+{{- end }}
+
 extensions=(
   paths
   envvars
