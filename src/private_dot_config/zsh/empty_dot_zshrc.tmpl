@@ -6,7 +6,7 @@
 */ -}}
 
 autoload -Uz compinit
-if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' $ZSH_COMPDUMP) ]; then
   compinit
 else
   compinit -C
@@ -15,10 +15,8 @@ fi
 
 extensions=(
   paths
-  envvars
   aliases
   functions
-  ohmyzsh
 {{- if (eq .chezmoi.os "darwin") }}
   plugins
 {{ end -}}
@@ -27,3 +25,11 @@ extensions=(
 for extension in $extensions; do
   source ~/.config/sh/$extension.sh
 done
+
+source ~/.config/zsh/ohmyzsh.sh
+
+{{ if (eq .chezmoi.os "darwin") -}}
+# Google Cloud SDK
+source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+{{ end -}}

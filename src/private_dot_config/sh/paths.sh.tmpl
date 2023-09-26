@@ -1,6 +1,4 @@
-#!/bin/sh
-
-{{ if .is_arm -}}
+{{- if .is_arm -}}
 # Add Homebrew path for Apple Silicon.
 export PATH=/opt/homebrew/bin:$PATH
 {{- end }}
@@ -12,14 +10,3 @@ export PATH={{ .chezmoi.homeDir }}/.local/bin:$PATH
 # pyenv
 export PATH={{ .chezmoi.homeDir }}/.pyenv/shims:$PATH
 {{- end }}
-
-{{ if (eq .chezmoi.os "darwin") -}}
-# Google Cloud SDK
-local brew_prefix="$(brew --prefix)"
-if [ -n "$ZSH_VERSION" ]; then
-    source "${brew_prefix}/share/google-cloud-sdk/path.zsh.inc"
-    source "${brew_prefix}/share/google-cloud-sdk/completion.zsh.inc"
-elif [ -n "$BASH_VERSION" ]; then
-    source "${brew_prefix}/share/google-cloud-sdk/path.bash.inc"
-fi
-{{- end -}}

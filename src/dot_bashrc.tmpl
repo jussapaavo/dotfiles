@@ -1,6 +1,7 @@
+source ~/.config/sh/environ
+
 extensions=(
   paths
-  envvars
   aliases
   functions
 )
@@ -8,3 +9,8 @@ extensions=(
 for extension in $extensions; do
   source ~/.config/sh/$extension.sh
 done
+
+{{ if (eq .chezmoi.os "darwin") -}}
+# Init Google Cloud SDK completions
+source "$(brew --prefix)/share/google-cloud-sdk/path.bash.inc"
+{{- end }}

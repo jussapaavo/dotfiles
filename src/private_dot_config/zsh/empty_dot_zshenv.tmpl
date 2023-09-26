@@ -1,0 +1,19 @@
+source ~/.config/sh/environ
+
+# Cache
+export ZSH_COMPDUMP="${XDG_CACHE_HOME}/zsh/zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
+export HISTFILE="${XDG_CACHE_HOME}/zsh/zsh_history"
+
+# Utilities
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+# Ensure path arrays do not contain duplicates.
+typeset -gU fpath path cdpath
+
+# Misc
+{{- /* Reduces delay when entering vi-mode */}}
+export KEYTIMEOUT=1
+{{- if (eq .chezmoi.os "darwin") -}}
+{{- /* Make Apple Terminal behave */}}
+export SHELL_SESSIONS_DISABLE=1
+{{- end }}
