@@ -1,56 +1,38 @@
 <p align="center"><img src="art/banner-2x.png"></p>
 
-## Introduction
+# dotfiles
 
-This repository serves as my way to help me setup and maintain my Mac. It takes the effort out of installing everything manually. Everything needed to install my preferred setup of macOS is detailed in this readme. Feel free to explore, learn and copy parts for your own dotfiles. Enjoy!
+These are my [dotfiles](https://dotfiles.github.io/), managed with [chezmoi](https://www.chezmoi.io/).
 
-📖 - [Read the blog post](https://driesvints.com/blog/getting-started-with-dotfiles)  
-📺 - [Watch the screencast on Laracasts](https://laracasts.com/series/guest-spotlight/episodes/1)  
-💡 - [Learn how to build your own dotfiles](https://github.com/driesvints/dotfiles#your-own-dotfiles)
+This repository contains the configurations for making my development environment feel like $HOME. It takes the effort out of setting up everything manually, especially when starting with a fresh new machine.
 
-## A Fresh macOS Setup
+I'm using:
+- [Kitty](https://sw.kovidgoyal.net/kitty/) as terminal emulator
+- [chezmoi](https://www.chezmoi.io/) to manage my configuration files
+- [Zim](https://github.com/zimfw/zimfw) as a configuration framework
+- [mackup](https://github.com/lra/mackup) to sync my private config files
+- ZDOTDIR and XDG specs to keep my $HOME dir clean
 
-These instructions are for when you've already set up your dotfiles. If you want to get started with your own dotfiles you can [find instructions below](#your-own-dotfiles).
+## Installation
 
-### Before you re-install
+These installation instructions are primarily a reminder for myself, incase I need to setup a new machine.
+The following instructions will install chezmoi, clone this repo and apply the changes to the $HOME root of the user:
 
-First, go through the checklist below to make sure you didn't forget anything before you wipe your hard drive.
-
-- Did you commit and push any changes/branches to your git repositories?
-- Did you remember to save all important documents from non-iCloud directories?
-- Did you save all of your work from apps which aren't synced through iCloud?
-- Did you remember to export important data from your local database?
-- Did you update [mackup](https://github.com/lra/mackup) to the latest version and ran `mackup backup`?
-
-### Installing macOS cleanly
-
-After going to our checklist above and making sure you backed everything up, we're going to cleanly install macOS with the latest release. Follow [this article](https://www.imore.com/how-do-clean-install-macos) to cleanly install the latest macOS version.
-
-### Setting up your Mac
-
-If you did all of the above you may now follow these install instructions to setup a new Mac.
-
-1. Update macOS to the latest version with the App Store
-2. [Generate a new public and private SSH key](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) by running:
-
-   ```zsh
-   curl https://raw.githubusercontent.com/driesvints/dotfiles/HEAD/ssh.sh | sh -s "<your-email-address>"
+1. [Generate a new public and private SSH key](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).  
+2. Install chezmoi and clone this repository with:
+   ```sh
+   sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply -n $GITHUB_USERNAME
    ```
-
-3. Install chezmoi and clone this repo with:
-
-   ```zsh
-   sh -c "$(curl -fsLS git.io/chezmoi)" -- init --apply -n <github-username>
-   ```
-
-4. After mackup is synced with your cloud storage, restore preferences by running `mackup restore`
+4. Once your cloud storage has finished with syncing the initial downloads, you can run `mackup restore` to restore preferences
 5. Restart your computer to finalize the process
-6. A couple of things to do after the reinstall:
-   - Change kitty terminal icon to a custom one
-   - Update `/etc/hosts` with file list from StevenBlack's [hosts](https://github.com/StevenBlack/hosts/).
-
-Your Mac is now ready to use!
 
 ## Thanks To...
 
 This repository is based on [Dries Vints' dotfiles](https://github.com/driesvints/dotfiles) and [Tom Payne's chezmoi](https://github.com/twpayne/chezmoi). Thank you for all the inspiration, guides and excellent code you've provided.
+
+## Other references
+- [Awesome ZSH plugins & other resources](https://github.com/unixorn/awesome-zsh-plugins)
+- [Zim configuration framework](https://github.com/zimfw/zimfw)
+- [mattmc3's guide on minimal ZSH configs](https://github.com/mattmc3/zsh_unplugged)
+- [mattmc3's ZDOTDIR configs](https://github.com/mattmc3/zdotdir)
+- [Very in-depth guide on ZSH speed](https://github.com/romkatv/zsh-bench)
