@@ -20,7 +20,6 @@ unset __conda_setup
 
 {{-   else -}}
 
-# Conda load is made faster with a hack from here: https://github.com/conda/conda/issues/7855
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('{{ .chezmoi.homeDir }}/opt/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"

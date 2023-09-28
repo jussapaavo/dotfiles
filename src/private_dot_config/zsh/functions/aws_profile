@@ -1,0 +1,71 @@
+#!/bin/zsh
+
+###
+# AWS SSO helper functions
+###
+
+function _get_aws_profile() {
+  local config=~/.aws/config
+  test ! -f ${config} && echo "File ${config} does not exist" && return 1
+
+  local profile_regex='s/\[profile \(.*\)]/\1/'
+
+  if which fzf 2>&1 >/dev/null; then
+    echo $(cat "${config}" | grep '\[profile' | sed ${profile_regex} | fzf)
+  else
+    select _aws_profile in $(cat "${config}" | grep '\[profile' | sed ${profile_regex}); do
+      echo $_aws_profile;
+      break;
+    done
+  fi
+}
+
+function _get_aws_region() {
+  local _aws_profile="${1:-default}"
+  local _config=~/.aws/config
+  readonly PROFILE_CONFIG="$(sed -n "/${_aws_profile}/,/^ *$/p" "${_config}")"
+
+  local region=""
+  [[ -z "${region}" ]] && region=$(echo "${PROFILE_CONFIG}" |  (grep '\<region *=.*\>' || true) | sed -E 's/^region *= *([^ ]*).*$/\1/')
+  echo $region
+}
+
+function _set_aws_environ() {
+  export AWS_DEFAULT_REGION=$(_get_aws_region "default")
+  export AWS_DEFAULT_PROFILE=$1
+  export AWS_PROFILE=$1
+  export AWS_EB_PROFILE=$1
+}
+
+function _aws_sso_login() {
+  aws sso login --profile "$1"
+  eval "$(aws configure export-credentials --profile "$1" --format env)"
+  export AWS_PROFILE_REGION=$(aws configure get region)
+}
+
+###
+# Set awscli environ and login into SSO
+###
+
+local aws_profile
+
+# Iterate through command-line arguments
+for arg in "$@"; do
+  if [[ "$arg" == "--profile="* ]]; then
+    aws_profile="${arg#*=}"
+    shift
+  fi
+done
+
+# If no '--profile' then select profile from list
+if [[ -z "$aws_profile" ]]; then
+  aws_profile="$(_get_aws_profile)"
+fi
+
+# Set environment variables
+_set_aws_environ $aws_profile
+
+# Check for 'login' argument
+if [[ "$1" == "login" ]]; then
+  _aws_sso_login $aws_profile
+fi
