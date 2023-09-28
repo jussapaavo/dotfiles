@@ -1,8 +1,17 @@
+{{- /*
+###
+# .zshenv - Zsh environment file, loaded always.
+###
+*/ -}}
+
 source ~/.config/sh/environ
+source ~/.config/sh/paths
 
 # Cache
+export ZSH_CACHE_DIR="${XDG_CACHE_HOME}"
 export ZSH_COMPDUMP="${XDG_CACHE_HOME}/zsh/zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 export HISTFILE="${XDG_CACHE_HOME}/zsh/zsh_history"
+export ZIM_HOME="${XDG_CACHE_HOME}/zim/"
 
 # Utilities
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)

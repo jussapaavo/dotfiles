@@ -1,14 +1,5 @@
 source ~/.config/sh/environ
-
-extensions=(
-  paths
-  aliases
-  functions
-)
-
-for extension in $extensions; do
-  source ~/.config/sh/$extension.sh
-done
+source ~/.config/sh/aliases
 
 {{ if (eq .chezmoi.os "darwin") -}}
 # Init Google Cloud SDK completions

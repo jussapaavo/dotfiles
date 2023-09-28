@@ -1,0 +1,26 @@
+{{- /*
+###
+# .zimrc - Zim plugins file
+# Not sourced in any other file, run `zimfw install` to install it.
+###
+*/ -}}
+
+# Behaviour
+zmodule input
+zmodule zsh-users/zsh-completions --fpath src
+zmodule completion # Does `compinit` for your
+
+# Prompt
+zmodule romkatv/powerlevel10k --use degit
+
+# Productivity
+zmodule utility
+zmodule git
+zmodule paulirish/git-open
+zmodule mattmc3/zfunctions
+zmodule ohmyzsh/ohmyzsh --root plugins/aliases
+zmodule ohmyzsh/ohmyzsh --root plugins/thefuck
+
+# Modules that must be initialized last
+zmodule zdharma-continuum/fast-syntax-highlighting
+zmodule zsh-users/zsh-autosuggestions

@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+# Time p10k loadup, read more here: https://github.com/romkatv/powerlevel10k/blob/master/README.md#is-powerlevel10k-fast-to-load
+
+time (repeat 10 zsh -dfis <<< 'source ~/.p10k.zsh; source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme')
