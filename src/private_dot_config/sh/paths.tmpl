@@ -1,12 +1,22 @@
-{{- if .is_arm -}}
-# Add Homebrew path for Apple Silicon.
-export PATH=/opt/homebrew/bin:$PATH
-{{- end }}
+{{- /* Set the list of directories that Zsh searches for programs. */ -}}
+path=(
+  {{- /* ### Core paths #### */}}
+  /{,s}bin(N)
+  /usr/{,s}bin(N)
+  /usr/local/{,s}bin(N)
+  {{ .chezmoi.homeDir }}/{,s}bin(N)
 
-{{ if (eq .chezmoi.os "darwin") -}}
-# pipenv
-export PATH={{ .chezmoi.homeDir }}/.local/bin:$PATH
+  {{- /* ### Homebrew paths ### */}}
+  {{- if and .is_arm (eq .chezmoi.os "darwin") }}
+  /opt/homebrew/bin(N)
+  {{- end }}
 
-# pyenv
-export PATH={{ .chezmoi.homeDir }}/.pyenv/shims:$PATH
-{{- end }}
+  {{- /* ### App paths ### */}}
+  {{- if (eq .chezmoi.os "darwin") }}
+  {{ .chezmoi.homeDir }}/.local/bin(N) {{- /* Used by pipenv */}}
+  ${PYENV_ROOT:-$HOME/.pyenv}/shims(N) {{- /* Used by pyenv */}}
+  {{- end }}
+
+  {{- /* ### Other ### */}}
+  $path
+)
