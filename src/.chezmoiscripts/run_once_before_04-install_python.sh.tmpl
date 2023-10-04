@@ -11,8 +11,8 @@ if ! command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 # Link Homebrew's Python versions
-mkdir -p {{ .chezmoi.homeDir }}/.pyenv/versions/
-ln -s $(brew --cellar python)/* {{ .chezmoi.homeDir }}/.pyenv/versions/
+mkdir -p $(pyenv root)/versions/
+ln -s $(brew --cellar python)/* $(pyenv root)/versions/
 
 # Install Python versions
 python_versions=(
@@ -24,10 +24,10 @@ python_versions=(
 )
 
 for version in $python_versions; do
-    if pyenv versions | grep -q "$version"; then
-        echo "Python $version already installed."
+    if pyenv versions | grep -q "${version}"; then
+        echo "Python ${version} already installed."
     else
-        pyenv install $version:latest
+        pyenv install ${version}:latest
     fi
 done
 
