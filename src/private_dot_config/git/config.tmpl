@@ -31,7 +31,9 @@
 [user]
 	name = {{ .name }}
 	email = {{ .email_main }}
+  {{- if .is_desktop }}
   signingkey = {{ .public_key_main }}
+  {{- end }}
 
 [gpg]
   format = ssh
@@ -42,9 +44,9 @@
 {{ if .include_work -}}
 [includeIf "gitdir/i:**/SOK/"]
 	path = {{ .chezmoi.homeDir }}/.config/git/config-work
-{{ end -}}
+{{- end }}
 
 {{ if (eq .chezmoi.os "darwin") -}}
 [credential]
   helper = osxkeychain
-{{ end -}}
+{{- end }}

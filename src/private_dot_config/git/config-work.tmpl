@@ -1,9 +1,14 @@
 {{ if .include_work -}}
+
 [user]
   name = {{ .name }}
   email = {{ .email_work }}
+
+  {{- if .is_desktop }}
   signingkey = {{ .public_key_work }}
+  {{- end }}
 
 [open "https://gitlab.sok.fi"]
 	domain = gitlab.sok.fi
-{{ end -}}
+
+{{- end }}

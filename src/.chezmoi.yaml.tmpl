@@ -2,16 +2,16 @@
 {{- $interactive := stdinIsATTY -}}
 
 {{- /* boolean feature tags */ -}}
-{{- $is_arm := false -}}             {{/* true if this machine has ARM chip (Apple Silicon, M1, etc) */}}
-{{- $is_desktop := false -}}         {{/* true if this machine is a desktop or laptop compoture with full functionality */}}
-{{- $is_headless := false -}}        {{/* true if this machine does not have a screen and keyboard */}}
-{{- $is_ephemeral := false -}}       {{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
-{{- $is_codespace := false -}}       {{/* true if this machine is run as a GitHub Codespace, VSCode Remote Container, etc */}}
-{{- $owned_by_employer := false -}}  {{/* true if this machine is owned by employer */}}
-{{- $include_work := false -}}       {{/* true if this machine is owned by SOK */}}
+{{- $is_arm := false -}}               {{/* true if this machine has ARM chip (Apple Silicon, M1, etc) */}}
+{{- $is_desktop := false -}}           {{/* true if this machine is a desktop or laptop computer with full functionality */}}
+{{- $is_headless := false -}}          {{/* true if this machine does not have a screen and keyboard */}}
+{{- $is_ephemeral := false -}}         {{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
+{{- $is_codespace := false -}}         {{/* true if this machine is run as a GitHub Codespace, VSCode Remote Container, etc */}}
+{{- $is_owned_by_employer := false -}} {{/* true if this machine is owned by employer */}}
+{{- $include_work := false -}}         {{/* true if this machine is owned by SOK */}}
 
 {{- /* detect GitHub codespaces, VSCode remote containers, Docker containers, and Vagrant boxes */ -}}
-{{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "vagrant" "vscode") -}}
+{{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "ubuntu" "vagrant" "vscode") -}}
 {{-   $is_codespace = true -}}
 {{-   $is_ephemeral = true -}}
 {{- end -}}
@@ -28,7 +28,7 @@
 {{-     $hostname = "10000853il004" -}}
 {{-     $is_desktop = true -}}
 {{-     $include_work = true -}}
-{{-     $owned_by_employer = true -}}
+{{-     $is_owned_by_employer = true -}}
 {{-   end -}}
 {{- end -}}
 
@@ -66,19 +66,18 @@
 {{-   $email_main = promptStringOnce . "email_main" "Your personal email" -}}
 {{- end -}}
 
+{{- /* $include_work already initialized previously */ -}}
 {{- $email_work := "4950494+jussapaavo@users.noreply.github.com" -}}
 {{- if $interactive -}}
-{{-   $email_work = promptStringOnce . "email_work" "Your work email" -}}
+{{-   $include_work = promptBoolOnce . "include_work" "Include work-related configs" -}}
+{{-   if $include_work -}}
+{{-     $email_work = promptStringOnce . "email_work" "Your work email" -}}
+{{-   end -}}
 {{- end -}}
 
 {{- $limit_backups := true -}}
-{{- if $interactive -}}
+{{- if and $interactive $is_desktop -}}
 {{-   $limit_backups = promptBoolOnce . "limit_backups" "Limit Mackup to essential apps only" -}}
-{{- end -}}
-
-{{- /* Already initialized previously */ -}}
-{{- if $interactive -}}
-{{-   $include_work = promptBoolOnce . "include_work" "Include work-related configs (y/n)" -}}
 {{- end -}}
 
 {{- if $interactive -}}
@@ -101,11 +100,13 @@ data:
   is_arm: {{ $is_arm }}
   is_desktop: {{ $is_desktop }}
   limit_backups: {{ $limit_backups }}
-  owned_by_employer: {{ $owned_by_employer }}
+  is_owned_by_employer: {{ $is_owned_by_employer }}
   include_work: {{ $include_work }}
   is_headless: {{ $is_headless }}
   is_ephemeral: {{ $is_ephemeral }}
   is_codespace: {{ $is_codespace }}
 
+{{- if $is_desktop }}
   public_key_main: {{ onepasswordRead "op://personal/dsef3t2ki64l3dvdeidjmilgi4/public key" }}
   public_key_work: {{ onepasswordRead "op://personal/bhv4b63xmqg5j7yczdpf3gldvq/public key" }}
+{{- end }}
