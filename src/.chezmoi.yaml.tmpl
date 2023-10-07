@@ -87,6 +87,12 @@
 
 sourceDir: {{ $.chezmoi.sourceDir | quote }}
 
+{{- if eq .chezmoi.os "darwin" }}
+color: true
+update:
+  args: --no-pager
+{{- end }}
+
 data:
   name: {{ $name | quote }}
   email_main: {{ $email_main | quote }}
