@@ -1,0 +1,20 @@
+{{- if eq .chezmoi.os "darwin" "linux" -}}
+#!/bin/zsh
+
+source ~/.zshenv
+
+echo "Creating XDG directories..."
+
+dir_paths=(
+    ${XDG_CONFIG_HOME:-$HOME/.config}
+    ${XDG_CACHE_HOME:-$HOME/.cache}
+    ${XDG_DATA_HOME:-$HOME/.local/share}
+    ${XDG_STATE_HOME:-$HOME/.local/state}
+)
+
+# Make sure dirs exist
+for dir_path in $dir_paths; do
+    [[ -e ${dir_path} ]] || mkdir -p ${dir_path}
+done
+
+{{- end }}
