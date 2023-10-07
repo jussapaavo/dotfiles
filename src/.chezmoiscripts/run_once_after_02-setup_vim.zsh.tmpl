@@ -1,0 +1,18 @@
+{{- if eq .chezmoi.os "darwin" "linux" -}}
+#!/bin/zsh
+
+source ~/.zshenv
+
+echo "Setting up VIM..."
+
+# Create config dirs
+mkdir -p $XDG_CACHE_HOME/vim/{undo,swap,backup} $XDG_CONFIG_HOME/vim
+
+# Install plugins
+if test $(which vim); then
+  vim -c PlugUpdate -c qa
+else
+  echo "Vim command is not initialized, skipping installing plugins."
+fi
+
+{{- end -}}

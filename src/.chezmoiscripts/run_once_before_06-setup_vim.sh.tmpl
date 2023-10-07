@@ -1,8 +1,0 @@
-{{- if eq .chezmoi.os "darwin" "linux" -}}
-#!/bin/bash
-
-set -eufo pipefail
-
-vim -c PlugUpdate -c qa
-
-{{- end -}}

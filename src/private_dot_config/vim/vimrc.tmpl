@@ -1,7 +1,22 @@
 " Use ~/.config/vim instead of $HOME
-set runtimepath+=~/.config/vim,~/.config/vim/after
-set viminfo+=n~/.config/vim/viminfo
-set undodir=~/.config/vim/undo//,.
+if empty("$XDG_CACHE_HOME")
+    let $XDG_CACHE_HOME="$HOME/.cache"
+endif
+
+if empty("$XDG_CONFIG_HOME")
+    let $XDG_CONFIG_HOME="$HOME/.config"
+endif
+
+if empty("$XDG_DATA_HOME")
+    let $XDG_DATA_HOME="$HOME/.local/share"
+endif
+
+set directory=$XDG_CACHE_HOME/vim/swap,~/,/tmp
+set backupdir=$XDG_CACHE_HOME/vim/backup,~/,/tmp
+set undodir=$XDG_CACHE_HOME/vim/undo,~/,/tmp
+set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
+set runtimepath+=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
+let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 
 " Install plugin manager and set plugins directory to .config
 if empty(glob('~/.config/vim/autoload/plug.vim'))
