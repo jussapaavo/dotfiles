@@ -1,5 +1,7 @@
 {{- if (eq .chezmoi.os "darwin") -}}
-#!/bin/sh
+#!/bin/zsh
+
+source ~/.zshenv
 
 ###
 # Install Python
@@ -63,4 +65,4 @@ pipx inject sqlfluff sqlfluff-templater-dbt
 
 # No pipenv installations currently.
 
-{{ end -}}
+{{- end }}

@@ -1,0 +1,12 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+#!/bin/zsh
+
+source ~/.zshenv
+
+if test ! $(which mackup); then
+  brew install mackup
+fi
+
+mackup restore
+
+{{- end }}

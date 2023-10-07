@@ -1,8 +1,10 @@
 {{- if eq .chezmoi.os "darwin" -}}
-#!/bin/bash
+#!/bin/zsh
 
-if test ! $(which npm); then
+source ~/.zshenv
+
+if test $(which npm); then
   npm i -g prettier prettier-plugin-sh prettier-plugin-toml
 fi
 
-{{- end -}}
+{{- end }}
