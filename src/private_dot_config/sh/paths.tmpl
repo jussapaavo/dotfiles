@@ -5,6 +5,7 @@ path=(
   /usr/{,s}bin(N)
   /usr/local/{,s}bin(N)
   {{ .chezmoi.homeDir }}/{,s}bin(N)
+  {{ .chezmoi.homeDir }}/.local/bin(N)
 
   {{- /* ### Homebrew paths ### */}}
   {{- if and .is_arm (eq .chezmoi.os "darwin") }}
@@ -13,7 +14,6 @@ path=(
 
   {{- /* ### App paths ### */}}
   {{- if (eq .chezmoi.os "darwin") }}
-  {{ .chezmoi.homeDir }}/.local/bin(N) {{- /* Used by pipenv */}}
   ${PYENV_ROOT:-$HOME/.pyenv}/shims(N) {{- /* Used by pyenv */}}
   {{- end }}
 

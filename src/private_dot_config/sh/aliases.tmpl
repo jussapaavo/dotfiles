@@ -1,24 +1,32 @@
 # Shortcuts
 alias c='clear'
 alias e='exit'
-alias o='git-open'
 alias g='git'
 alias aliases='als'
+{{ if eq .chezmoi.os "darwin" -}}
+alias o='git-open'
+{{- end }}
 
 # Mask built-ins with better defaults
 alias grep='command grep --exclude-dir={.git,.vscode}'
+{{ if eq .chezmoi.os "darwin" -}}
 alias ls='lsd'
+{{- end }}
 
+{{ if eq .chezmoi.os "darwin" -}}
 # Directories
 alias dev='cd $HOME/Development'
 alias devs='cd $HOME/Development/SOK'
 alias devp='cd $HOME/Development/Personal'
+{{- end }}
 
 # Tools
 alias cm='chezmoi'
+{{ if eq .chezmoi.os "darwin" -}}
 alias tg='terragrunt'
 alias tf='terraform'
 alias jn='jupyter notebook'
+{{- end }}
 
 # Git
 alias amend='git add . && git commit -a --amend --no-edit'
@@ -27,9 +35,10 @@ alias nuke='git clean -df && git reset --hard origin/main'
 alias prune='git branch --merged | egrep -v "(^\*|main|master|dev)" | xargs git branch -d'
 alias yolo='git commit -m "$(curl -s https://whatthecommit.com/index.txt)"'
 
+{{ if eq .chezmoi.os "darwin" -}}
 # Development workflow
 alias cab='source $ZDOTDIR/misc/conda.sh && conda activate base'
 alias ca='source $ZDOTDIR/misc/conda.sh && conda activate'
-
 alias ap='aws_profile'
 alias al='aws_profile login'
+{{- end }}
