@@ -19,6 +19,15 @@ export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 # Ensure path arrays do not contain duplicates.
 typeset -gU fpath path
 
+# Regional settings
+LANG="en_US.UTF-8"
+LC_COLLATE="en_US.UTF-8"
+LC_CTYPE="en_US.UTF-8"
+LC_MESSAGES="en_US.UTF-8"
+LC_MONETARY="fi_FI.UTF-8"
+LC_NUMERIC="en_US.UTF-8"
+LC_TIME="fi_FI.UTF-8"
+
 {{ if (eq .chezmoi.os "darwin") -}}
 # Misc
 export KEYTIMEOUT=1 {{- /* Reduces delay when entering vi-mode */}}
