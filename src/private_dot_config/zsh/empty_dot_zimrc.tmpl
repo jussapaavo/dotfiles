@@ -27,6 +27,7 @@ zmodule ohmyzsh/ohmyzsh --root plugins/thefuck
 # Local plugins
 zmodule {{ .chezmoi.homeDir }}/.config/zsh/plugins/gcloud
 zmodule {{ .chezmoi.homeDir }}/.config/zsh/plugins/python
+#zmodule {{ .chezmoi.homeDir }}/.config/zsh/plugins/conda
 {{- end }}
 
 # Modules that must be initialized last

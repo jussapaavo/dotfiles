@@ -40,8 +40,6 @@ alias yolo='git commit -m "$(curl -s https://whatthecommit.com/index.txt)"'
 
 {{ if eq .chezmoi.os "darwin" -}}
 # Development workflow
-alias cab='source $ZDOTDIR/misc/conda.sh && conda activate base'
-alias ca='source $ZDOTDIR/misc/conda.sh && conda activate'
 alias ap='aws_profile'
 alias al='aws_profile login'
 {{- end }}
