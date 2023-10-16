@@ -7,6 +7,8 @@ alias ll='ls -lhA'
 alias la='ls -al'
 {{ if eq .chezmoi.os "darwin" -}}
 alias o='git-open'
+alias j='just'
+alias justfile='code ~/.justfile'
 {{- end }}
 
 # Mask built-ins with better defaults
