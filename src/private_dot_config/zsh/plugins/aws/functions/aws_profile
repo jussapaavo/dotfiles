@@ -62,10 +62,10 @@ if [[ -z "$aws_profile" ]]; then
   aws_profile="$(_get_aws_profile)"
 fi
 
-# Set environment variables
+# Set AWS profile & other environment variables, works offline
 _set_aws_environ $aws_profile
 
-# Check for 'login' argument
+# Check for 'login' argument and update credentials if present
 if [[ "$1" == "login" ]]; then
   _aws_sso_login $aws_profile
 fi
