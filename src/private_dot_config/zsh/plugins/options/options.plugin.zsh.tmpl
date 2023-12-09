@@ -17,11 +17,17 @@ setopt inc_append_history      {{- /* Write to the history file immediately, not
 setopt NO_hist_beep            {{- /* Don't beep when accessing non-existent history. */}}
 setopt NO_share_history        {{- /* Don't share history between all sessions. */}}
 
+# History substring search, read more: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/history-substring-search
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
 {{ if (eq .chezmoi.os "darwin") -}}
 export HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zsh_history"
 export SAVEHIST=10000          {{- /* Save more history items into the file (default 2000) */}}
 export HISTSIZE=10000          {{- /* Show more history items when read from the file (default 2000) */}}
-{{ end -}}
+{{- end }}
 
 # Completion, extends: https://github.com/zimfw/completion/blob/master/init.zsh
 setopt complete_in_word        {{- /* Complete from both ends of a word. */}}
