@@ -26,6 +26,7 @@ brew 'direnv'     # Envvar management
 cask 'docker'     # Docker Desktop
 brew 'gh'         # GitHub CLI
 cask 'google-cloud-sdk'
+brew 'helix'      # Modern text editor
 brew 'hub'        # GitHub CLI extensions
 brew 'just'       # Code-snippet runner
 brew 'node'       # Node.js and npm
