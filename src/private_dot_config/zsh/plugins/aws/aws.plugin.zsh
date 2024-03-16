@@ -1,10 +1,8 @@
-# Load plugin functions.
-fpath=(${0:A:h}/functions $fpath)
-autoload -U $fpath[1]/*(.:t)
+source "$(dirname "$0")/functions/aws_set_profile"
 
-# Add aliases for ease-of-use
-alias ap='aws_profile'
-alias al='aws_profile login'
+## Add aliases for ease-of-use
+alias asp='aws_set_profile'
+alias al='asp'
 
 ###
 # Load awscli completions

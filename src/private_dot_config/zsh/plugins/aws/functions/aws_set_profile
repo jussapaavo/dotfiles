@@ -1,0 +1,52 @@
+function aws_profiles() {
+  [[ -r "${AWS_CONFIG_FILE:-$HOME/.aws/config}" ]] || return 1
+  grep --color=never -Eo '\[profile.*\]' "${AWS_CONFIG_FILE:-$HOME/.aws/config}" | sed -E 's/^[[:space:]]*\[(profile)?[[:space:]]*([^[:space:]]+)\][[:space:]]*$/\2/g'
+}
+
+function _aws_profiles() {
+  reply=($(aws_profiles))
+}
+
+# AWS profile selection
+function aws_set_profile() {
+  if [[ -z "$1" ]]; then
+    if which fzf 2>&1 >/dev/null; then
+      1=$(aws_profiles | fzf)
+    else
+      echo fzf not found
+    fi
+  fi
+
+  if [[ "$1"  == "clear" ]]; then
+    unset AWS_DEFAULT_PROFILE AWS_PROFILE AWS_EB_PROFILE AWS_PROFILE_REGION
+    unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_CREDENTIAL_EXPIRATION
+    echo AWS profile cleared.
+    return
+  fi
+
+  local -a available_profiles
+  available_profiles=($(aws_profiles))
+  if [[ -z "${available_profiles[(r)$1]}" ]]; then
+    echo "${fg[red]}Profile '$1' not found in '${AWS_CONFIG_FILE:-$HOME/.aws/config}'" >&2
+    echo "Available profiles:\n  ${(j:\n  :)available_profiles:-no profiles found}${reset_color}" >&2
+    return 1
+  fi
+
+  export AWS_DEFAULT_PROFILE=$1
+  export AWS_PROFILE=$1
+  export AWS_EB_PROFILE=$1
+
+  export AWS_PROFILE_REGION=$(aws configure get region)
+
+  # Export credentials to env vars
+  aws_env_vars=$(aws configure export-credentials --profile "$1" --format env)
+  if [[ -z $aws_env_vars ]]; then
+    aws sso login
+    eval "$(aws configure export-credentials --profile "$1" --format env)"
+  else
+    eval "${aws_env_vars}"
+  fi
+
+  echo AWS profile set: $1
+}
+compctl -K _aws_profiles aws_set_profile
