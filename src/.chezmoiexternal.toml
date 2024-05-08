@@ -18,13 +18,6 @@
   stripComponents = 1
   refreshPeriod = "168h"
 
-[".hammerspoon/Spoons/MicMute.spoon"]
-  type = "archive"
-  url = "https://github.com/Hammerspoon/Spoons/blob/master/Spoons/MicMute.spoon.zip?raw=true"
-  exact = true
-  stripComponents = 1
-  refreshPeriod = "168h"
-
 [".hammerspoon/Spoons/ReloadConfiguration.spoon"]
   type = "archive"
   url = "https://github.com/Hammerspoon/Spoons/blob/master/Spoons/ReloadConfiguration.spoon.zip?raw=true"
