@@ -1,0 +1,43 @@
+(defcfg
+  process-unmapped-keys yes
+  macos-dev-names-include (
+    "Apple Internal Keyboard / Trackpad"
+    "Magic Keyboard with Touch ID"
+  )
+)
+(deflocalkeys-macos
+  §    86
+  ´    13
+  ¨    27
+  '    43
+  å    26
+  ä    40
+  ö    39
+  <    41
+  -    53
+)
+(defsrc
+  esc       f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  §         1    2    3    4    5    6    7    8    9    0    +    ´    bspc
+  tab       q    w    e    r    t    y    u    i    o    p    å    ¨    ret
+  caps      a    s    d    f    g    h    j    k    l    ö    ä    '
+  lsft <    z    x    c    v    b    n    m    ,    .    -              rsft
+  rctl lctl lalt lmet           spc            rmet ralt
+)
+(defvar
+  tap-time 500
+  hold-time 150
+)
+(defalias
+  cap (tap-hold $tap-time $hold-time bspc f19)
+  exp (multi lctl up)                           ;; Trigger App Expose
+  rld (tap-hold $tap-time $hold-time § lrld)    ;; Live reload config after hold
+)
+(deflayer base
+  esc       brdn brup @exp _    _    _    ◀◀   ▶⏸   ▶▶   mute vold volu
+  @rld      1    2    3    4    5    6    7    8    9    0    +    ´    bspc
+  tab       q    w    e    r    t    y    u    i    o    p    å    ¨    ret
+  @cap      a    s    d    f    g    h    j    k    l    ö    ä    '
+  lsft <    z    x    c    v    b    n    m    ,    .    -              rsft
+  rctl lctl lalt lmet           spc            rmet ralt
+)
