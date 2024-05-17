@@ -21,6 +21,25 @@ zstyle ':zim:zmodule' use 'degit'
 zstyle ':zim:input' double-dot-expand yes
 zstyle ':zim:git' aliases-prefix 'g'
 
+# Completion styling
+zstyle ':completion:*:descriptions' format '[%d]'
+# Enable case-insensitive match
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+
+# fzf-tab configs
+# use lsd instead of ls when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'lsd $realpath'
+# set descriptions format to enable group support
+# NOTE: don't use escape sequences here, fzf-tab will ignore them
+zstyle ':fzf-tab:*' switch-group '<' '>'
+
 # Initialize modules.
 source ${ZIM_HOME}/init.zsh
 
