@@ -13,6 +13,7 @@ brew 'grep'       # Global Regural Expression Print
 brew 'openssl'    # Recommended for building Python
 brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
 brew 'readline'   # Recommended for building Python
+brew 'ripgrep'    # Faster alternative to grep
 brew 'svn'        # Needed for font installs
 brew 'sqlite3'    # Recommended for building Python
 brew 'zoxide'     # Better cd in Terminal
