@@ -35,6 +35,7 @@ done
 
 # Set global Python version
 pyenv global $python_versions[1]
+python_version=$(which python3)
 
 ###
 # Install packages with pipx
@@ -51,12 +52,12 @@ pipx install pipenv
 pipx install gitlint --include-deps
 
 # Install dbt
-pipx install dbt-core
+pipx install --python $python_version dbt-core
 pipx inject dbt-core dbt-bigquery
 pipx inject dbt-core dbt-athena-community
 
 # Install sql linter
-pipx install sqlfluff
+pipx install --python $python_version sqlfluff
 pipx inject sqlfluff sqlfluff-templater-dbt
 pipx inject sqlfluff dbt-bigquery
 pipx inject sqlfluff dbt-athena-community
