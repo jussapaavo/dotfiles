@@ -32,12 +32,14 @@
   cap (tap-hold-press $tap-time $hold-time bspc f19)
   exp (multi lctl up)                           ;; Trigger App Expose
   rld (tap-hold $tap-time $hold-time § lrld)    ;; Live reload config after hold
+  rsf (fork rsft caps (lsft))                   ;; Alternative caps-lock
+  lsf (fork lsft caps (rsft))                   ;; Alternative caps-lock
 )
 (deflayer base
   esc       brdn brup @exp _    _    _    ◀◀   ▶⏸   ▶▶   mute vold volu
   @rld      1    2    3    4    5    6    7    8    9    0    +    ´    bspc
   tab       q    w    e    r    t    y    u    i    o    p    å    ¨    ret
   @cap      a    s    d    f    g    h    j    k    l    ö    ä    '
-  lsft <    z    x    c    v    b    n    m    ,    .    -              rsft
-  rctl lctl lalt lmet           spc            rmet ralt
+  @lsf <    z    x    c    v    b    n    m    ,    .    -              @rsf
+  rctl lctl lalt lmet           spc           rmet ralt
 )
