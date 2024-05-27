@@ -16,6 +16,23 @@
   <    41
   -    53
 )
+;; (deflayer empty-template
+;;   _         _    _    _    _    _    _    _    _    _    _    _    _
+;;   _         _    _    _    _    _    _    _    _    _    _    _    _    _
+;;   _         _    _    _    _    _    _    _    _    _    _    _    _    _
+;;   _         _    _    _    _    _    _    _    _    _    _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _              _
+;;   _    _    _    _              _              _    _
+;; )
+;; (deflayer no-op-template
+;;   •         •    •    •    •    •    •    •    •    •    •    •    •
+;;   •         •    •    •    •    •    •    •    •    •    •    •    •    •
+;;   •         •    •    •    •    •    •    •    •    •    •    •    •    •
+;;   •         •    •    •    •    •    •    •    •    •    •    •    •
+;;   •    •    •    •    •    •    •    •    •    •    •    •              •
+;;   •    •    •    •              •              •    •
+;; )
+
 (defsrc
   esc       f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
   §         1    2    3    4    5    6    7    8    9    0    +    ´    bspc
@@ -27,6 +44,7 @@
 (defvar
   tap-time 200
   hold-time 200
+  nav-exceptions (q w e r t y u i o p å a g  ö ä z x c v b n m)
 )
 (defalias
   cap (tap-hold-press $tap-time $hold-time bspc f19)
@@ -34,6 +52,8 @@
   rld (tap-hold $tap-time $hold-time § lrld)    ;; Live reload config after hold
   rsf (fork rsft caps (lsft))                   ;; Alternative caps-lock
   lsf (fork lsft caps (rsft))                   ;; Alternative caps-lock
+  nav (layer-while-held nav)
+  spc (tap-hold-release-keys 300 300 spc @nav $nav-exceptions)
 )
 (deflayer base
   esc       brdn brup @exp _    _    _    ◀◀   ▶⏸   ▶▶   mute vold volu
@@ -41,5 +61,13 @@
   tab       q    w    e    r    t    y    u    i    o    p    å    ¨    ret
   @cap      a    s    d    f    g    h    j    k    l    ö    ä    '
   @lsf <    z    x    c    v    b    n    m    ,    .    -              @rsf
-  rctl lctl lalt lmet           spc           rmet ralt
+  rctl lctl lalt lmet           @spc           rmet ralt
+)
+(deflayer nav
+  _         _    _    _    _    _    _    _    _    _    _    _    _
+  _         •    •    •    •    •    •    •    •    •    •    •    •    _
+  _         •    •    •    •    •    •    •    •    •    •    •    •    _
+  _         •    lctl lalt lmet •    ◀    ▼    ▲    ▶    •    •    •
+  lsft •    •    •    •    •    •    home pgdn pgup end  •              _
+  _    _    _    _              _              _    _
 )
