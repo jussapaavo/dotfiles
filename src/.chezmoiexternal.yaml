@@ -4,6 +4,11 @@
   refreshPeriod: 168h
 
 {{- if (eq .chezmoi.os "darwin") }}
+bin/kanata-service:
+  type: file
+  url: "https://github.com/jussapaavo/kanata-service/raw/main/kanata-service"
+  executable: true
+
 .hammerspoon:
   type: archive
   url: "https://github.com/jussapaavo/dot_hammerspoon/archive/refs/heads/main.zip"
