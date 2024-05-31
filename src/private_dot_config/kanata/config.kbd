@@ -53,7 +53,10 @@
   rsf (fork rsft caps (lsft))                   ;; Alternative caps-lock
   lsf (fork lsft caps (rsft))                   ;; Alternative caps-lock
   nav (layer-while-held nav)
-  spc (tap-hold-release-keys 300 300 spc @nav $nav-exceptions)
+  spc (tap-hold-release-keys 500 500 spc @nav $nav-exceptions)
+  la1 (layer-switch base)
+  la2 (layer-switch nav)
+  cmd (tap-hold-press $tap-time $hold-time @la2 rmet)
 )
 (deflayer base
   esc       brdn brup @exp _    _    _    ◀◀   ▶⏸   ▶▶   mute vold volu
@@ -61,13 +64,13 @@
   tab       q    w    e    r    t    y    u    i    o    p    å    ¨    ret
   @cap      a    s    d    f    g    h    j    k    l    ö    ä    '
   @lsf <    z    x    c    v    b    n    m    ,    .    -              @rsf
-  rctl lctl lalt lmet           @spc           rmet ralt
+  rctl lctl lalt lmet           spc            @cmd ralt
 )
 (deflayer nav
   _         _    _    _    _    _    _    _    _    _    _    _    _
-  _         •    •    •    •    •    •    •    •    •    •    •    •    _
-  _         •    •    •    •    •    •    •    •    •    •    •    •    _
-  _         •    lctl lalt lmet •    ◀    ▼    ▲    ▶    •    •    •
-  lsft •    •    •    •    •    •    home pgdn pgup end  •              _
-  _    _    _    _              _              _    _
+  @rld      •    •    •    •    •    •    •    •    •    •    •    •    _
+  _         •    •    •    •    •    •    •    ▲    •    •    •    •    _
+  @cap      lsft lctl lalt lmet •    •    ◀    ▼    ▶    •    •    •
+  _    •    M-z  M-x  M-c  M-v  •    home pgdn pgup end  •              _
+  _    _    _    _              _              @la1 _
 )
