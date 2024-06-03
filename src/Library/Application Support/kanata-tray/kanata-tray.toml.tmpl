@@ -1,0 +1,21 @@
+{{ if (eq .chezmoi.os "darwin") -}}
+'$schema' = 'https://raw.githubusercontent.com/rszyma/kanata-tray/main/doc/config_schema.json'
+
+[general]
+allow_concurrent_presets = false
+
+[defaults]
+kanata_executable = '~/bin/kanata'
+
+[defaults.hooks]
+
+[defaults.layer_icons]
+base = 'kanata.ico'
+nav = 'nav-invert.png'
+num = 'hash-invert.png'
+'*' = 'asterisk-invert.png'
+
+[presets.main]
+kanata_config = '~/.config/kanata/config.kbd'
+autorun = true
+{{ end -}}
