@@ -1,4 +1,5 @@
 (defcfg
+  danger-enable-cmd yes
   process-unmapped-keys yes
   macos-dev-names-include (
     "Apple Internal Keyboard / Trackpad"
@@ -39,7 +40,7 @@
   rctl lctl lalt lmet           spc            @cmd @opt
 )
 (deflayer nav
-  _         _    _    _    _    _    _    _    _    _    _    _    _
+  @slp      _    _    _    _    _    _    _    _    _    _    _    _
   @rld      •    •    •    •    •    •    •    •    •    •    •    •    _
   _         •    •    •    •    •    •    •    ▲    •    •    •    •    _
   @cap      lsft lctl lalt lmet •    •    ◀    ▼    ▶    •    •    •
@@ -85,4 +86,11 @@
   cmd (tap-hold-press $tap-time $hold-time @la2 rmet)
   opt (tap-hold-press $tap-time $hold-time @la3 ralt)
   cmr (tap-hold-press $tap-time $hold-time @la1 lmet)
+
+  ;; Shell commands
+  beep (cmd say "beep")
+  sleep (cmd pmset displaysleepnow)
+
+  ;; Command keys
+  slp (multi @la1 @sleep)
 )
