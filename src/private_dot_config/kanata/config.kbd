@@ -33,7 +33,7 @@
 |#
 (deflayer base
   esc       brdn brup @exp _    _    _    ◀◀   ▶⏸   ▶▶   mute vold volu
-  @rld      1    2    3    4    5    6    7    8    9    0    +    ´    bspc
+  §         1    2    3    4    5    6    7    8    9    0    +    ´    bspc
   tab       q    w    e    r    t    y    u    i    o    p    å    ¨    ret
   @cap      a    s    d    f    g    h    j    k    l    ö    ä    '
   @lsf <    z    x    c    v    b    n    m    ,    .    -              @rsf
@@ -72,9 +72,6 @@
   ;; tap: Trigger MacOS App Expose
   exp (multi lctl up)
 
-  ;; hold: Live reload kanata config
-  rld (tap-hold $tap-time $hold-time § lrld)
-
   ;; tap both shift: toggle caps-lock
   rsf (fork rsft caps (lsft))
   lsf (fork lsft caps (rsft))
@@ -93,4 +90,7 @@
 
   ;; Command keys
   slp (multi @la1 @sleep)
+
+  ;; Live reload
+  rld (multi lrld @beep @la1)
 )
