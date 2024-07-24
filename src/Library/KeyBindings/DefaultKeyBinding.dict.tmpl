@@ -1,0 +1,157 @@
+{{- /*
+This is based heavily on [Brett Terpstra's KeyBindings](https://github.com/ttscoff/KeyBindings).
+
+Here is a rough cheatsheet for syntax.
+Key Modifiers
+
+^ : ⌃ Ctrl
+$ : ⇧ Shift
+~ : ⌥ Option
+@ : ⌘ Command
+# : Numeric Keypad
+
+Non-Printable Key Codes
+
+Standard
+Up Arrow:     \UF700        Backspace:    \U0008        F1:           \UF704
+Down Arrow:   \UF701        Tab:          \U0009        F2:           \UF705
+Left Arrow:   \UF702        Escape:       \U001B        F3:           \UF706
+Right Arrow:  \UF703        Enter:        \U000A        ...
+Insert:       \UF727        Page Up:      \UF72C
+Delete:       \UF728        Page Down:    \UF72D
+Home:         \UF729        Print Screen: \UF72E
+End:          \UF72B        Scroll Lock:  \UF72F
+Break:        \UF732        Pause:        \UF730
+SysReq:       \UF731        Menu:         \UF735
+Help:         \UF746
+
+OS X
+delete:       \U007F
+
+For a good reference see https://xah-lee.livejournal.com/69069.html.
+*/ -}}
+
+{{- if (eq .chezmoi.os "darwin") -}}
+{
+  // Disable ctrl-h
+  "^h" = "";
+
+  // multi-stroke casing commands
+	"^~c" = {
+		// snake_case to camelCase (delete forward and capitalize)
+		"c" = (deleteForward:, insertText:, " ", moveForward:, insertText:, " ", moveWordBackward:, capitalizeWord:, moveForward:, deleteForward:, moveBackward:, deleteBackward:, moveForward:);
+		// snake_case word break
+		"s" = (insertText:, "_ " , moveForward:, insertText:, " ", moveWordBackward:, lowercaseWord:, moveForward:, deleteForward:, moveBackward:, deleteBackward:);
+	};
+
+  // Commenting commands
+  "^@c" = {
+    // comment with "//"
+    "/" = (moveToBeginningOfParagraph:, insertText:, "// ", moveToEndOfParagraph:, moveForward:);
+    // comment with "#"
+    "#" = (moveToBeginningOfParagraph:, insertText:, "# ", moveToEndOfParagraph:, moveForward:);
+    // HTML commenting
+    "!" = (setMark:, swapWithMark:, delete:, insertText:, "<!-- ", yank:, insertText:, " -->", swapWithMark:, moveRight:, moveRight:, moveRight:, moveRight:, moveRight:);
+    // Css Commenting
+    "*" = (setMark:, swapWithMark:, delete:, insertText:, "/* ", yank:, insertText:, " */", swapWithMark:, moveRight:, moveRight:, moveRight:);
+  };
+
+  // Surround commands
+  "^@s" = {
+    // wrap () no spaces
+    "(" = (delete:, insertText:, "( ", deleteBackward:, yank:, insertText:, " ", moveLeft:, insertText:, ")", deleteForward:);
+    // wrap () with spaces
+    ")" = (delete:, insertText:, "( ", yank:, insertText:, " ", moveLeft:, insertText:, " )", deleteForward:);
+    // wrap [] no spaces
+    "~8" = (delete:, insertText:, "[ ", deleteBackward:, yank:, insertText:, " ", moveLeft:, insertText:, "]", deleteForward:);
+    // wrap [] with spaces
+    "~9" = (delete:, insertText:, "[ ", yank:, insertText:, " ", moveLeft:, insertText:, " ]", deleteForward:);
+    // wrap {} no spaces
+    "~(" = (delete:, insertText:, "{ ", deleteBackward:, yank:, insertText:, " ", moveLeft:, insertText:, "}", deleteForward:);
+    // wrap {} with spaces
+    "~)" = (delete:, insertText:, "{ ", yank:, insertText:, " ", moveLeft:, insertText:, " }", deleteForward:);
+    // wrap <> no spaces
+    "<" = (delete:, insertText:, "< ", deleteBackward:, yank:, insertText:, " ", moveLeft:, insertText:, ">", deleteForward:);
+    // wrap <> with spaces
+    ">" = (delete:, insertText:, "< ", yank:, insertText:, " ", moveLeft:, insertText:, " >", deleteForward:);
+    // wrap single quotes
+    "'" = (delete:, insertText:, "' ", deleteBackward:, yank:, insertText:, " ", moveLeft:, insertText:, "'", deleteForward:);
+    // wrap backticks
+    "`" = (delete:, insertText:, "` ", deleteBackward:, yank:, insertText:, " ", moveLeft:, insertText:, "`", deleteForward:);
+    // wrap double quote
+    "\"" = (delete:, insertText:, "\" ", deleteBackward:, yank:, insertText:, " ", moveLeft:, insertText:, "\"", deleteForward:);
+  };
+
+  // Multi-stroke Markdown commands
+  "^@m" = {
+    // Formatting
+    "f" = {
+      // bold selection (Markdown)
+      "b" = (selectWord:, setMark:, swapWithMark:, deleteToMark:, insertText:, "**", yank:, insertText:, " ", moveLeft:, insertText:, "**", moveRight:, deleteBackward:);
+      // italicize selection (Markdown)
+      "i" = (selectWord:, setMark:, swapWithMark:, deleteToMark:, insertText:, "_", yank:, insertText:, " ", moveLeft:, insertText:, "_", moveRight:, deleteBackward:);
+      // backtick selection (Markdown)
+      "c" = (selectWord:, setMark:, swapWithMark:, deleteToMark:, insertText:, "`", yank:, insertText:, " ", moveLeft:, insertText:, "`", moveRight:, deleteBackward:);
+    };
+
+    // Fence code
+    // > Requires text selection
+    "c" = (setMark:, swapWithMark:, deleteToMark:, insertText:, "```\n", yank:, insertText:, "\n```", swapWithMark:);
+
+    // List items
+    // Unordered list item with +
+    "+" = (setMark:, moveToBeginningOfParagraph:, moveWordRight:, moveWordLeft:, insertText:, "+ ", swapWithMark:, moveRight:, moveRight:);
+    // Unordered list item with -
+    "-" = (setMark:, moveToBeginningOfParagraph:, moveWordRight:, moveWordLeft:, insertText:, "- ", swapWithMark:, moveRight:, moveRight:);
+    // Unordered list item with *
+    "*" = (setMark:, moveToBeginningOfParagraph:, moveWordRight:, moveWordLeft:, insertText:, "* ", swapWithMark:, moveRight:, moveRight:);
+    // Numeric list item (new)
+    "." = (setMark:, moveToBeginningOfParagraph:, moveWordRight:, moveWordLeft:, insertText:, "1. ", swapWithMark:, moveRight:, moveRight:, moveRight:);
+    // convert current numbered list item to bullet, handles indentation
+    "8" = (breakUndoCoalescing, setMark:, moveToEndOfParagraph:, insertText:, "x", moveToBeginningOfParagraph:, moveWordForward:, moveRight:, moveWordForward:, moveWordBackward:, moveWordBackwardAndModifySelection:, insertText:, "* ", moveToEndOfParagraph:, deleteBackward:, swapWithMark:, moveLeft:);
+    // convert current bullet list item to numbered
+    "1" = (breakUndoCoalescing, setMark:, moveToEndOfParagraph:, insertText:, "x", moveToBeginningOfParagraph:, moveWordForward:, moveWordBackward:, moveLeftAndModifySelection:, moveLeftAndModifySelection:, insertText:, "1. ", moveToEndOfParagraph:, deleteBackward:, swapWithMark:, moveRight:);
+
+    "h" = { // Headlines (removes leading whitespace after inserting hashmarks)
+      // #
+      "1" = (setMark:, moveToBeginningOfParagraph:, insertText:, "# ", selectWord:, insertText:, " ",swapWithMark:,moveRight:,moveRight:);
+      // ##
+      "2" = (setMark:, moveToBeginningOfParagraph:, insertText:, "## ", selectWord:, insertText:, " ", swapWithMark:,moveRight:,moveRight:,moveRight:);
+      // ###
+      "3" = (setMark:, moveToBeginningOfParagraph:, insertText:, "### ", selectWord:, insertText:, " ", swapWithMark:,moveRight:,moveRight:,moveRight:,moveRight:);
+      // ####
+      "4" = (setMark:, moveToBeginningOfParagraph:, insertText:, "#### ", selectWord:, insertText:, " ", swapWithMark:,moveRight:,moveRight:,moveRight:,moveRight:,moveRight:);
+      // #####
+      "5" = (setMark:, moveToBeginningOfParagraph:, insertText:, "##### ", selectWord:, insertText:, " ", swapWithMark:,moveRight:,moveRight:,moveRight:,moveRight:,moveRight:,moveRight:);
+      // ######
+      "6" = (setMark:, moveToBeginningOfParagraph:, insertText:, "###### ", selectWord:, insertText:, " ", swapWithMark:,moveRight:,moveRight:,moveRight:,moveRight:,moveRight:,moveRight:,moveRight:);
+    };
+    // > links
+    // > without selected text first, these can produce a mess using multiple clipboards
+    // > make a text selection before you run them
+    "l" = { // Markdown link
+      // create a link for selected text, cursor between () `[selected text]([cursor])`
+      "l" = (setMark:, moveRight:, insertText:, " ", deleteToMark:, insertText:, " [", moveLeft:, deleteBackward:, moveRight:, yank:, moveLeft:, insertText:, "]()", moveRight:, deleteBackward:, moveLeft:, setMark:, insertText:, "https://", selectToMark:); // link text
+      // create a link for selected text, inserting clipboard as url `[[cursor]selected text](clipboard contents)`
+      "c" = (setMark:, moveRight:, insertText:, " ", deleteToMark:, insertText:, " [", moveLeft:, deleteBackward:, moveRight:, yank:, moveLeft:, insertText:, "](", setMark:, pasteAsPlainText:, insertText:, ")", moveRight:, deleteBackward:, moveLeft:, selectToMark:); // link with clipboard
+    };
+    // Link as image
+    "i" = {
+      // TODO: Apply the fix from l,t/c above to avoid inserting the kill buffer when there's no selection
+      // same as ll, but with image syntax `\!\[selected text]([cursor])`
+      "i" = (setMark:, moveRight:, insertText:, " ", deleteToMark:, insertText:, " ![", moveLeft:, moveLeft:, deleteBackward:, moveRight:, moveRight:, yank:, moveLeft:, insertText:, "]()", moveRight:, deleteBackward:, moveLeft:, setMark:, insertText:, "https://", selectToMark:); //  image link for text
+      // same as lc, but with image syntax `\!\[selected text](clipboard)`
+      "c" = (setMark:, moveRight:, insertText:, " ", deleteToMark:, insertText:, " ![", moveLeft:, moveLeft:, deleteBackward:, moveRight:, moveRight:, yank:, moveLeft:, insertText:, "](", setMark:, pasteAsPlainText:, insertText:, ")", moveRight:, deleteBackward:, moveLeft:, selectToMark:);
+    };
+  };
+
+  // Line motion with arrow keys
+	// move line up (opt-up)
+	"~\UF700" = (selectParagraph:, setMark:, deleteToMark:, moveLeft:, moveToBeginningOfParagraph:, yank:, moveLeft:, selectToMark:, moveLeft:);
+	// move line down (opt-down)
+	"~\UF701" = (selectParagraph:, setMark:, deleteToMark:, moveToEndOfParagraph:, moveRight:, setMark:, yank:, moveLeft:, selectToMark:);
+
+  // Real, honest-to-goodness Save As...
+  "@~S" = (saveAs:);
+}
+{{ end -}}
