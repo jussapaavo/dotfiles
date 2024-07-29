@@ -70,7 +70,7 @@
   cap (tap-hold-press $tap-time $hold-time bspc f19)
 
   ;; tap: Trigger MacOS App Expose
-  exp (multi lctl up)
+  exp (tap-hold $tap-time $hold-time C-up C-down)
 
   ;; tap both shift: toggle caps-lock
   rsf (fork rsft caps (lsft))
