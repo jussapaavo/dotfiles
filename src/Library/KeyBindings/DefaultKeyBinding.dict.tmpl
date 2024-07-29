@@ -37,7 +37,13 @@ For a good reference see https://xah-lee.livejournal.com/69069.html.
   "^h" = "";
 
   // multi-stroke casing commands
-	"^~c" = {
+	"^@c" = {
+    // Uppercase word
+    "u" = (uppercaseWord:, moveWordForward:, moveWordBackward:);
+    // Lowercase word
+    "l" = (lowercaseWord:, moveWordForward:, moveWordBackward:);
+    // Titlecase word
+    "t" = (capitalizeWord:, moveWordForward:, moveWordBackward:);
 		// snake_case to camelCase (delete forward and capitalize)
 		"c" = (deleteForward:, insertText:, " ", moveForward:, insertText:, " ", moveWordBackward:, capitalizeWord:, moveForward:, deleteForward:, moveBackward:, deleteBackward:, moveForward:);
 		// snake_case word break
@@ -45,7 +51,7 @@ For a good reference see https://xah-lee.livejournal.com/69069.html.
 	};
 
   // Commenting commands
-  "^@c" = {
+  "^~c" = {
     // comment with "//"
     "/" = (moveToBeginningOfParagraph:, insertText:, "// ", moveToEndOfParagraph:, moveForward:);
     // comment with "#"
