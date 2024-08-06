@@ -77,7 +77,7 @@
 
 {{- $limit_backups := true -}}
 {{- if and $interactive $is_desktop -}}
-{{-   $limit_backups = promptBoolOnce . "limit_backups" "Limit Mackup to essential apps only" -}}
+{{-   $limit_backups = promptBoolOnce . "limit_backups" "Only sync configs for essential apps" -}}
 {{- end -}}
 
 {{- if $interactive -}}

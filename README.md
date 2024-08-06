@@ -10,7 +10,7 @@ I'm using:
 - [Kitty](https://sw.kovidgoyal.net/kitty/) as terminal emulator
 - [chezmoi](https://www.chezmoi.io/) to manage my configuration files
 - [Zim](https://github.com/zimfw/zimfw) as a configuration framework
-- [mackup](https://github.com/lra/mackup) to sync my private config files
+- [Unison](https://github.com/bcpierce00/unison) to sync my private config files
 - ZDOTDIR and XDG specs to keep my $HOME dir clean
 
 ## Installation
@@ -23,7 +23,7 @@ The following instructions will install chezmoi, clone this repo and apply the c
    ```sh
    sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply -n $GITHUB_USERNAME
    ```
-4. Once your cloud storage has finished with syncing the initial downloads, you can run `mackup restore` to restore preferences
+4. Once your cloud storage has finished with syncing the initial downloads, you can run `unison macos` to restore preferences
 5. Restart your computer to finalize the process
 
 ## Thanks To...
