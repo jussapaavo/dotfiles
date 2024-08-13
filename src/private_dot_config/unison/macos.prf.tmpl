@@ -1,0 +1,119 @@
+{{- /*
+This config is based heavily on: https://github.com/tshu-w/dotfiles/blob/main/config/unison/default.prf
+Requires env var UNISON=path/to/config to work.
+Use command `unison macos` to run.
+*/ -}}
+
+{{- if (eq .chezmoi.os "darwin") -}}
+# Roots of the synchronization
+root = {{ .chezmoi.homeDir }}
+root = {{ .chezmoi.homeDir }}/Library/Mobile Documents/com~apple~CloudDocs/Backups/Unison
+prefer = newer
+atomic = Name .git*
+
+# Keep a backup copy of every file in a central location
+backuploc = central
+backupdir = {{ .chezmoi.homeDir }}/.cache/unison
+backup = Name *
+backupprefix = $VERSION.
+backupsuffix =
+
+# Treat a symbolic link transparently
+# Use case: Create a subdirectory called shared (or current, or whatever) in your home directory on each host,
+#   and put links to all the files you want to synchronize into this directory.
+follow = Name *
+
+# Other options
+log = true
+batch = true
+
+###
+# Paths to synchronize
+###
+
+# macOS
+path = Library/KeyBindings/DefaultKeyBinding.dict
+path = Library/PDF Services
+path = Library/Preferences/com.apple.symbolichotkeys.plist
+path = Library/Scripts
+path = Library/Speech/Speakable Items
+path = Library/Workflows
+ignore = Name {.DS_Store}
+
+# Dash
+path = Library/Application Support/Dash/library.dash
+path = Library/Application Support/Dash/License/license.dash-license
+path = Library/Preferences/com.kapeli.dash.plist
+path = Library/Preferences/com.kapeli.dashdoc.plist
+
+# IINA
+path = Library/Application Support/com.colliderli.iina/input_conf
+path = Library/Preferences/com.colliderli.iina.plist
+
+# Quicklook
+path = Library/Quicklook
+atomic = Name *.qlgenerator
+
+# Terminal
+path = Library/Preferences/com.apple.Terminal.plist
+
+# Zsh History
+path = .cache/zsh/zsh_history
+
+# aws
+path = .aws/config
+
+# dbt
+path = .config/dbt/profiles.yml
+
+# just
+path = .justfile
+
+# Kitty
+path = .config/kitty/current-theme.conf
+
+# Rekordbox
+path = Library/Pioneer/rekordbox/datafile.edb
+path = Library/Pioneer/rekordbox/ExtData.edb
+path = Library/Pioneer/rekordbox/master.db
+path = Library/Pioneer/rekordbox/master.backup.db
+path = Library/Pioneer/rekordbox/master.backup2.db
+path = Library/Pioneer/rekordbox/master.backup3.db
+path = Library/Pioneer/rekordbox/masterPlaylists6.xml
+
+# Affinity Photo
+path = Library/Containers/Affinity Photo/Data/Library/Application Support/user
+
+# Bartender
+path = Library/Preferences/com.surteesstudios.Bartender.plist
+path = Library/Preferences/com.surteesstudios.Bartender-setapp.plist
+path = Library/Application Support/Bartender/Bartender.BartenderPreferences
+
+# GnuPG
+path = .gnupg/gpg-agent.conf
+path = .gnupg/gpg.conf
+path = .gnupg/trustdb.gpg
+
+# Apple Mail
+path = Library/Preferences/com.apple.mail.plist
+
+# rclone
+path = .config/rclone/rclone.conf
+
+# rectangle
+path = Library/Preferences/com.knollsoft.Rectangle.plist
+
+# Spotify
+path = Library/Preferences/com.spotify.client.plist
+
+# ssh
+path = .ssh/config
+path = .ssh/authorized_keys
+
+# TablePlus
+path = Library/Application Support/com.tinyapp.TablePlus/Cache/Favorite
+path = Library/Application Support/com.tinyapp.TablePlus/Cache/History
+path = Library/Application Support/com.tinyapp.TablePlus/Data
+path = Library/Application Support/com.tinyapp.TablePlus/Plugins
+path = Library/Preferences/com.tinyapp.TablePlus.plist
+{{ end -}}

@@ -36,12 +36,12 @@ brew 'pipx'       # Install isolated Python apps
 brew 'tealdeer'   # Better manpages
 brew 'terragrunt'
 brew 'thefuck'
+brew 'unison'     # File sync for backups
 
 # Apps
 cask '1password-cli'
 cask 'hammerspoon'
 cask 'kitty'
-brew 'mackup'
 cask 'raycast'
 cask 'rectangle'  # Window management
 cask 'setapp'     # A collection of apps
