@@ -55,12 +55,8 @@ pipx install gitlint --include-deps
 pipx install --python $python_version dbt-core
 pipx inject dbt-core dbt-bigquery
 pipx inject dbt-core dbt-athena-community
-
-# Install sql linter
-pipx install --python $python_version sqlfluff
-pipx inject sqlfluff sqlfluff-templater-dbt
-pipx inject sqlfluff dbt-bigquery
-pipx inject sqlfluff dbt-athena-community
+pipx inject dbt-core sqlfluff --include-apps
+pipx inject dbt-core sqlfluff-templater-dbt
 
 ###
 # Install packages from Pipfile with pipenv. Read more here: https://liatas.com/posts/anaconda-vs-pyenv-pipenv/
