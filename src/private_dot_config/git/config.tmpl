@@ -10,7 +10,11 @@
   untracked = red
 
 [core]
+  pager = delta
 	excludesfile = {{ .chezmoi.homeDir }}/.config/git/ignore
+
+[interactive]
+  diffFilter = delta --color-only
 
 [rerere]
   enabled = true
@@ -24,6 +28,17 @@
 
 [pull]
 	rebase = true
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
+
+[delta]
+  navigate = true    # use n and N to move between diff sections
+  line-numbers = true
+  # side-by-side = true
 
 [github]
   user = jussapaavo

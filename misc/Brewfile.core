@@ -27,6 +27,7 @@ brew 'lsd'        # Better ls
 brew 'direnv'     # Envvar management
 cask 'docker'     # Docker Desktop
 brew 'gh'         # GitHub CLI
+brew 'git-delta'  # Better diffs
 cask 'google-cloud-sdk'
 brew 'helix'      # Modern text editor
 brew 'hub'        # GitHub CLI extensions

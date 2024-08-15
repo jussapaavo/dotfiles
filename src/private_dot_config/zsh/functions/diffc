@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+# Sourced from: https://gist.github.com/sebastiancarlos/2f822a1d1f8e7aad816baded6eb437a4
+# Video demo: https://www.youtube.com/watch?v=nf3ddQniw-o
+
+# diffc
+# - allows to call as: diffc 'command one' 'command two'
+#   instead of:        diff  <(command one) <(command two)
+
+function diffc () {
+  if [[ "$#" != "2" ]]; then
+    echo "diffc requires two arguments"
+    return 1
+  fi
+
+  local command=$(printf 'diff <( %s ) <( %s )' "$1" "$2")
+  echo $command
+  eval $command
+}

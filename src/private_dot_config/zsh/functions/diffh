@@ -1,0 +1,26 @@
+#!/bin/zsh
+
+# Sourced from: https://gist.github.com/sebastiancarlos/2f822a1d1f8e7aad816baded6eb437a4
+# Video demo: https://www.youtube.com/watch?v=nf3ddQniw-o
+
+# diffh - diff history
+# - make a diff of the output of the last two commands in the shell history
+
+function diffh () {
+  # first one is 2nd to last. second is last
+  # remove preceeding spaces
+  local first=$(fc -ln -2 -2)
+  local second=$(fc -ln -1 -1)
+
+  # print and run diff
+  local command=$(printf 'diff <( %s ) <( %s )' "${first}" "${second}")
+  echo $command
+  eval $command
+
+  local error_code=$?
+
+  # replace this 'diffh' entry in history with the command
+  history -s "$(echo $command)"
+
+  return $error_code
+}
