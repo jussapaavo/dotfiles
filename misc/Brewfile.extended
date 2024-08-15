@@ -25,6 +25,8 @@ brew 'lolcat'         # Make text inputs colorful
 # Apps
 cask '1password'
 cask 'avast-security'
+cask 'bettermouse'
+cask 'brave-browser'
 cask 'discord'
 cask 'dropbox'
 cask 'firefox'
