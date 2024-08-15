@@ -16,7 +16,6 @@ cask 'flake8'         # Python linting
 brew 'gh'             # GitHub CLI
 brew 'hub'            # GitHub CLI extensions
 brew 'hugo'           # Build static websites from markdown files
-cask 'miniconda'      # Conda package manager
 brew 'terragrunt'
 cask 'google-cloud-sdk'
 
