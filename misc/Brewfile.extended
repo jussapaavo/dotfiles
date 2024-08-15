@@ -9,13 +9,16 @@ brew 'ffmpeg'         # Better audio and video handling
 brew 'httpie'
 brew 'mas'            # Mac App Store manager
 brew 'trash'          # Manage the Trash bin
-brew 'tree'           # List directories in a tree structure
-brew 'zlib'           # Needed for Memcached
 
 # Development
+brew 'awscli'         # Official AWS command-line interface
+cask 'flake8'         # Python linting
+brew 'gh'             # GitHub CLI
+brew 'hub'            # GitHub CLI extensions
 brew 'hugo'           # Build static websites from markdown files
 cask 'miniconda'      # Conda package manager
-cask 'flake8'         # Python linting
+brew 'terragrunt'
+cask 'google-cloud-sdk'
 
 # Flex
 brew 'neofetch'       # Display information about your system in terminal
@@ -69,7 +72,6 @@ mas 'Boop', id: 1518425043
 mas 'DaisyDisk', id: 411643860
 mas 'Drafts', id: 1435957248
 mas 'Keynote', id: 409183694
-mas 'NordVPN: VPN Fast & Secure', id: 905953485
 mas 'Numbers', id: 409203825
 mas 'Pages', id: 409201541
 mas 'PDF Squeezer 4', id: 1502111349

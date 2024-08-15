@@ -4,40 +4,34 @@ tap 'homebrew/cask-fonts'
 tap 'homebrew/cask-versions'
 tap 'homebrew/bundle'
 
-# Binaries
+# System
 brew 'bash'       # Latest Bash version
 brew 'coreutils'  # Those that come with macOS are outdated
-brew 'fd'         # Alternative to 'find'
 brew 'git'
 brew 'gnupg'
-brew 'grep'       # Global Regural Expression Print
 brew 'openssl'    # Recommended for building Python
-brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
 brew 'readline'   # Recommended for building Python
-brew 'ripgrep'    # Faster alternative to grep
 brew 'svn'        # Needed for font installs
 brew 'sqlite3'    # Recommended for building Python
-brew 'zoxide'     # Better cd in Terminal
 brew 'zlib'       # Recommended for building Python
 brew 'xz'         # Recommended for building Python
 
-# Development
-brew 'awscli      # Official AWS command-line interface
+# CLI utilities
+brew 'bat'        # Better cat
+brew 'fd'         # Alternative to 'find'
 brew 'lsd'        # Better ls
 brew 'direnv'     # Envvar management
-cask 'docker'     # Docker Desktop
-brew 'gh'         # GitHub CLI
 brew 'git-delta'  # Better diffs
-cask 'google-cloud-sdk'
+brew 'grep'       # Global Regural Expression Print
 brew 'helix'      # Modern text editor
-brew 'hub'        # GitHub CLI extensions
 brew 'just'       # Code-snippet runner
 brew 'node'       # Node.js and npm
 brew 'pipx'       # Install isolated Python apps
+brew 'ripgrep'    # Faster alternative to grep
 brew 'tealdeer'   # Better manpages
-brew 'terragrunt'
 brew 'thefuck'
 brew 'unison'     # File sync for backups
+brew 'zoxide'     # Better cd in Terminal
 
 # Apps
 cask '1password-cli'
