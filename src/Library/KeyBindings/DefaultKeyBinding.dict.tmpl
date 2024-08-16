@@ -36,8 +36,8 @@ For a good reference see https://xah-lee.livejournal.com/69069.html.
   // Disable ctrl-h
   "^h" = "";
 
-  // multi-stroke casing commands
-	"^@c" = {
+  // multi-stroke formatting/casing commands
+	"^@f" = {
     // Uppercase word
     "u" = (uppercaseWord:, moveWordForward:, moveWordBackward:);
     // Lowercase word
@@ -132,23 +132,16 @@ For a good reference see https://xah-lee.livejournal.com/69069.html.
       // ######
       "6" = (setMark:, moveToBeginningOfParagraph:, insertText:, "###### ", selectWord:, insertText:, " ", swapWithMark:,moveRight:,moveRight:,moveRight:,moveRight:,moveRight:,moveRight:,moveRight:);
     };
-    // > links
+
+    // Links
     // > without selected text first, these can produce a mess using multiple clipboards
     // > make a text selection before you run them
-    "l" = { // Markdown link
-      // create a link for selected text, cursor between () `[selected text]([cursor])`
-      "l" = (setMark:, moveRight:, insertText:, " ", deleteToMark:, insertText:, " [", moveLeft:, deleteBackward:, moveRight:, yank:, moveLeft:, insertText:, "]()", moveRight:, deleteBackward:, moveLeft:, setMark:, insertText:, "https://", selectToMark:); // link text
-      // create a link for selected text, inserting clipboard as url `[[cursor]selected text](clipboard contents)`
-      "c" = (setMark:, moveRight:, insertText:, " ", deleteToMark:, insertText:, " [", moveLeft:, deleteBackward:, moveRight:, yank:, moveLeft:, insertText:, "](", setMark:, pasteAsPlainText:, insertText:, ")", moveRight:, deleteBackward:, moveLeft:, selectToMark:); // link with clipboard
-    };
-    // Link as image
-    "i" = {
-      // TODO: Apply the fix from l,t/c above to avoid inserting the kill buffer when there's no selection
-      // same as ll, but with image syntax `\!\[selected text]([cursor])`
-      "i" = (setMark:, moveRight:, insertText:, " ", deleteToMark:, insertText:, " ![", moveLeft:, moveLeft:, deleteBackward:, moveRight:, moveRight:, yank:, moveLeft:, insertText:, "]()", moveRight:, deleteBackward:, moveLeft:, setMark:, insertText:, "https://", selectToMark:); //  image link for text
-      // same as lc, but with image syntax `\!\[selected text](clipboard)`
-      "c" = (setMark:, moveRight:, insertText:, " ", deleteToMark:, insertText:, " ![", moveLeft:, moveLeft:, deleteBackward:, moveRight:, moveRight:, yank:, moveLeft:, insertText:, "](", setMark:, pasteAsPlainText:, insertText:, ")", moveRight:, deleteBackward:, moveLeft:, selectToMark:);
-    };
+
+    // create a link for selected text, cursor between () `[selected text]([cursor])`
+    "l" = (setMark:, moveRight:, insertText:, " ", deleteToMark:, insertText:, " [", moveLeft:, deleteBackward:, moveRight:, yank:, moveLeft:, insertText:, "]()", moveRight:, deleteBackward:, moveLeft:, setMark:, insertText:, "https://", selectToMark:);
+
+    // link with image syntax `\!\[selected text]([cursor])`
+    "i" = (setMark:, moveRight:, insertText:, " ", deleteToMark:, insertText:, " ![", moveLeft:, moveLeft:, deleteBackward:, moveRight:, moveRight:, yank:, moveLeft:, insertText:, "]()", moveRight:, deleteBackward:, moveLeft:, setMark:, insertText:, "https://", selectToMark:);
   };
 
   // Line motion with arrow keys
