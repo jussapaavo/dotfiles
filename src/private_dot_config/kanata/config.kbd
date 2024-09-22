@@ -32,7 +32,7 @@
 ## Layers
 |#
 (deflayer base
-  esc       brdn brup @exp _    _    _    ◀◀   ▶⏸   ▶▶   mute vold volu
+  esc       brdn brup @exp _    _    _    @◀◀  @▶⏸  @▶▶  mute vold volu
   §         1    2    3    4    5    6    7    8    9    0    +    ´    bspc
   tab       q    w    e    r    t    y    u    i    o    p    å    ¨    ret
   @cap      a    s    d    f    g    h    j    k    l    ö    ä    '
@@ -87,6 +87,9 @@
   ;; Shell commands
   beep (cmd say "beep")
   sleep (cmd pmset displaysleepnow)
+  ◀◀ (cmd osascript -e r#"tell application "Spotify" to previous track"#)
+  ▶⏸ (cmd osascript -e r#"tell application "Spotify" to playpause"#)
+  ▶▶ (cmd osascript -e r#"tell application "Spotify" to next track"#)
 
   ;; Command keys
   slp (multi @la1 @sleep)
