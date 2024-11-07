@@ -34,7 +34,7 @@ alias jn='jupyter notebook'
 {{- end }}
 
 # Git
-alias gcam='git commit -am'
+alias gcam='git add -A && git commit -m'
 alias gril='git rebase -i $(git merge-base HEAD main)'
 alias amend='git add . && git commit -a --amend --no-edit'
 alias force='git push --force-with-lease origin'

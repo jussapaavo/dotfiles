@@ -36,20 +36,6 @@ For a good reference see https://xah-lee.livejournal.com/69069.html.
   // Disable ctrl-h
   "^h" = "";
 
-  // multi-stroke formatting/casing commands
-	"^@f" = {
-    // Uppercase word
-    "u" = (uppercaseWord:, moveWordForward:, moveWordBackward:);
-    // Lowercase word
-    "l" = (lowercaseWord:, moveWordForward:, moveWordBackward:);
-    // Titlecase word
-    "t" = (capitalizeWord:, moveWordForward:, moveWordBackward:);
-		// snake_case to camelCase (delete forward and capitalize)
-		"c" = (deleteForward:, insertText:, " ", moveForward:, insertText:, " ", moveWordBackward:, capitalizeWord:, moveForward:, deleteForward:, moveBackward:, deleteBackward:, moveForward:);
-		// snake_case word break
-		"s" = (insertText:, "_ " , moveForward:, insertText:, " ", moveWordBackward:, lowercaseWord:, moveForward:, deleteForward:, moveBackward:, deleteBackward:);
-	};
-
   // Commenting commands
   "^~c" = {
     // comment with "//"
