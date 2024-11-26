@@ -37,6 +37,9 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
+# Enable "Ask to keep changes when closing documents"
+defaults write NSGlobalDomain NSCloseAlwaysConfirmsChanges -bool true
+
 # Save to disk (not to iCloud) by default
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
@@ -70,7 +73,10 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo Hos
 # defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 # Create the Kill Ring for use with DefaultKeyBindings
-defaults write -g NSTextKillRingSize -int 6
+defaults write NSGlobalDomain NSTextKillRingSize -int 6
+
+# Enable window dragging by holding ctrl+cmd (not necessarily the window title)
+defaults write NSGlobalDomain NSWindowShouldDragOnGesture -bool true
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
@@ -168,7 +174,7 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
     Privileges -bool true
 
 ###############################################################################
-# Dock, Dashboard, and hot corners                                            #
+# Dock, Dashboard, hot corners and Window Manager                             #
 ###############################################################################
 
 # Set the icon size of Dock items to 36 pixels
@@ -195,8 +201,14 @@ defaults write com.apple.dock autohide-delay -float 0
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
 
-# Make Dock icons of hidden applications translucent
-defaults write com.apple.dock showhidden -bool true
+# Do not make Dock icons of hidden applications translucent
+defaults write com.apple.dock showhidden -bool false
+
+# Disable Stage Manager
+defaults write com.apple.WindowManager GloballyEnabled -bool false
+
+# Disable automatic rearrange of Spaces (mru = most recent use)
+defaults write com.apple.dock mru-spaces -bool false
 
 ###############################################################################
 # Safari & WebKit                                                             #
