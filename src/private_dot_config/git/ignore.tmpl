@@ -2,6 +2,7 @@
 .tflint.hcl
 .justfile
 *.ignore
+.envrc*
 
 {{ if (eq .chezmoi.os "darwin") -}}
 ### macOS ###
@@ -52,9 +53,6 @@ Temporary Items
 ### Logs and databases ###
 *.log
 *.sqlite
-
-### Direnv variables ###
-.envrc
 
 ### VisualStudioCode ###
 .vscode
