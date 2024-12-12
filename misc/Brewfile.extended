@@ -41,6 +41,8 @@ cask 'monitorcontrol'
 cask 'numi'
 cask 'obsidian'
 cask 'onyx'
+cask 'pearcleaner'
+cask 'pronotes'
 cask 'slack'
 cask 'zoom'
 
