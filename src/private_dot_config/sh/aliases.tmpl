@@ -34,10 +34,15 @@ alias jn='jupyter notebook'
 {{- end }}
 
 # Git
-alias gcam='git commit -am'
 alias gril='git rebase -i $(git merge-base HEAD main)'
 alias amend='git add . && git commit -a --amend --no-edit'
 alias force='git push --force-with-lease origin'
 alias nuke='git clean -df && git reset --hard origin/main'
 alias prune='git branch --merged | egrep -v "(^\*|main|master|dev)" | xargs git branch -d'
 alias yolo='git commit -m "$(curl -s https://whatthecommit.com/index.txt)"'
+
+# Use function instead of alias sincen zsh-syntax-higlight doesn't work correctly without it
+git_commit_add_all_with_message() {
+    git add --all && git commit --message "$@"
+}
+alias gcam='git_commit_add_all_with_message'
