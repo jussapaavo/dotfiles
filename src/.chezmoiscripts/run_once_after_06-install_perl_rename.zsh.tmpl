@@ -1,0 +1,25 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+#!/bin/zsh
+
+source ~/.zshenv
+
+###
+# Install rename
+# Note: this is required for Automator script to remove special characters from files.
+###
+
+# Check for perl and exit if not installed (comes with xcode)
+if ! command -v perl 1>/dev/null 2>&1; then
+    echo "Perl is not installed. You need to install xcode command line tools."
+    exit 1
+fi
+
+# Check and install rename
+if ! command -v rename 1>/dev/null 2>&1; then
+    brew install rename
+fi
+
+# install dependencies
+sudo cpan Text::Unidecode
+
+{{- end }}
