@@ -26,6 +26,7 @@ brew 'grep'       # Global Regural Expression Print
 brew 'helix'      # Modern text editor
 brew 'just'       # Code-snippet runner
 brew 'node'       # Node.js and npm
+brew 'nvim'
 brew 'pipx'       # Install isolated Python apps
 brew 'ripgrep'    # Faster alternative to grep
 brew 'tealdeer'   # Better manpages
