@@ -67,7 +67,7 @@
 |#
 (defalias
   ;; Replace default caps-lock. tap: backspace, hold: hyper
-  cap (tap-hold-press $tap-time $hold-time bspc f19)
+  cap (tap-hold-press $tap-time $hold-time esc f19)
 
   ;; tap: Trigger MacOS App Expose
   exp (tap-hold $tap-time $hold-time C-up C-down)
