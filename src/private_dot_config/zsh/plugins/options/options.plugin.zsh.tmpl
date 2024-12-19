@@ -1,6 +1,4 @@
 # Custom zsh options
-# Based on:
-#   - https://github.com/sorin-ionescu/prezto/blob/master/modules/history/init.zsh
 
 # History
 setopt bang_hist               {{- /* Treat the '!' character specially during expansion. */}}
@@ -37,3 +35,10 @@ setopt auto_param_slash        {{- /* If completed parameter is a directory, add
 setopt extended_glob           {{- /* Needed for file modification glob modifiers with compinit. */}}
 setopt NO_menu_complete        {{- /* Do not autoselect the first completion entry. */}}
 setopt NO_flow_control         {{- /* Disable start/stop characters in shell editor. */}}
+
+# Other keymaps
+bindkey -v                                   {{- /* enable vi mode */}}
+bindkey -M viins "^[[1;3C" forward-word      {{- /* alt+right: Move forward by word */}}
+bindkey -M viins "^[[1;3D" backward-word     {{- /* alt+left: Move backward by word */}}
+bindkey -M viins "^[[1;9D" beginning-of-line {{- /* ctrl+left: Move to the beginning of the line. */}}
+bindkey -M viins "^[[1;9C" end-of-line       {{- /* ctrl+left: Move to end of line */}}
