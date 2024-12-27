@@ -26,24 +26,21 @@
   refreshPeriod: 168h
 {{ end -}}
 
-{{- if and (eq .chezmoi.os "linux") }}
+{{- if (eq .chezmoi.os "linux") }}
 {{- $fontDir := ".local/share/fonts" }}
 {{ $fontDir }}/MesloLGS NF Regular.ttf:
   type: file
-  url: "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF"
-    Regular.ttf
+  url: "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Regular.ttf"
   refreshPeriod: 168h
 
 {{ $fontDir }}/MesloLGS NF Bold.ttf:
   type: file
-  url: "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF"
-    Bold.ttf
+  url: "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Bold.ttf"
   refreshPeriod: 168h
 
 {{ $fontDir }}/MesloLGS NF Italic.ttf:
   type: file
-  url: "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF"
-    Italic.ttf
+  url: "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Italic.ttf"
   refreshPeriod: 168h
 
 {{ $fontDir }}/MesloLGS NF Bold Italic.ttf:
