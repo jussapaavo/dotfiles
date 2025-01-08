@@ -36,6 +36,7 @@ brew 'zoxide'     # Better cd in Terminal
 
 # Apps
 cask '1password-cli'
+cask 'ghostty'
 cask 'hammerspoon'
 cask 'kitty'
 cask 'raycast'
