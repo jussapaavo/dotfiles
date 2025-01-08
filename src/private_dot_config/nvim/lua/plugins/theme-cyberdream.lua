@@ -1,11 +1,12 @@
 return {
     "scottmckendry/cyberdream.nvim",
-    name = 'cyberdream',
-    --priority = 1000,
+    name = "cyberdream",
 
     config = function()
-      require('cyberdream').setup({
+        require("cyberdream").setup({
             transparent = true,
+            italic_comments = true,
+            borderless_telescope = false,
         })
     end
 }
