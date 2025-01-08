@@ -53,6 +53,7 @@ pipx install gitlint --include-deps
 # Install dbt
 pipx install --python $python_version dbt-core
 pipx inject dbt-core dbt-bigquery
+pipx inject dbt-core dbt-snowflake
 pipx inject dbt-core dbt-athena-community
 pipx inject dbt-core sqlfluff --include-apps
 pipx inject dbt-core sqlfluff-templater-dbt
