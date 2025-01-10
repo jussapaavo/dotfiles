@@ -57,6 +57,7 @@ cask 'syntax-highlight', args: { no_quarantine: true }
 cask 'font-lato'
 cask 'font-open-sans'
 cask 'font-roboto'
+cask 'font-meslo-lg-nerd-font'
 cask 'font-source-code-pro-for-powerline'
 cask 'font-source-code-pro'
 cask 'font-source-sans-pro'

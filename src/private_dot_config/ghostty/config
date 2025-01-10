@@ -1,9 +1,13 @@
 theme = argonaut
-font-family = MesloLGS Nerd Font
+font-family = CommitMono Nerd Font
+font-feature = ss03
+font-feature = ss04
+font-feature = ss05
+adjust-cell-height = 10%
 
 cursor-color = #ffffff
 cursor-style = bar
-adjust-cursor-thickness = 150%
+adjust-cursor-thickness = 2
 
 window-width =120
 window-height = 35
@@ -13,3 +17,5 @@ macos-icon = custom-style
 macos-icon-frame = plastic
 macos-icon-ghost-color = #171520
 macos-icon-screen-color = #171520
+
+window-save-state = never

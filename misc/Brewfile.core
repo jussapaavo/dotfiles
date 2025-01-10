@@ -47,4 +47,4 @@ cask 'the-unarchiver'
 cask 'visual-studio-code'
 
 # Fonts
-cask 'font-meslo-lg-nerd-font'
+cask 'font-commit-mono-nerd-font'
