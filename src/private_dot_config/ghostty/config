@@ -19,3 +19,14 @@ macos-icon-ghost-color = #171520
 macos-icon-screen-color = #171520
 
 window-save-state = never
+
+# MacOS like movements
+keybind = cmd+backspace=esc:d0xi
+keybind = cmd+left=esc:^i
+keybind = cmd+right=esc:$a
+keybind = alt+left=esc:bi
+keybind = alt+right=esc:ea
+
+keybind = cmd+enter=new_split:auto
+keybind = cmd+alt+left=previous_tab
+keybind = cmd+alt+right=next_tab
