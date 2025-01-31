@@ -13,11 +13,6 @@ window-width =120
 window-height = 35
 window-padding-x = 8,2
 
-macos-icon = custom-style
-macos-icon-frame = plastic
-macos-icon-ghost-color = #171520
-macos-icon-screen-color = #171520
-
 window-save-state = never
 
 # MacOS like movements
