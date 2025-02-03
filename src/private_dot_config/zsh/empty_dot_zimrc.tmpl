@@ -20,18 +20,23 @@ zmodule mattmc3/zfunctions
 zmodule ohmyzsh/ohmyzsh --root plugins/aliases
 zmodule ohmyzsh/ohmyzsh --root plugins/history-substring-search
 
-{{ if (eq .chezmoi.os "darwin") -}}
-zmodule ohmyzsh/ohmyzsh --root plugins/direnv
+zmodule ohmyzsh/ohmyzsh --root plugins/zoxide
 zmodule ohmyzsh/ohmyzsh --root plugins/fzf
 zmodule Aloxaf/fzf-tab
-zmodule ohmyzsh/ohmyzsh --root plugins/zoxide
+{{ if eq .chezmoi.os "darwin" -}}
+zmodule ohmyzsh/ohmyzsh --root plugins/direnv
 zmodule ohmyzsh/ohmyzsh --root plugins/thefuck
+{{- end }}
 
 # Local plugins
 zmodule {{ .chezmoi.homeDir }}/.config/zsh/plugins/options
+{{ if eq .chezmoi.os "darwin" -}}
 zmodule {{ .chezmoi.homeDir }}/.config/zsh/plugins/aws
 zmodule {{ .chezmoi.homeDir }}/.config/zsh/plugins/gcloud
 zmodule {{ .chezmoi.homeDir }}/.config/zsh/plugins/python
+{{- end }}
+{{- if eq .chezmoi.hostname "a0d7b954-ssh" }}
+zmodule {{ .chezmoi.homeDir }}/.config/zsh/plugins/ha
 {{- end }}
 
 # Modules that must be initialized last

@@ -20,11 +20,16 @@ bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
-{{ if (eq .chezmoi.os "darwin") -}}
+{{ if not .is_ephemeral -}}
 export HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zsh_history"
 export SAVEHIST=10000          {{- /* Save more history items into the file (default 2000) */}}
 export HISTSIZE=10000          {{- /* Show more history items when read from the file (default 2000) */}}
 {{- end }}
+
+# Utilities
+export EDITOR="nvim"
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+export ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 
 # Completion, extends: https://github.com/zimfw/completion/blob/master/init.zsh
 setopt complete_in_word        {{- /* Complete from both ends of a word. */}}

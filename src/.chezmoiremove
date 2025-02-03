@@ -10,7 +10,9 @@
 .zlogin
 .zlogout
 
+{{ if not .is_ephemeral -}}
 # Use $XDG_CACHE_HOME instead of root
 .zsh_history
 .zcompdump*
 .bash_history
+{{- end }}

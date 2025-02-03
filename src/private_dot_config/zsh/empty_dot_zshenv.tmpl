@@ -9,13 +9,7 @@ source ~/.config/sh/paths
 
 # Cache
 export ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}"
-export ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
-export HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zsh_history"
 export ZIM_HOME="${XDG_CACHE_HOME:-$HOME/.cache}/zim/"
-
-# Utilities
-export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-export EDITOR="nvim"
 
 # Ensure path arrays do not contain duplicates.
 typeset -gU fpath path

@@ -3,11 +3,36 @@
 *.gitkeep
 *.deb
 
-{{- if (ne .chezmoi.os "darwin") }}
-.hammerspoon/**
-.config/kitty/**
-{{ end -}}
+{{- if ne .chezmoi.os "darwin" }}
+.hammerspoon/
+.hammerspoon/**/*
+.config/dbt/
+.config/dbt/**/*
+.config/ghostty/
+.config/ghostty/**/*
+.config/helix/
+.config/helix/**/*
+.config/kanata/
+.config/kanata/**/*
+.config/kanata-tray/
+.config/kanata-tray/**/*
+.config/kitty/
+.config/kitty/**/*
+.config/unison/
+.config/unison/**/*
+.config/zsh/plugins/aws/
+.config/zsh/plugins/aws/**/*
+.config/zsh/plugins/gcloud/
+.config/zsh/plugins/gcloud/**/*
+.config/zsh/plugins/python/
+.config/zsh/plugins/python/**/*
+{{- end }}
+
+{{- if ne .chezmoi.hostname "a0d7b954-ssh" }}
+.config/zsh/plugins/ha/
+.config/zsh/plugins/ha/**/*
+{{- end }}
 
 {{- if ne .chezmoi.os "linux" }}
 .local/share/fonts/**
-{{ end -}}
+{{- end }}

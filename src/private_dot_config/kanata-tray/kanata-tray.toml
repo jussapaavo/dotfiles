@@ -1,4 +1,3 @@
-{{ if (eq .chezmoi.os "darwin") -}}
 '$schema' = 'https://raw.githubusercontent.com/rszyma/kanata-tray/main/doc/config_schema.json'
 
 [general]
@@ -18,4 +17,3 @@ num = 'hash-invert.png'
 [presets.main]
 kanata_config = '~/.config/kanata/config.kbd'
 autorun = true
-{{ end -}}

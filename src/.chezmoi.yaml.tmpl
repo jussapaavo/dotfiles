@@ -1,3 +1,8 @@
+# Basic info for debugging:
+# - hostname: {{ .chezmoi.hostname }}
+# - os: {{ .chezmoi.os }}
+# - arch: {{ .chezmoi.arch }}
+
 {{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
 {{- $interactive := stdinIsATTY -}}
 
@@ -32,12 +37,13 @@
 {{-   end -}}
 {{- end -}}
 
+{{- if eq .chezmoi.arch "arm" "arm64" -}}
+{{-   $is_arm = true -}}
+{{- end -}}
+
 {{- if not $is_ephemeral -}}
 {{-   if eq .chezmoi.os "darwin" "windows" -}}
 {{-     $is_desktop = true -}}
-{{-     if eq .chezmoi.arch "arm" "arm64" -}}
-{{-       $is_arm = true -}}
-{{-     end -}}
 {{-   else if stdinIsATTY -}}
 {{-     if hasKey . "is_headless" -}}
 {{-       $is_headless = .is_headless -}}
@@ -101,10 +107,12 @@ data:
   is_codespace: {{ $is_codespace }}
 
 {{- if $is_desktop }}
+  {{- writeToStdout "Read SSH keys from 1password:\n" }}
   public_key_main: {{ onepasswordRead "op://personal/dsef3t2ki64l3dvdeidjmilgi4/public key" }}
   public_key_work: {{ onepasswordRead "op://personal/bhv4b63xmqg5j7yczdpf3gldvq/public key" }}
 {{- end }}
 
+{{ if eq .chezmoi.os "darwin" -}}
 hooks:
   apply:
     post:
@@ -112,3 +120,4 @@ hooks:
       args:
         - pyenv
         - rehash
+{{- end }}

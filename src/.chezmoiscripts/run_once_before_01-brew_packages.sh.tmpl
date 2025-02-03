@@ -1,5 +1,5 @@
 {{- if (eq .chezmoi.os "darwin") -}}
-#!/bin/sh
+#!/bin/zsh
 
 # Check for Homebrew and install if we don't have it
 if test ! $(which brew); then
