@@ -28,7 +28,7 @@ endif
 " Install plugins
 call plug#begin('~/.config/vim/plugged')
 Plug 'fxn/vim-monochrome' " colorscheme
-Plug 'arcticicestudio/nord-vim' " colorscheme
+Plug 'ghifarit53/tokyonight-vim' " colorscheme
 Plug 'vim-scripts/bash-support.vim'
 Plug 'tpope/vim-surround'
 call plug#end()
@@ -91,4 +91,14 @@ noremap j gj
 noremap k gk
 
 " Colors
-colorscheme nord
+set termguicolors
+
+let g:tokyonight_style = 'night'
+let g:tokyonight_enable_italic = 1
+let g:tokyonight_transparent_background = 1
+
+try
+    colorscheme tokyonight
+catch /^Vim\%((\a\+)\)\=:E185/
+    " use default colorscheme if tokyonight does not exist
+endtry
