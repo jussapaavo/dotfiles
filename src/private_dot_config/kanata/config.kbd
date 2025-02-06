@@ -37,7 +37,7 @@
   tab       q    w    e    r    t    y    u    i    o    p    å    ¨    ret
   @cap      a    s    d    f    g    h    j    k    l    ö    ä    '
   @lsf <    z    x    c    v    b    n    m    ,    .    -              @rsf
-  rctl lctl lalt lmet           spc            @cmd @opt
+  rctl lctl lalt lmet           spc            @cmr @opr
 )
 (deflayer nav
   @slp      _    _    _    _    _    _    _    _    _    _    _    _
@@ -45,7 +45,7 @@
   _         •    •    •    •    •    •    •    ▲    •    •    •    •    _
   @cap      lsft lctl lalt lmet •    •    ◀    ▼    ▶    •    •    •
   _    •    M-z  M-x  M-c  M-v  •    home pgdn pgup end  •              _
-  _    _    _    @cmr           _              @la1 @opt
+  _    _    _    @la1           _              @bas @opr
 )
 (deflayer num
   _         _    _    _    _    _    _    _    _    _    _    _    _
@@ -53,7 +53,7 @@
   _         •    •    •    •    •    •    7    8    9    •    •    •    _
   @cap      lsft lctl lalt lmet •    •    4    5    6    •    •    •
   _    •    •    •    •    •    •    0    1    2    3    •              _
-  _    _    _    @cmr           _              @cmd @la1
+  _    _    _    @la1           _              @cmr @bas
 )
 #|
 ## Variables
@@ -77,12 +77,14 @@
   lsf (fork lsft caps (rsft))
 
   ;; Setup layers
-  la1 (layer-switch base)
-  la2 (layer-switch nav)
-  la3 (layer-switch num)
-  cmd (tap-hold-press $tap-time $hold-time @la2 rmet)
-  opt (tap-hold-press $tap-time $hold-time @la3 ralt)
-  cmr (tap-hold-press $tap-time $hold-time @la1 lmet)
+  bas (layer-switch base)
+  num (layer-switch num)
+  nav (layer-switch nav)
+  la1 (tap-hold-press $tap-time $hold-time @bas lmet)
+  la2 (tap-hold-press $tap-time $hold-time @nav rmet)
+  la3 (tap-hold-press $tap-time $hold-time @num ralt)
+  cmr (fork @la2 rmet (ralt))
+  opr (fork @la3 ralt (rmet))
 
   ;; Shell commands
   beep (cmd say "beep")
