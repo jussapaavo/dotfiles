@@ -43,6 +43,8 @@ setopt NO_flow_control         {{- /* Disable start/stop characters in shell edi
 
 # Other keymaps
 bindkey -v                                   {{- /* enable vi mode */}}
+bindkey "^H" backward-delete-char            {{- /* make backspace behave */}}
+bindkey "^?" backward-delete-char            {{- /* make backspace behave */}}
 bindkey -M viins "^[[1;3C" forward-word      {{- /* alt+right: Move forward by word */}}
 bindkey -M viins "^[[1;3D" backward-word     {{- /* alt+left: Move backward by word */}}
 bindkey -M viins "^[[1;9D" beginning-of-line {{- /* ctrl+left: Move to the beginning of the line. */}}
