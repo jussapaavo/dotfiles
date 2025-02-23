@@ -4,6 +4,7 @@
   macos-dev-names-include (
     "Apple Internal Keyboard / Trackpad"
     "Magic Keyboard with Touch ID"
+    "Jussi - Magic Keyboard"
   )
 )
 (deflocalkeys-macos
