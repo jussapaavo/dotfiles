@@ -1,11 +1,11 @@
-# XDG
-export XDG_CONFIG_HOME=~/.config
-export XDG_CACHE_HOME=~/.cache
-export XDG_DATA_HOME=~/.local/share
-export XDG_STATE_HOME=~/.local/state
-export XDG_BIN_HOME=~/.local/bin
+# XDG dirs
+: ${XDG_CONFIG_HOME:=~/.config}
+: ${XDG_CACHE_HOME:=~/.cache}
+: ${XDG_DATA_HOME:=~/.local/share}
+: ${XDG_STATE_HOME:=~/.local/state}
+: ${XDG_BIN_HOME:=~/.local/bin}
 
 # Apps
-export DBT_PROFILES_DIR=$XDG_CONFIG_HOME/dbt/
-export UNISON=$XDG_CONFIG_HOME/unison
-export BAT_THEME='Monokai Extended'
+: ${DBT_PROFILES_DIR:=$XDG_CONFIG_HOME/dbt/}
+: ${UNISON:=$XDG_CONFIG_HOME/unison}
+: ${BAT_THEME:='Monokai Extended'}
