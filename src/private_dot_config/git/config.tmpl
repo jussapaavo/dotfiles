@@ -1,5 +1,4 @@
-[init]
-  defaultBranch = main
+{{- /* UI - Makes things easier to read */ -}}
 
 [color]
   ui = true
@@ -9,43 +8,78 @@
   changed = yellow
   untracked = red
 
-[core]
-  pager = delta
-	excludesfile = {{ .chezmoi.homeDir }}/.config/git/ignore
+[column]
+  ui = auto
 
-[interactive]
-  diffFilter = delta --color-only
+[branch]
+  sort = -committerdate
 
-[rerere]
-  enabled = true
+[tag]
+  sort = version:refname
 
 [commit]
   verbose = true
   gpgsign = true
 
-[push]
-  default = current
+{{- /* Funcionality - Better defaults and enable Quality of Life features */}}
 
-[pull]
-	rebase = true
+[init]
+  defaultBranch = main
 
-[merge]
-  conflictstyle = diff3
-
-[diff]
-  colorMoved = default
+[core]
+  pager = delta
+  excludesfile = {{ .chezmoi.homeDir }}/.config/git/ignore
 
 [delta]
-  navigate = true    # use n and N to move between diff sections
+  navigate = true # use n and N to move between diff sections
   line-numbers = true
   # side-by-side = true
+
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+
+[interactive]
+  diffFilter = delta --color-only
+
+[help]
+  autocorrect = prompt
+
+[push]
+  default = simple
+  autoSetupRemote = true
+  followTags = true
+
+[pull]
+  rebase = true
+
+[fetch]
+  all = true
+  prune = true
+  pruneTags = true
+
+[merge]
+  conflictstyle = zdiff3
+
+[rebase]
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
+
+[rerere]
+  enabled = true
+  autoupdate = true
+
+{{- /* User configs */}}
 
 [github]
   user = jussapaavo
 
 [user]
-	name = {{ .name }}
-	email = {{ .email_main }}
+  name = {{ .name }}
+  email = {{ .email_main }}
   {{- if .is_desktop }}
   signingkey = {{ .public_key_main }}
   {{- end }}
@@ -58,7 +92,7 @@
 
 {{ if .include_work -}}
 [includeIf "gitdir/i:**/SOK/"]
-	path = {{ .chezmoi.homeDir }}/.config/git/config-work
+  path = {{ .chezmoi.homeDir }}/.config/git/config-work
 {{- end }}
 
 {{ if (eq .chezmoi.os "darwin") -}}
