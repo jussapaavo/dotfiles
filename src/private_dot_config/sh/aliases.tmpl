@@ -37,10 +37,11 @@ alias jn='jupyter notebook'
 {{- end }}
 
 # Git
-alias gril='git rebase -i $(git merge-base HEAD main)'
+alias gril='git rebase -i $(git merge-base HEAD main)'           {{- /* git rebase all commits after branching our of main */}}
+alias gdo='git diff "origin/$(git rev-parse --abbrev-ref HEAD)"' {{- /* git diff local branch against origin */}}
 alias amend='git add . && git commit -a --amend --no-edit'
 alias force='git push --force-with-lease origin'
-alias nuke='git clean -df && git reset --hard origin/main'
+alias nuke='git clean -df && git reset --hard "origin/$(git rev-parse --abbrev-ref HEAD)"'
 alias prune='git branch --merged | egrep -v "(^\*|main|master|dev)" | xargs git branch -d'
 alias yolo='git commit -m "$(curl -s https://whatthecommit.com/index.txt)"'
 
