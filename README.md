@@ -7,11 +7,12 @@ These are my [dotfiles](https://dotfiles.github.io/), managed with [chezmoi](htt
 This repository contains the configurations for making my development environment feel like $HOME. It takes the effort out of setting up everything manually, especially when starting with a fresh new machine.
 
 I'm using:
-- [Kitty](https://sw.kovidgoyal.net/kitty/) as terminal emulator
+- [Ghostty](https://ghostty.org/) and [Kitty](https://sw.kovidgoyal.net/kitty/) as terminal emulator
 - [chezmoi](https://www.chezmoi.io/) to manage my configuration files
 - [Zim](https://github.com/zimfw/zimfw) as a configuration framework
 - [Unison](https://github.com/bcpierce00/unison) to sync my private config files
 - ZDOTDIR and XDG specs to keep my $HOME dir clean
+- And other [apps...](./src/dot_config)
 
 ## Installation
 
@@ -28,7 +29,7 @@ The following instructions will install chezmoi, clone this repo and apply the c
 
 ## Thanks To...
 
-This repository is based on [Dries Vints' dotfiles](https://github.com/driesvints/dotfiles) and [Tom Payne's chezmoi](https://github.com/twpayne/chezmoi). Thank you for all the inspiration, guides and excellent code you've provided.
+This repository is inspired by [Dries Vints' dotfiles](https://github.com/driesvints/dotfiles) and [Tom Payne's chezmoi](https://github.com/twpayne/chezmoi). Thank you for the guides and excellent code you've provided.
 
 ## Other references
 - [Awesome ZSH plugins & other resources](https://github.com/unixorn/awesome-zsh-plugins)
