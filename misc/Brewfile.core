@@ -32,6 +32,7 @@ brew 'ripgrep'    # Faster alternative to grep
 brew 'tealdeer'   # Better manpages
 brew 'thefuck'
 brew 'unison'     # File sync for backups
+brew 'uv'         # Better Python environments
 brew 'zoxide'     # Better cd in Terminal
 
 # Apps
