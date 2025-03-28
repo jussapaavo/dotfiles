@@ -20,12 +20,13 @@
 {{- $hostname := .chezmoi.hostname -}}
 {{- if eq .chezmoi.os "darwin" -}}
 {{-   $serialNumberSHA256Sum := index ioreg "IORegistryEntryChildren" 0 "IOPlatformSerialNumber" | sha256sum -}}
-{{-   if eq $serialNumberSHA256Sum "8a3df051540c8f8f000265e31fdc84196b7a91335f64c224a6e48c552f88c8e0" -}}
-{{-     $hostname = "jussis-imac" -}}
+{{-   if eq $serialNumberSHA256Sum "b36d8a635d1d25f2cf3c62b1f31c069ec8b46ce4e1848ff46cf7f3d6ecfe3148" -}}
+{{-     $hostname = "10000853il004" -}}
 {{-     $is_desktop = true -}}
 {{-     $include_work = true -}}
-{{-   else if eq $serialNumberSHA256Sum "b36d8a635d1d25f2cf3c62b1f31c069ec8b46ce4e1848ff46cf7f3d6ecfe3148" -}}
-{{-     $hostname = "10000853il004" -}}
+{{-     $is_owned_by_employer = true -}}
+{{-   else if eq $serialNumberSHA256Sum "2167725787f3451ef49d2b38ef50afbed3f47c67d963360d86ad2f54785b84bd" -}}
+{{-     $hostname = "10000852il041" -}}
 {{-     $is_desktop = true -}}
 {{-     $include_work = true -}}
 {{-     $is_owned_by_employer = true -}}
@@ -76,11 +77,6 @@
 {{-   end -}}
 {{- end -}}
 
-{{- $limit_backups := true -}}
-{{- if and $interactive $is_desktop -}}
-{{-   $limit_backups = promptBoolOnce . "limit_backups" "Only sync configs for essential apps" -}}
-{{- end -}}
-
 {{- if $interactive -}}
 {{-   writeToStdout "💡 Tip: you can re-enter your name and email with `chezmoi init --data=false`.\n" -}}
 {{- end -}}
@@ -99,7 +95,6 @@ data:
   hostname: {{ $hostname | quote }}
   is_arm: {{ $is_arm }}
   is_desktop: {{ $is_desktop }}
-  limit_backups: {{ $limit_backups }}
   is_owned_by_employer: {{ $is_owned_by_employer }}
   include_work: {{ $include_work }}
   is_headless: {{ $is_headless }}
