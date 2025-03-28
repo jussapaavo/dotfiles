@@ -18,11 +18,10 @@ ln -s $(brew --cellar python)/* $(pyenv root)/versions/
 
 # Install Python versions
 python_versions=(
+    3.12
     3.11
     3.10
     3.9
-    3.8
-    3.7
 )
 
 for version in $python_versions; do
@@ -42,21 +41,23 @@ python_version=$(which python3)
 ###
 
 # Setup
-pipx ensurepath
+if test $(which pipx); then
+    pipx ensurepath
 
-# Install additional command line tools
-pipx install pytest
-pipx install black
-pipx install pipenv
-pipx install gitlint --include-deps
+    # Install additional command line tools
+    pipx install pytest
+    pipx install black
+    pipx install pipenv
+    pipx install gitlint --include-deps
 
-# Install dbt
-pipx install --python $python_version dbt-core
-pipx inject dbt-core dbt-bigquery
-pipx inject dbt-core dbt-snowflake
-pipx inject dbt-core dbt-athena-community
-pipx inject dbt-core sqlfluff --include-apps
-pipx inject dbt-core sqlfluff-templater-dbt
+    # Install dbt
+    pipx install --python $python_version dbt-core
+    pipx inject dbt-core dbt-bigquery
+    pipx inject dbt-core dbt-snowflake
+    pipx inject dbt-core dbt-athena-community
+    pipx inject dbt-core sqlfluff --include-apps
+    pipx inject dbt-core sqlfluff-templater-dbt
+fi
 
 ###
 # Install packages from Pipfile with pipenv. Read more here: https://liatas.com/posts/anaconda-vs-pyenv-pipenv/
