@@ -18,6 +18,7 @@ zmodule git
 zmodule paulirish/git-open
 zmodule mattmc3/zfunctions
 zmodule ohmyzsh/ohmyzsh --root plugins/aliases
+zmodule ohmyzsh/ohmyzsh --root plugins/dirhistory
 zmodule ohmyzsh/ohmyzsh --root plugins/history-substring-search
 
 zmodule ohmyzsh/ohmyzsh --root plugins/zoxide
@@ -30,6 +31,7 @@ zmodule ohmyzsh/ohmyzsh --root plugins/thefuck
 
 # Local plugins
 zmodule {{ .chezmoi.homeDir }}/.config/zsh/plugins/options
+zmodule {{ .chezmoi.homeDir }}/.config/zsh/plugins/better-cd
 {{ if eq .chezmoi.os "darwin" -}}
 zmodule {{ .chezmoi.homeDir }}/.config/zsh/plugins/aws
 zmodule {{ .chezmoi.homeDir }}/.config/zsh/plugins/gcloud
