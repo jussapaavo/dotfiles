@@ -49,6 +49,7 @@ if test $(which pipx); then
     pipx install black
     pipx install pipenv
     pipx install gitlint --include-deps
+    pipx install yamllint
 
     # Install dbt
     pipx install --python $python_version dbt-core
