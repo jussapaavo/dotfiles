@@ -6,6 +6,6 @@
 : ${XDG_BIN_HOME:=~/.local/bin}
 
 # Apps
-: ${DBT_PROFILES_DIR:=$XDG_CONFIG_HOME/dbt/}
-: ${BAT_THEME:='Monokai Extended'}
+export DBT_PROFILES_DIR=$XDG_CONFIG_HOME/dbt/
+export BAT_THEME='Monokai Extended'
 export UNISON=$XDG_CONFIG_HOME/unison
