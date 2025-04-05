@@ -4,7 +4,7 @@
 allow_concurrent_presets = false
 
 [defaults]
-kanata_executable = '~/bin/kanata'
+kanata_executable = '~/.local/bin/kanata'
 
 [defaults.hooks]
 
