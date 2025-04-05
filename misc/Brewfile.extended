@@ -41,6 +41,7 @@ cask 'pearcleaner'
 cask 'pronotes'
 cask 'slack'
 cask 'zoom'
+cask 'xld'            # Lossless audio conversion
 
 # Finder Quicklook
 cask 'apparency'        # Show better app info
