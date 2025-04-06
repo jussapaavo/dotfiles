@@ -7,63 +7,39 @@ source ~/.zshenv
 # Install Python
 ###
 
-# Check for pyenv and install if we don't have it
-if ! command -v pyenv 1>/dev/null 2>&1; then
-  brew install pyenv
+# Check for uv and install if we don't have it
+if ! command -v uv 1>/dev/null 2>&1; then
+  brew install uv
 fi
-
-# Link Homebrew's Python versions
-mkdir -p $(pyenv root)/versions/
-ln -s $(brew --cellar python)/* $(pyenv root)/versions/
 
 # Install Python versions
 python_versions=(
+    3.13
     3.12
     3.11
-    3.10
-    3.9
 )
-
-for version in $python_versions; do
-    if pyenv versions | grep -q "${version}"; then
-        echo "Python ${version} already installed."
-    else
-        pyenv install ${version}:latest
-    fi
-done
-
-# Set global Python version
-pyenv global $python_versions[1]
-python_version=$(which python3)
+uv python install $python_versions
 
 ###
 # Install packages with pipx
 ###
 
 # Setup
-if test $(which pipx); then
-    pipx ensurepath
+if test $(which uv); then
 
     # Install additional command line tools
-    pipx install pytest
-    pipx install black
-    pipx install pipenv
-    pipx install gitlint --include-deps
-    pipx install yamllint
+    uv tool install pytest
+    uv tool install black
+    uv tool install yamllint
 
     # Install dbt
-    pipx install --python $python_version dbt-core
-    pipx inject dbt-core dbt-bigquery
-    pipx inject dbt-core dbt-snowflake
-    pipx inject dbt-core dbt-athena-community
-    pipx inject dbt-core sqlfluff --include-apps
-    pipx inject dbt-core sqlfluff-templater-dbt
+    uv tool install --python 3.12 dbt-core \
+        --with dbt-bigquery \
+        --with dbt-snowflake \
+        --with dbt-athena-community \
+
+    uv tool install --python 3.12 sqlfluff \
+        --with sqlfluff-templater-dbt
 fi
-
-###
-# Install packages from Pipfile with pipenv. Read more here: https://liatas.com/posts/anaconda-vs-pyenv-pipenv/
-###
-
-# No pipenv installations currently.
 
 {{- end }}
