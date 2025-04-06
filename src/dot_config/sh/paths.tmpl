@@ -12,11 +12,6 @@ path=(
   /opt/homebrew/bin(N)
   {{- end }}
 
-  {{- /* ### App paths ### */}}
-  {{- if (eq .chezmoi.os "darwin") }}
-  ${PYENV_ROOT:-$HOME/.pyenv}/shims(N) {{- /* Used by pyenv */}}
-  {{- end }}
-
   {{- /* ### Other ### */}}
   $path
 )

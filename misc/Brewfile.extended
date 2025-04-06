@@ -7,6 +7,7 @@ brew 'trash'          # Manage the Trash bin
 # Development
 brew 'awscli'         # Official AWS command-line interface
 brew 'flake8'         # Python linting
+brew 'gitlint'        # Commit linting
 brew 'gh'             # GitHub CLI
 brew 'hub'            # GitHub CLI extensions
 brew 'hugo'           # Build static websites from markdown files

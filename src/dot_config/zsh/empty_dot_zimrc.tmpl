@@ -25,6 +25,8 @@ zmodule ohmyzsh/ohmyzsh --root plugins/zoxide
 zmodule ohmyzsh/ohmyzsh --root plugins/fzf
 zmodule Aloxaf/fzf-tab
 {{ if eq .chezmoi.os "darwin" -}}
+[ -d "$ZSH_CACHE_DIR/completions" ] || mkdir -p "$ZSH_CACHE_DIR/completions" {{- /* Create completions dir for uv */}}
+zmodule ohmyzsh/ohmyzsh --root plugins/uv
 zmodule ohmyzsh/ohmyzsh --root plugins/direnv
 zmodule ohmyzsh/ohmyzsh --root plugins/thefuck
 {{- end }}
