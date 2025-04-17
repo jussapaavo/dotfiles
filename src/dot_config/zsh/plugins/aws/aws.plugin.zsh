@@ -1,4 +1,6 @@
-source "$(dirname "$0")/functions/aws_set_profile"
+fpath=(${0:A:h}/functions $fpath)
+autoload -U $fpath[1]/*(.:t)
+compdef _aws_set_profile aws_set_profile
 
 ## Add aliases for ease-of-use
 alias asp='aws_set_profile'
