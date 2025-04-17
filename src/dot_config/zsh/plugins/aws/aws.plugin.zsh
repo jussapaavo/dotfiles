@@ -1,8 +1,9 @@
-source "$(dirname "$0")/functions/aws_set_profile"
+source ${0:A:h}/functions/aws_set_profile
+compdef _aws_set_profile aws_set_profile
 
 ## Add aliases for ease-of-use
 alias asp='aws_set_profile'
-alias al='asp'
+alias al='aws_set_profile'
 
 ###
 # Load awscli completions
