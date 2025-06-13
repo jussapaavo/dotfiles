@@ -1,3 +1,5 @@
+tap "FelixKratz/formulae"
+
 # Binaries
 brew 'ffmpeg'         # Better audio and video handling
 brew 'httpie'
@@ -15,7 +17,16 @@ brew 'terragrunt'
 brew 'wakeonlan'
 cask 'google-cloud-sdk'
 
-# Flex
+# UI/UX Mods
+brew 'borders'        # Requires FelixKratz/formulae
+brew 'sketchybar'     # Requires FelixKratz/formulae
+cask 'nikitabobko/tap/aerospace'
+cask 'betterdisplay'
+cask 'bettermouse'
+cask 'flux'
+cask 'monitorcontrol'
+
+# Ricing
 brew 'cmatrix'        # Terminal screensaver
 brew 'lolcat'         # Make text inputs colorful
 brew 'neofetch'       # Display information about your system in terminal
@@ -23,18 +34,14 @@ brew 'neofetch'       # Display information about your system in terminal
 # Apps
 cask '1password'
 cask 'avast-security'
-cask 'betterdisplay'
-cask 'bettermouse'
 cask 'brave-browser'
 cask 'discord'
 cask 'dropbox'
 cask 'firefox'
-cask 'flux'
 cask 'google-chrome'
 cask 'gpg-suite'
 cask 'iina'           # Open-Source Video Player
 cask 'imageoptim'
-cask 'monitorcontrol'
 cask 'numi'
 cask 'obsidian'
 cask 'onyx'
@@ -55,6 +62,7 @@ cask 'syntax-highlight', args: { no_quarantine: true }
 # Fonts
 cask 'font-fira-code-nerd-font'
 cask 'font-fira-mono-nerd-font'
+cask 'font-hack-nerd-font'
 cask 'font-jetbrains-mono-nerd-font'
 cask 'font-lato'
 cask 'font-meslo-lg-nerd-font'
