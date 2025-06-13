@@ -1,0 +1,26 @@
+{{ includeTemplate "dot_config/aerospace/.chezmoitemplates/main.toml" }}
+{{ includeTemplate "dot_config/aerospace/.chezmoitemplates/apps.toml" }}
+{{ includeTemplate "dot_config/aerospace/.chezmoitemplates/binding-main.toml" }}
+
+[mode.service.binding]
+esc = ['reload-config', 'mode main']
+# reset layout
+r = ['flatten-workspace-tree', 'mode main']
+# Toggle between floating and tiling layout
+f = [
+    'layout floating tiling',
+    'mode main',
+]
+#backspace = ['close-all-windows-but-current', 'mode main']
+
+[mode.apps.binding]
+esc = ['reload-config', 'mode main']
+alt-w = ['exec-and-forget open -a /Applications/WezTerm.app', 'mode main']
+
+# [workspace-to-monitor-force-assignment]
+#     1 = '^dell$'
+#     2 = '^dell$'
+#     3 = '^dell$'
+#     4 = '^dell$'
+#     5 = 'main'
+#     6 = '^elgato$'
