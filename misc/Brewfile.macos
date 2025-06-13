@@ -7,18 +7,18 @@ brew 'trash'          # Manage the Trash bin
 # Development
 brew 'awscli'         # Official AWS command-line interface
 brew 'flake8'         # Python linting
-brew 'gitlint'        # Commit linting
 brew 'gh'             # GitHub CLI
+brew 'gitlint'        # Commit linting
 brew 'hub'            # GitHub CLI extensions
 brew 'hugo'           # Build static websites from markdown files
 brew 'terragrunt'
-cask 'google-cloud-sdk'
 brew 'wakeonlan'
+cask 'google-cloud-sdk'
 
 # Flex
-brew 'neofetch'       # Display information about your system in terminal
 brew 'cmatrix'        # Terminal screensaver
 brew 'lolcat'         # Make text inputs colorful
+brew 'neofetch'       # Display information about your system in terminal
 
 # Apps
 cask '1password'
@@ -32,8 +32,8 @@ cask 'firefox'
 cask 'flux'
 cask 'google-chrome'
 cask 'gpg-suite'
-cask 'imageoptim'
 cask 'iina'           # Open-Source Video Player
+cask 'imageoptim'
 cask 'monitorcontrol'
 cask 'numi'
 cask 'obsidian'
@@ -42,8 +42,8 @@ cask 'pearcleaner'
 cask 'pronotes'
 cask 'rancher'        # Open-source container management
 cask 'slack'
-cask 'zoom'
 cask 'xld'            # Lossless audio conversion
+cask 'zoom'
 
 # Finder Quicklook
 cask 'apparency'        # Show better app info
@@ -53,17 +53,18 @@ cask 'quicklook-json'   # Preview json files
 cask 'syntax-highlight', args: { no_quarantine: true }
 
 # Fonts
+cask 'font-fira-code-nerd-font'
+cask 'font-fira-mono-nerd-font'
+cask 'font-jetbrains-mono-nerd-font'
 cask 'font-lato'
+cask 'font-meslo-lg-nerd-font'
 cask 'font-open-sans'
 cask 'font-roboto'
-cask 'font-meslo-lg-nerd-font'
+cask 'font-sf-pro'
 cask 'font-source-code-pro-for-powerline'
 cask 'font-source-code-pro'
 cask 'font-source-sans-3'
 cask 'font-source-serif-4'
-cask 'font-fira-code-nerd-font'
-cask 'font-fira-mono-nerd-font'
-cask 'font-jetbrains-mono-nerd-font'
 
 # Mac App Store
 mas 'Affinity Photo', id: 824183456

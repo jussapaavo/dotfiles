@@ -10,7 +10,6 @@ brew update
 
 # Install Brewfiles
 BREWFILE_CORE={{ .chezmoi.sourceDir }}/utils/Brewfile.core
-BREWFILE_EXTENDED={{ .chezmoi.sourceDir }}/utils/Brewfile.extended
 
 if test $(brew bundle check --file=$BREWFILE_CORE); then
     brew bundle --file=$BREWFILE_CORE
