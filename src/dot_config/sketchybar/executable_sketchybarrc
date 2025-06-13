@@ -1,0 +1,79 @@
+#!/bin/bash
+
+export SBAR_CONFIG_DIR="$HOME/.config/sketchybar"
+export SBAR_PLUGIN_DIR="$SBAR_CONFIG_DIR/plugins" # Directory where all the plugin scripts are stored
+export SBAR_ITEM_DIR="$SBAR_CONFIG_DIR/items" # Directory where the items are configured
+
+source "$SBAR_CONFIG_DIR/colors.sh" # Loads all defined colors
+source "$SBAR_CONFIG_DIR/icons.sh" # Loads all defined icons
+
+###
+# Bar Appearance
+###
+
+# Configuring the general appearance of the bar.
+# These are only some of the options available. For all options see:
+# https://felixkratz.github.io/SketchyBar/config/bar
+# If you are looking for other colors, see the color picker:
+# https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
+
+FONT="SF Pro" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
+PADDINGS=3 # All paddings use this value (icon, label, background)
+POPUP_BORDER_WIDTH=2
+POPUP_CORNER_RADIUS=11
+SHADOW=on
+
+bar_config=(
+    --bar
+    height=50
+    color=$BAR_COLOR
+    shadow=$SHADOW
+    position=right
+    sticky=on
+    padding_right=18
+    padding_left=18
+    corner_radius=9
+    y_offset=10
+    margin=10
+    blur_radius=20
+)
+
+###
+# Changing Defaults
+###
+
+# We now change some default values, which are applied to all further items.
+# For a full list of all available item properties see:
+# https://felixkratz.github.io/SketchyBar/config/items
+
+default=(
+    --default
+    updates=when_shown
+    icon.font="$FONT:Bold:14.0"
+    icon.color=$ICON_COLOR
+    icon.padding_left=$PADDINGS
+    icon.padding_right=$PADDINGS
+    label.font="$FONT:Semibold:13.0"
+    label.color=$LABEL_COLOR
+    label.padding_left=$PADDINGS
+    label.padding_right=$PADDINGS
+    background.padding_right=$PADDINGS
+    background.padding_left=$PADDINGS
+    popup.background.border_width=2
+    popup.background.corner_radius=11
+    popup.background.border_color=$POPUP_BORDER_COLOR
+    popup.background.color=$POPUP_BACKGROUND_COLOR
+    popup.background.shadow.drawing=$SHADOW
+)
+
+sketchybar "${bar_config[@]}" "${default[@]}"
+
+# Left
+source "$SBAR_ITEM_DIR/apple.sh"
+source "$SBAR_ITEM_DIR/spaces.sh"
+
+# Right
+source "$SBAR_ITEM_DIR/calendar.sh"
+
+############## FINALIZING THE SETUP ##############
+sketchybar --update

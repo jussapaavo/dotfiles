@@ -1,0 +1,57 @@
+[mode.apps.binding]
+esc = ['reload-config', 'mode main']
+
+# New browser window with Work profile
+n = ['exec-and-forget open -na "Google Chrome" --args --profile-directory="Profile 1"', 'mode main']
+# New browser window with Personal profile
+shift-n = ['exec-and-forget open -na "Google Chrome" --args --profile-directory="Default"', 'mode main']
+
+# Launch Visual Studio Code
+c = ['exec-and-forget open -a /Applications/Visual\ Studio\ Code.app', 'mode main']
+
+# Launch Ghostty
+t = ['''exec-and-forget osascript <<END
+    tell application "System Events" to tell process "Ghostty"
+        click menu item "New Window" of menu 1 of menu bar item "File" of menu bar 1
+        activate
+    end tell
+END
+''', 'mode main']
+
+g = ['''exec-and-forget osascript <<END
+    tell application "System Events" to tell process "Ghostty"
+        click menu item "New Window" of menu 1 of menu bar item "File" of menu bar 1
+        activate
+    end tell
+END
+''', 'mode main']
+
+# Launch Finder
+f = ['''exec-and-forget osascript <<END
+    tell application "Finder"
+        if frontmost then
+            tell application "System Events" to set visible of process "Finder" to false
+        else if (count windows) = 0 then
+            reveal (path to home folder)
+            activate
+        else
+            tell application "System Events" to set visible of process "Finder" to true
+            set frontmost to true
+        end if
+    end tell
+END
+''', 'mode main']
+
+# cmd-alt-ctrl-todo = '''exec-and-forget HAS_FINDER_WINDOW=$(aerospace list-windows --workspace focused --app-bundle-id com.apple.finder); \
+# if [ -z "$HAS_FINDER_WINDOW" ]; then \
+#     osascript -e 'tell application "System Events" to set visible of process "Finder" to true' \
+#     -e 'set frontmost to true' ; \
+# else \
+#     osascript -e 'tell application "System Events" to set visible of process "Finder" to false' ; \
+# fi
+# '''
+
+# alt-t = 'exec-and-forget open -a /Applications/Telegram.app'
+# alt-a = 'exec-and-forget open -a /Applications/Arc.app'
+# alt-o = 'exec-and-forget open -a /Applications/Obsidian.app'
+# alt-s = 'exec-and-forget open -a /Applications/Safari.app'

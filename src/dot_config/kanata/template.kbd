@@ -16,3 +16,21 @@
   •    •    •    •              •              •    •
 )
 |#
+
+#| Corne version
+(deflayer empty-template
+  _    _    _    _    _    _         _    _    _    _    _    _
+  _    _    _    _    _    _         _    _    _    _    _    _
+  _    _    _    _    _    _         _    _    _    _    _    _
+                 _    _    _         _    _    _
+)
+|#
+
+#| Corne version
+(deflayer empty-template
+  tab  q    w    e    r    t         y    u    i    o    p    bspc
+  hpr  a    s    d    f    g         h    j    k    l    ö    ä
+  lsft z    x    c    v    b         n    m    ,    .    -    _
+                 lalt lmet spc       ret  _    _
+)
+|#
