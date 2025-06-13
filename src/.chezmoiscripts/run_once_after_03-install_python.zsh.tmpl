@@ -36,10 +36,14 @@ if test $(which uv); then
     uv tool install --python 3.12 dbt-core \
         --with dbt-bigquery \
         --with dbt-snowflake \
-        --with dbt-athena-community \
+        --with dbt-athena-community
 
     uv tool install --python 3.12 sqlfluff \
-        --with sqlfluff-templater-dbt
+        --with sqlfluff-templater-dbt \
+        --with dbt-athena-community \
+        --with dbt-bigquery \
+        --with dbt-snowflake \
+        --with dbt-athena-community
 fi
 
 {{- end }}
