@@ -9,6 +9,7 @@
 )
 (deflocalkeys-macos
   §    86
+  +    12
   ´    13
   ¨    27
   '    43
@@ -16,6 +17,8 @@
   ä    40
   ö    39
   <    41
+  ,    51
+  .    52
   -    53
 )
 #|
@@ -43,14 +46,14 @@
 (deflayer nav
   @slp      _    _    _    _    _    _    _    _    _    _    _    _
   @rld      •    •    •    •    •    •    •    •    •    •    •    •    _
-  _         •    •    •    •    •    •    •    ▲    •    •    •    •    _
-  @cap      lsft lctl lalt lmet •    •    ◀    ▼    ▶    •    •    •
+  _         •    •    •    •    •    •    •    •    •    •    •    •    _
+  @cap      lsft lctl lalt lmet •    ◀    ▲    ▼    ▶    •    •    •
   _    •    M-z  M-x  M-c  M-v  •    home pgdn pgup end  •              _
   _    _    _    @la1           _              @bas @opr
 )
 (deflayer num
   _         _    _    _    _    _    _    _    _    _    _    _    _
-  @rld      •    •    •    •    •    •    •    •    •    •    •    •    _
+  @rld      S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  S-9  S-0  S-+  S-´  _
   _         •    •    •    •    •    •    7    8    9    •    •    •    _
   @cap      lsft lctl lalt lmet •    •    4    5    6    •    •    •
   _    •    •    •    •    •    •    0    1    2    3    •              _
@@ -89,7 +92,7 @@
 
   ;; Shell commands
   beep (cmd say "beep")
-  sleep (cmd pmset displaysleepnow)
+  sleep (cmd osascript -e r#"tell application "System Events" to sleep"#)
   ◀◀ (cmd osascript -e r#"tell application "Spotify" to previous track"#)
   ▶⏸ (cmd osascript -e r#"tell application "Spotify" to playpause"#)
   ▶▶ (cmd osascript -e r#"tell application "Spotify" to next track"#)
