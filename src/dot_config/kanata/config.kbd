@@ -21,6 +21,20 @@
   .    52
   -    53
 )
+(defvirtualkeys
+  ;; Define some virtual keys that perform modifier actions
+  ctl lctl
+  sft lsft
+  met lmet
+  alt lalt
+
+  ;; A virtual key that toggles all modifier virtual keys above
+  hyper (multi
+    (on-press tap-virtualkey ctl)
+    (on-press tap-virtualkey met)
+    (on-press tap-virtualkey alt)
+  )
+)
 #|
 ## Source
 |#
@@ -29,8 +43,8 @@
   §         1    2    3    4    5    6    7    8    9    0    +    ´    bspc
   tab       q    w    e    r    t    y    u    i    o    p    å    ¨    ret
   caps      a    s    d    f    g    h    j    k    l    ö    ä    '
-  lsft <    z    x    c    v    b    n    m    ,    .    -              rsft
-  rctl lctl lalt lmet           spc            rmet ralt
+  lsft <    z    x    c    v    b    n    m    ,    .    -         ▲    rsft
+  rctl lctl lalt lmet           spc            rmet ralt      ◀    ▼    ▶
 )
 #|
 ## Layers
@@ -40,24 +54,32 @@
   §         1    2    3    4    5    6    7    8    9    0    +    ´    bspc
   tab       q    w    e    r    t    y    u    i    o    p    å    ¨    ret
   @cap      a    s    d    f    g    h    j    k    l    ö    ä    '
-  @lsf <    z    x    c    v    b    n    m    ,    .    -              @rsf
-  rctl lctl lalt lmet           spc            @cmr @opr
+  @lsf <    z    x    c    v    b    n    m    ,    .    -         ▲    @rsf
+  rctl lctl lalt lmet           spc            @cmr @opr      ◀    ▼    ▶
 )
 (deflayer nav
   @slp      _    _    _    _    _    _    _    _    _    _    _    _
   @rld      •    •    •    •    •    •    •    •    •    •    •    •    _
   _         •    •    •    •    •    •    •    •    •    •    •    •    _
   @cap      lsft lctl lalt lmet •    ◀    ▲    ▼    ▶    •    •    •
-  _    •    M-z  M-x  M-c  M-v  •    home pgdn pgup end  •              _
-  _    _    _    @la1           _              @bas @opr
+  _    •    M-z  M-x  M-c  M-v  •    home pgdn pgup end  •         ▲    _
+  _    _    _    @la1           _              @bas @opr      ◀    ▼    ▶
 )
 (deflayer num
   _         _    _    _    _    _    _    _    _    _    _    _    _
   @rld      S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  S-9  S-0  S-+  S-´  _
   _         •    •    •    •    •    •    7    8    9    •    •    •    _
   @cap      lsft lctl lalt lmet •    •    4    5    6    •    •    •
-  _    •    •    •    •    •    •    0    1    2    3    •              _
-  _    _    _    @la1           _              @cmr @bas
+  _    •    •    •    •    •    •    0    1    2    3    •         ▲    _
+  _    _    _    @la1           _              @cmr @bas      ◀    ▼    ▶
+)
+(deflayer hyper
+  _         •          •          •          •          •          •          •          •          •          •          •          •
+  _         C-A-M-1    C-A-M-2    C-A-M-3    C-A-M-4    C-A-M-5    C-A-M-6    C-A-M-7    C-A-M-8    C-A-M-9    C-A-M-0    C-A-M-+    C-A-M-´    •
+  _         C-A-M-q    C-A-M-w    C-A-M-e    C-A-M-r    C-A-M-t    C-A-M-y    C-A-M-u    C-A-M-i    C-A-M-o    C-A-M-p    C-A-M-å    •          •
+  _         C-A-M-a    C-A-M-s    C-A-M-d    C-A-M-f    C-A-M-g    C-A-M-h    C-A-M-j    C-A-M-k    C-A-M-l    C-A-M-ö    C-A-M-ä    •
+  _    _    C-A-M-z    C-A-M-x    C-A-M-c    C-A-M-v    C-A-M-b    C-A-M-n    C-A-M-m    C-A-M-,    C-A-M-.    C-A-M--               C-A-M-▲    •
+  _    _    •          •                     •                     •          •                                           C-A-M-◀    C-A-M-▼    C-A-M-▶
 )
 #|
 ## Variables
@@ -70,8 +92,10 @@
 ## Aliases
 |#
 (defalias
-  ;; Replace default caps-lock. tap: backspace, hold: hyper
-  cap (tap-hold-press $tap-time $hold-time esc f19)
+  ;; Replace default caps-lock. tap: esc, hold: hyper
+  hpr (on-press press-virtualkey hyper)
+  cap (tap-hold-press $tap-time $hold-time esc (layer-while-held hyper))
+  ;; cap (tap-hold-press $tap-time $hold-time esc @hpr)
 
   ;; tap: Trigger MacOS App Expose
   exp (tap-hold $tap-time $hold-time C-up C-down)
