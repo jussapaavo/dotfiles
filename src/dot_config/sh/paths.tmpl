@@ -9,7 +9,7 @@ path=(
 
   {{- /* ### Homebrew paths ### */}}
   {{- if and .is_arm (eq .chezmoi.os "darwin") }}
-  /opt/homebrew/bin(N)
+  /opt/homebrew/{,s}bin(N)
   {{- end }}
 
   {{- /* ### Other ### */}}
