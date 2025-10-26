@@ -50,3 +50,7 @@ git_commit_add_all_with_message() {
     git add --all && git commit --message "$@"
 }
 alias gcam='git_commit_add_all_with_message'
+
+# dbt aliases
+alias dbtf=/Users/jussi.kamarainen/.local/bin/dbt
+alias dbtu='uv tool run --from dbt-core dbt'
