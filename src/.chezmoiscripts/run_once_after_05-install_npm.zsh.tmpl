@@ -4,7 +4,10 @@
 source ~/.zshenv
 
 if test $(which npm); then
+  # Linting and formatting
   npm i -g prettier prettier-plugin-sh prettier-plugin-toml
+  # Other tools
+  npm i -g agentic-pm
 fi
 
 {{- end }}

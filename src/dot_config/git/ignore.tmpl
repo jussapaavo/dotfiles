@@ -3,6 +3,8 @@
 .justfile
 *.ignore
 .envrc*
+.apm
+.apm/**/*
 
 {{ if (eq .chezmoi.os "darwin") -}}
 ### macOS ###
