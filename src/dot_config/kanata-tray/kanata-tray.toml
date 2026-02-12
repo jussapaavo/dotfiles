@@ -5,6 +5,7 @@ allow_concurrent_presets = false
 
 [defaults]
 kanata_executable = '~/.local/bin/kanata'
+extra_args = ["--nodelay", "--no-wait"]
 
 [defaults.hooks]
 
