@@ -13,8 +13,8 @@ alias justfile='code ~/.justfile'
 {{- end }}
 
 # Mask built-ins with better defaults
-alias grep='command grep --exclude-dir={.git,.vscode}'
 {{ if eq .chezmoi.os "darwin" -}}
+alias grep='command grep --exclude-dir={.git,.vscode}'
 alias ls='lsd'
 {{- end }}
 
