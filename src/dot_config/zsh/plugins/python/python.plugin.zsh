@@ -12,5 +12,5 @@ eval "$(uvx --generate-shell-completion zsh)"
 
 # Python aliases
 alias py='python3'
-alias pyva="source .venv/bin/activate"
-alias venv="source .venv/bin/activate"
+alias pyva="source .venv/bin/activate 2>/dev/null || source \$(git rev-parse --show-toplevel)/.venv/bin/activate"
+alias venv="source .venv/bin/activate 2>/dev/null || source \$(git rev-parse --show-toplevel)/.venv/bin/activate"
