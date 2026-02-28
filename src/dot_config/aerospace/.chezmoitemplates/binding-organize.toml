@@ -1,0 +1,52 @@
+[mode.organize.binding]
+esc = ['reload-config', 'mode main']
+
+# Layout management
+shift-f = 'fullscreen'
+shift-r = 'flatten-workspace-tree'
+
+shift-l = 'layout floating tiling'
+shift-t = 'layout tiles horizontal vertical'
+shift-a = 'layout accordion horizontal vertical'
+cmd-alt-ctrl-sectionSign = 'resize smart +150'
+cmd-alt-ctrl-shift-sectionSign = 'resize smart -150'
+
+# Window management
+left = 'focus left'
+down = 'focus down'
+up = 'focus up'
+right = 'focus right'
+
+shift-left = 'move left'
+shift-down = 'move down'
+shift-up = 'move up'
+shift-right = 'move right'
+
+h = ['join-with left', 'layout accordion']
+j = ['join-with down', 'layout accordion']
+k = ['join-with up', 'layout accordion']
+l = ['join-with right', 'layout accordion']
+
+# Workspace management
+1 = 'workspace 1'
+2 = 'workspace 2'
+3 = 'workspace 3'
+4 = 'workspace 4'
+q = 'workspace q'
+w = 'workspace w'
+e = 'workspace e'
+s = 'workspace s'
+p = 'workspace p'
+
+shift-1 = 'move-node-to-workspace 1'
+shift-2 = 'move-node-to-workspace 2'
+shift-3 = 'move-node-to-workspace 3'
+shift-4 = 'move-node-to-workspace 4'
+shift-q = 'move-node-to-workspace q'
+shift-w = 'move-node-to-workspace w'
+shift-e = 'move-node-to-workspace e'
+shift-s = 'move-node-to-workspace s'
+shift-p = 'move-node-to-workspace p'
+
+cmd-alt-ctrl-tab = 'workspace-back-and-forth'
+cmd-alt-ctrl-shift-tab = 'move-workspace-to-monitor --wrap-around next'

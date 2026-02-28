@@ -1,4 +1,6 @@
 [mode.main.binding]
+cmd-alt-ctrl-space = 'mode apps'
+cmd-alt-ctrl-o = 'mode organize'
 
 # All possible keys:
 # - Letters.        a, b, c, ..., z
@@ -23,9 +25,6 @@
 #     activate
 # end tell'
 # '''
-
-# Other modes
-cmd-alt-ctrl-space = 'mode apps'
 
 cmd-alt-ctrl-f = 'fullscreen'
 cmd-alt-ctrl-shift-f = 'fullscreen'
