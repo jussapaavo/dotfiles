@@ -6,7 +6,6 @@
 5 = 'main'
 6 = 'main'
 s = ['built-in', 'secondary']
-p = 'main'
 
 # [[on-window-detected]]
 # if.app-id = 'com.apple.systempreferences'
