@@ -25,3 +25,56 @@
   stripComponents: 1
   refreshPeriod: 168h
 {{ end -}}
+
+{{- if (eq .chezmoi.os "darwin") }}
+agent-skills-anthropic:
+  targetPath: ".config/opencode/skills"
+  type: archive
+  url: "https://github.com/anthropics/skills/archive/refs/heads/main.tar.gz"
+  exact: true
+  stripComponents: 2
+  include:
+    - "*/skills/skill-creator/**"
+  refreshPeriod: 168h
+
+agent-skills-astral:
+  targetPath: ".config/opencode/skills"
+  type: archive
+  url: "https://github.com/astral-sh/claude-code-plugins/archive/refs/heads/main.tar.gz"
+  exact: true
+  stripComponents: 4
+  include:
+    - "*/plugins/astral/skills/uv/**"
+  refreshPeriod: 168h
+
+agent-skills-dbt:
+  targetPath: ".config/opencode/skills"
+  type: archive
+  url: "https://github.com/dbt-labs/dbt-agent-skills/archive/refs/heads/main.tar.gz"
+  exact: true
+  stripComponents: 4
+  include:
+    - "*/skills/dbt/skills/**"
+  refreshPeriod: 168h
+
+agent-skills-python-testing:
+  targetPath: ".config/opencode/skills"
+  type: archive
+  url: "https://github.com/wshobson/agents/archive/refs/heads/main.tar.gz"
+  exact: true
+  stripComponents: 4
+  include:
+    - "*/plugins/python-development/skills/python-testing-patterns/**"
+  refreshPeriod: 168h
+
+agent-skills-terraform:
+  targetPath: ".config/opencode/skills/terraform"
+  type: archive
+  url: "https://github.com/antonbabenko/terraform-skill/archive/refs/heads/master.tar.gz"
+  exact: true
+  stripComponents: 1
+  include:
+    - "*/references/**"
+    - "*/SKILL.md"
+  refreshPeriod: 168h
+{{ end -}}
