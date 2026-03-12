@@ -67,6 +67,19 @@ agent-skills-python-testing:
     - "*/plugins/python-development/skills/python-testing-patterns/**"
   refreshPeriod: 168h
 
+agent-skills-obsidian:
+  targetPath: ".config/opencode/skills"
+  type: archive
+  url: "https://github.com/kepano/obsidian-skills/archive/refs/heads/main.tar.gz"
+  exact: true
+  stripComponents: 2
+  include:
+    - "*/skills/**"
+  exclude:
+    - "*/.claude-plugin/**"
+    - "*/skills/defuddle/**"
+  refreshPeriod: 168h
+
 agent-skills-terraform:
   targetPath: ".config/opencode/skills/terraform"
   type: archive
