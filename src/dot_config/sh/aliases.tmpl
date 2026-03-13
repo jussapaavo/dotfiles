@@ -2,9 +2,11 @@
 alias c='clear'
 alias e='exit'
 alias g='git'
+alias z='cd'
 alias aliases='als'
 alias ll='ls -lhA'
 alias la='ls -al'
+alias ff='fzf --preview "bat --style=numbers --color=always --line-range :500 {}"'
 {{ if eq .chezmoi.os "darwin" -}}
 alias o='git-open'
 alias gopen='git-open'
@@ -27,6 +29,8 @@ alias devp='cd $HOME/Development/Personal'
 
 # Tools
 alias cm='chezmoi'
+alias cma='chezmoi -v apply'
+alias cmu='chezmoi -vR update'
 alias v='nvim'
 alias vim='VIMINIT="source $XDG_CONFIG_HOME/vim/vimrc" vim'
 alias nvim='env -u VIMINIT nvim'

@@ -9,3 +9,8 @@
 export DBT_PROFILES_DIR=$XDG_CONFIG_HOME/dbt
 export BAT_THEME='Monokai Extended'
 export UNISON=$XDG_CONFIG_HOME/unison
+{{- if eq .chezmoi.os "darwin" }}
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+{{- else }}
+export FZF_DEFAULT_OPTS='--walker=file,follow,hidden --walker-skip=.git'
+{{- end }}
