@@ -9,12 +9,19 @@ cursor-color = #ffffff
 cursor-style = bar
 adjust-cursor-thickness = 2
 
-window-width =120
+window-width = 120
 window-height = 35
 window-padding-x = 8,2
 
 window-save-state = never
 confirm-close-surface = false
+
+macos-option-as-alt = true
+shell-integration-features = true
+
+# Quick Terminal
+quick-terminal-position = right
+keybind = global:alt+§=toggle_quick_terminal
 
 # MacOS like movements
 keybind = cmd+backspace=esc:d0xi
