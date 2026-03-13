@@ -5,6 +5,9 @@
 ###
 */ -}}
 
+# Create completions dir for plugins to use (eg. uv)
+[ -d "$ZSH_CACHE_DIR/completions" ] || mkdir -p "$ZSH_CACHE_DIR/completions"
+
 # Behaviour
 zmodule input
 zmodule zsh-users/zsh-completions --fpath src
@@ -15,7 +18,7 @@ zmodule romkatv/powerlevel10k --use degit
 
 # Productivity
 zmodule git
-zmodule paulirish/git-open
+zmodule paulirish/git-open --no-submodules
 zmodule mattmc3/zfunctions
 zmodule ohmyzsh/ohmyzsh --root plugins/aliases
 zmodule ohmyzsh/ohmyzsh --root plugins/dirhistory
@@ -25,10 +28,8 @@ zmodule ohmyzsh/ohmyzsh --root plugins/zoxide
 zmodule ohmyzsh/ohmyzsh --root plugins/fzf
 zmodule Aloxaf/fzf-tab
 {{ if eq .chezmoi.os "darwin" -}}
-[ -d "$ZSH_CACHE_DIR/completions" ] || mkdir -p "$ZSH_CACHE_DIR/completions" {{- /* Create completions dir for uv */}}
 zmodule ohmyzsh/ohmyzsh --root plugins/uv
 zmodule ohmyzsh/ohmyzsh --root plugins/direnv
-zmodule ohmyzsh/ohmyzsh --root plugins/thefuck
 {{- end }}
 
 # Local plugins

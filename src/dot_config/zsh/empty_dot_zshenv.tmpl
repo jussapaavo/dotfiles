@@ -13,6 +13,8 @@ export ZIM_HOME="${XDG_CACHE_HOME:-$HOME/.cache}/zim"
 
 # Ensure path arrays do not contain duplicates.
 typeset -gU fpath path
+{{- /* # Add cache completions dir to fpath so compinit it picks up */}}
+fpath=("$ZSH_CACHE_DIR/completions" $fpath)
 
 # Regional settings
 LANG="en_US.UTF-8"
