@@ -11,6 +11,7 @@ brew 'zlib'       # Recommended for building Python
 brew 'xz'         # Recommended for building Python
 
 # CLI utilities
+brew 'atuin'      # Better shell history
 brew 'bat'        # Better cat
 brew 'fd'         # Alternative to 'find'
 brew 'fzf'
