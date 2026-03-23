@@ -35,6 +35,7 @@ zmodule ohmyzsh/ohmyzsh --root plugins/direnv
 # Local plugins
 zmodule {{ .chezmoi.homeDir }}/.config/zsh/plugins/options
 zmodule {{ .chezmoi.homeDir }}/.config/zsh/plugins/better-cd
+zmodule {{ .chezmoi.homeDir }}/.config/zsh/plugins/television
 {{ if eq .chezmoi.os "darwin" -}}
 zmodule {{ .chezmoi.homeDir }}/.config/zsh/plugins/atuin
 zmodule {{ .chezmoi.homeDir }}/.config/zsh/plugins/aws
