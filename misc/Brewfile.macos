@@ -1,10 +1,11 @@
 tap "FelixKratz/formulae"
 
-# Binaries
+# Utilities
 brew 'ffmpeg'         # Better audio and video handling
 brew 'httpie'
 brew 'mas'            # Mac App Store manager
 brew 'trash'          # Manage the Trash bin
+brew 'wakeonlan'
 
 # Development
 brew 'awscli'         # Official AWS command-line interface
@@ -14,7 +15,6 @@ brew 'gitlint'        # Commit linting
 brew 'hub'            # GitHub CLI extensions
 brew 'hugo'           # Build static websites from markdown files
 brew 'terragrunt'
-brew 'wakeonlan'
 cask 'google-cloud-sdk'
 
 # UI/UX Mods

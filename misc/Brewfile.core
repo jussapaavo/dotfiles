@@ -25,6 +25,7 @@ brew 'node'       # Node.js and npm
 brew 'nvim'
 brew 'pipx'       # Install isolated Python apps
 brew 'ripgrep'    # Faster alternative to grep
+brew 'television' # fzf utilities
 brew 'tealdeer'   # Better manpages
 brew 'thefuck'
 brew 'unison'     # File sync for backups
