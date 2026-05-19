@@ -16,6 +16,44 @@ s = ['built-in', 'secondary']
 # check-further-callbacks = true
 # run = ['layout floating', 'move-node-to-workspace S']  # The callback itself
 
+###
+# Assign Workspaces
+###
+
+# Workspace E
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Outlook'
+run = 'move-node-to-workspace e'
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.teams2'
+run = 'move-node-to-workspace e'
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace e'
+
+# Workspace S
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = 'move-node-to-workspace s'
+
+[[on-window-detected]]
+if.app-id = 'com.rambox'
+run = 'move-node-to-workspace s'
+
+# Workspace P
+
+[[on-window-detected]]
+if.app-id = 'com.brave.Browser'
+run = 'move-node-to-workspace p'
+
+###
+# Default to floating layout
+###
+
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
 run = 'layout floating'
@@ -77,25 +115,13 @@ if.app-name-regex-substring = 'discord'
 run = 'layout floating'
 
 [[on-window-detected]]
-if.app-id = 'com.microsoft.Outlook'
-run = 'move-node-to-workspace e'
+if.app-id = 'com.daisydiskapp.DaisyDisk'
+run = 'layout floating'
 
 [[on-window-detected]]
-if.app-id = 'com.microsoft.teams2'
-run = 'move-node-to-workspace e'
+if.app-id = 'com.getdropbox.dropbox'
+run = 'layout floating'
 
 [[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace e'
-
-[[on-window-detected]]
-if.app-id = 'com.spotify.client'
-run = 'move-node-to-workspace s'
-
-[[on-window-detected]]
-if.app-id = 'com.rambox'
-run = 'move-node-to-workspace s'
-
-[[on-window-detected]]
-if.app-id = 'com.brave.Browser'
-run = 'move-node-to-workspace p'
+if.app-id = 'com.apple.ScreenContinuity'
+run = 'layout floating'
