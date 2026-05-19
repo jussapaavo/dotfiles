@@ -1,0 +1,33 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "share": "disabled",
+  "tui": {
+    "scroll_acceleration": {
+      "enabled": true
+    }
+  },
+  "keybinds": {
+    "app_exit": "none",
+    "input_clear": "ctrl+c"
+  },
+  "instructions": [
+    "~/.copilot/copilot-instructions.md"
+  ],
+  "permission": {
+    "*": "ask",
+    "bash": "ask",
+    "doom_loop": "ask",
+    "edit": "ask",
+    "external_directory": "ask",
+    "glob": "allow",
+    "grep": "allow",
+    "list": "allow",
+    "lsp": "allow",
+    "read": "allow",
+    "task": "allow",
+    "todoread": "allow",
+    "todowrite": "allow",
+    "webfetch": "ask",
+    "websearch": "ask"
+  }
+}
