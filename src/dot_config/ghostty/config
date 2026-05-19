@@ -16,9 +16,11 @@ window-padding-x = 8,2
 window-save-state = never
 confirm-close-surface = false
 
-# Does not respect $ and other signs
+# Does not respect '$' and other signs
 macos-option-as-alt = false
+# SSH env did not work, might be fixed in Ghostty 1.3.2
 shell-integration-features = true
+shell-integration-features = no-ssh-env
 
 # Quick Terminal
 quick-terminal-position = right
