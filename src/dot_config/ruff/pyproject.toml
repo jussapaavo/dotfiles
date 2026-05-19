@@ -1,0 +1,55 @@
+[tool.ruff]
+target-version = "py313"
+line-length = 88
+output-format = "full"
+extend-exclude = [
+    "__pycache__",
+    ".terragrunt-cache",
+    ".terraform",
+]
+
+[tool.ruff.lint]
+select = ["ALL"]
+preview = true
+ignore = [
+    "CPY001", # no need for copyright notice in every file
+    "D203",   # blank line before class docstring (conflicts D211)
+    "D213",   # multiline docstring second line (conflicts D212)
+    "COM812", # trailing comma - conflicts with ruff format
+    "ISC001", # implicit string concat - conflicts with ruff format
+    "T201",   # print statements are fine for debugging
+    "INP001", # does not need `__init__.py` files
+    "D100",   # docstrings are optional for public modules
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**/*.py" = [
+    "S101",    # assert is fine in tests
+    "PLR2004", # magic values in tests are normal
+    "ANN",     # type annotations can be loose in tests
+    "D100",
+    "D101",
+    "D102",
+    "D103",
+    "D104",    # docstrings in tests can be optional
+    "ARG001",
+    "ARG002",  # pytest fixtures have unused args
+    "SLF001",  # accessing private attrs in tests is fine
+    "TRY003",
+    "EM101",   # exception messages in tests don't matter
+]
+"utils/**/*.py" = [
+    "INP001", # does not need a `__init__.py` file
+]
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = [
+    # CRITICAL for FastAPI - without this Ruff false-alarms on B008
+    "fastapi.Depends",
+    "fastapi.Query",
+    "fastapi.Path",
+    "fastapi.Body",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"
