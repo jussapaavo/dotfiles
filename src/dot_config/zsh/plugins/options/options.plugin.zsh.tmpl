@@ -41,11 +41,30 @@ setopt extended_glob           {{- /* Needed for file modification glob modifier
 setopt NO_menu_complete        {{- /* Do not autoselect the first completion entry. */}}
 setopt NO_flow_control         {{- /* Disable start/stop characters in shell editor. */}}
 
+# ZLE highlighting
+{{- /* Make highlights darker to keep the white cursor visible */}}
+zle_highlight=('paste:bg=68')
+
+# Edit command in $EDITOR
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M viins "^E" edit-command-line
+
 # Other keymaps
 bindkey -v                                   {{- /* enable vi mode */}}
 bindkey "^H" backward-delete-char            {{- /* make backspace behave */}}
 bindkey "^?" backward-delete-char            {{- /* make backspace behave */}}
 bindkey -M viins "^[[1;3C" forward-word      {{- /* alt+right: Move forward by word */}}
 bindkey -M viins "^[[1;3D" backward-word     {{- /* alt+left: Move backward by word */}}
-bindkey -M viins "^[[1;9D" beginning-of-line {{- /* ctrl+left: Move to the beginning of the line. */}}
-bindkey -M viins "^[[1;9C" end-of-line       {{- /* ctrl+left: Move to end of line */}}
+bindkey -M viins "^[[1;9D" beginning-of-line {{- /* ctrl/cmd+left: Move to the beginning of the line. */}}
+bindkey -M viins "^[[1;9C" end-of-line       {{- /* ctrl/cmd+right: Move to end of line */}}
+bindkey -M viins "^U" backward-kill-line     {{- /* cmd+backspace / ctrl+u: delete to start of line */}}
+bindkey -M viins "^[[99~" kill-buffer        {{- /* cmd+shift+backspace: clear whole (multiline) command */}}
+
+{{- /* shift+arrow: move instead of running confusing vi command */}}
+bindkey -M viins "^[[1;2C" forward-char      {{- /* shift+right */}}
+bindkey -M viins "^[[1;2D" backward-char     {{- /* shift+left */}}
+bindkey -M viins "^[[1;4C" forward-word      {{- /* shift+alt+right */}}
+bindkey -M viins "^[[1;4D" backward-word     {{- /* shift+alt+left */}}
+bindkey -M viins "^[[1;10C" end-of-line      {{- /* shift+cmd+right */}}
+bindkey -M viins "^[[1;10D" beginning-of-line {{- /* shift+cmd+left */}}

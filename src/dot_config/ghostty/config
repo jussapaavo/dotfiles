@@ -8,6 +8,8 @@ adjust-cell-height = 10%
 cursor-color = #ffffff
 cursor-style = bar
 adjust-cursor-thickness = 2
+selection-background = #3d89ed
+selection-foreground = #ffffff
 
 window-width = 120
 window-height = 35
@@ -27,11 +29,12 @@ quick-terminal-position = right
 keybind = global:alt+§=toggle_quick_terminal
 
 # MacOS like movements
-keybind = cmd+backspace=esc:d0xi
-keybind = cmd+left=esc:^i
-keybind = cmd+right=esc:$a
-keybind = alt+left=esc:bi
-keybind = alt+right=esc:ea
+keybind = cmd+backspace=text:\x15
+keybind = cmd+shift+backspace=csi:99~
+keybind = cmd+left=csi:1;9D
+keybind = cmd+right=csi:1;9C
+keybind = alt+left=csi:1;3D
+keybind = alt+right=csi:1;3C
 
 keybind = cmd+enter=new_split:auto
 keybind = cmd+alt+left=previous_tab
