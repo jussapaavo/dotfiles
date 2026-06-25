@@ -11,7 +11,10 @@
 # Behaviour
 zmodule input
 zmodule zsh-users/zsh-completions --fpath src
-zmodule completion # Does `compinit` for your
+{{ if eq .chezmoi.os "darwin" -}}
+zmodule ocodo/ollama_zsh_completion --fpath .
+{{ end -}}
+zmodule completion {{- /* # Does `compinit` */}}
 
 # Prompt
 zmodule romkatv/powerlevel10k --use degit
