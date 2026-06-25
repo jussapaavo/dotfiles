@@ -15,6 +15,7 @@ brew 'atuin'      # Better shell history
 brew 'bat'        # Better cat
 brew 'fd'         # Alternative to 'find'
 brew 'fzf'
+brew 'lnav'       # Better log viewer
 brew 'lsd'        # Better ls
 brew 'direnv'     # Envvar management
 brew 'git-delta'  # Better diffs
