@@ -33,6 +33,10 @@ brew 'unison'     # File sync for backups
 brew 'uv'         # Better Python environments
 brew 'zoxide'     # Better cd in Terminal
 
+# Required for nvim
+brew 'tree-sitter'
+brew 'tree-sitter-cli'
+
 # Apps
 cask '1password-cli'
 cask 'ghostty'

@@ -10,5 +10,5 @@ return {
     { "nvim-treesitter/nvim-treesitter-textobjects", enabled = false },
     -- Replace lueline with statusline
     { "nvim-lualine/lualine.nvim", enabled = false },
-    { "echasnovski/mini.statusline", version = '*' },
+    { "nvim-mini/mini.statusline", version = '*' },
 }
